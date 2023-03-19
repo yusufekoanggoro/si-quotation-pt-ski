@@ -3,6 +3,7 @@ package initialproject;
 import initialproject.dao.InterfaceDao;
 import initialproject.dao.UserDao;
 import initialproject.models.User;
+import initialproject.views.UserFrame;
 
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
     
     public Main(){
         userDao = new UserDao();
+        new UserFrame().setVisible(true);
     }
     
     /**
@@ -19,13 +21,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             Main programm = new Main();
-            programm.runExampleUsageDao();
+//            programm.runExampleUsageDao();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
     
-    public void runExampleUsageDao () throws Exception
+    public void runExampleUsageDao ()
     {
         try{
             User user = new User();
