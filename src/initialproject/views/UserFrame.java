@@ -31,7 +31,7 @@ public class UserFrame extends javax.swing.JFrame {
     
     @Override
     public void dispose(){
-        userController.daoClose();
+        userController.daoCloseConnection();
         super.dispose();
     }
     
@@ -50,7 +50,7 @@ public class UserFrame extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
-                    userController.daoClose();
+                    userController.daoCloseConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }
             }

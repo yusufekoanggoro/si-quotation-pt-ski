@@ -15,6 +15,8 @@ public interface InterfaceDao<T> {
     
     public void delete(T t);
 
-    public void close();
+    public void closeStatement();
+    
+    public void closeConnection();
     
 }

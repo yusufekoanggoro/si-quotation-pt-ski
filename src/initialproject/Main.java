@@ -49,7 +49,8 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }finally {
-            userDao.close();
+            userDao.closeStatement();
+            userDao.closeConnection();
         }
     }
 }
