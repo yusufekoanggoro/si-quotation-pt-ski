@@ -23,4 +23,8 @@ public class UserController {
         UserTableModel userTableModel = new UserTableModel(users);
         frame.getJTable1().setModel(userTableModel);
     }
+    
+    public void daoClose(){
+        userDao.close();
+    }
 }

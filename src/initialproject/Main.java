@@ -11,7 +11,8 @@ public class Main {
     
     public Main(){
         userDao = new UserDao();
-        new UserFrame().setVisible(true);
+        UserFrame userFrame = new UserFrame();
+        userFrame.start();
     }
     
     /**
@@ -21,7 +22,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Main programm = new Main();
-//            programm.runExampleUsageDao();
+            programm.runExampleUsageDao();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
