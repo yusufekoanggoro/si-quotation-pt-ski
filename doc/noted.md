@@ -1,57 +1,60 @@
-JUDUL: (QMS) QUOTATION MANAGEMENT SYSTEM PT. SKI 
+# Judul: Sistem Manajemen Quotation (QMS) PT. SKI
 
-1.FORM LOGIN
-2.MENU
-3.FORM
-3A.MASTER-COMPANY(COMPANY NAME, PIC,NO. TELP)
-3B.MASTER-ITEM(NAMA ITEM, PRICE PER UNIT)
-3C.FORM INPUT TRANSAKSI(Price per unit + PPN(11% PPN Indonesia)
-3D.MASTER LOGIN KARYAWAN
-3E.FORM REPORT
-3F.FORM PROFILE KARYAWAN
-4.REPORT REPORT MASTER COMPANY
-5.REPORT TRANSAKSI PER STATUS(REMARKS/QUOTATION)
-6.REPORT PROSPEK PER TAHUN
-7.REPORT QUOTATION GRAFIK TAHUN 2022-2023 (SIMPAN)
-8.REPORT SEGMENTASI MARKET(SIMPAN)
+## Fitur Aplikasi
 
+1. Form Login
+2. Menu
+3. Form:  
+A. Master-Company (Nama Perusahaan, PIC, No. Telp)  
+B. Master-Item (Nama Item, Harga Per Unit)  
+C. Form Input Transaksi (Harga per unit + PPN (11% PPN Indonesia))  
+D. Master Login Karyawan  
+E. Form Report  
+F. Form Profile Karyawan  
+4. Report Master Company
+5. Report Transaksi per Status (Remarks/Quotation)
+6. Report Prospek per Tahun
+7. Report Quotation Grafik Tahun 2022-2023 (Simpan)
+8. Report Segmentasi Market (Simpan)
 
-PEMBAGIAN TUGAS PEMPROGRAMAN VISUAL:
-1. BUAT DFD PROGRAM DULU DAN PEMBAGAIN TUGAS
-2. PEMPROGRAMAN VISUAL MINMAL SETENGAH JALAN BARU ANSIS AKAN DIRANCANG
-3. BUAT DFD ANALIS SISTEM (FAUZIAH, DEDE)>MINIMAL P4(HARI MINGGU SUDAH DISUSUN)
-4. USER INTERFACE (JIMMY, ILHAM)
-5. BACK END (ATHA,YUSUF)
-6. DATA BASE(PANDU, DIAZ)
-7. P3-P5(PENGAJUAN JUDUL)
-8. TEAM MULAI CICIL/ RANCANG SESUAI JOBDESK NYA MASING MASING
+## Pembagian Tugas Pemrograman Visual:
 
+1. Buat DFD program terlebih dahulu dan pembagian tugas
+2. Pemrograman visual minimal setengah jalan, baru ansys akan dirancang
+3. Buat DFD analisis sistem (Fauziah, Dede)> minimal P4 (hari Minggu sudah disusun)
+4. User Interface (Jimmy, Ilham)
+5. Back-end (Atha, Yusuf)
+6. Database (Pandu, Diaz)
+7. P3-P5 (pengajuan judul)
+8. Tim mulai cicil/rancang sesuai jobdesk masing-masing
 
-1.ANALISIS SISTEM: (QMS) QUOTATION MANAGEMENT SYSTEM PT. SKI 
+## Analisis Sistem: Sistem Manajemen Quotation (QMS) PT. SKI
 
-DATA:
-1. Data_Karyawan(Nama, Jenis Kelamin, TTL, alamat, Agama, status, no. telp,
- Mulai join SKI)
-2. Data_Jabatan(Nama, Jabatan nya apa, periode jabatan)
-3. Data_Costumer(Company Name, PIC, No. Telp, bergerak dibidang apa)
-4. Data_transaksi_item(No. quotation, Nama item, Qty, price per unit )
+### Data:
 
-INFORMASI
-1. QUOTATION COSTUMER(NOMOR, DATE, QTN NOMOR, COMPANY NAME, Bergerak dibidang apa, PIC, NO. TELP, NAMA ITEM, QTY, PRICE/EA, 
-   SUB TOTAL, PPN, TOTAL AMOUNT)
-2. REPORT QUOTATION PER STATUS(QTN CLOSE, QTN SUDAH PO, QTN MASIH DI FU, REMARKS)
-   >NB: PENGAMBILAN DATA / ISI SAMA DGN DI NO 1
-3. REPORT QUOTATION PER TAHUN (2022-2023 PERBADINGAN DARI TAHUN SEBELUMNYA DGN SEKARANG)
-   >NB: PENGAMBILAN DATA / ISI SAMA DGN DI NO 1
-4. REPORT QUOTATION GRAFIK TAHUN 2022-2023(Buat grafik perbadingan setiap bulan antara tahun 2022 & 2023)
-   >NB: HASIL DALAM BENTUK GRAFIK DARI REPORT SEBELUMNYA
-4. REPORT SEGMENTASI MARKET ( Pharmaceutical, Foods & Beverages, Automotive Parts Industry, Pulp & Paper, Palm Oil Refinery,
-   Steel Manufacturer, Water process company, MARINE/ Diesel, Power Plants,  Water Cooling, Chemical ,Oil & Gas)
-   >NB: HASIL GRAFIK DALAM % (PERSENTASI) PER SEGMEN MARKET
-ENTITAS
-1. KARYAWAN( SALES SUPPORT, ACCOUNTING, ADMINISTRASI)
-2. COSTUMER
-3. PEMILIK
-4. PRODUCT SPECIALIST(ADMIN YG INPUT DATA QUOTATION)
+1. Data Karyawan (Nama, Jenis Kelamin, TTL, Alamat, Agama, Status, No. Telp, Mulai Join SKI)
+2. Data Jabatan (Nama, Jabatan, Periode Jabatan)
+3. Data Customer (Nama Perusahaan, PIC, No. Telp, Bergerak di Bidang Apa)
+4. Data Transaksi Item (No. Quotation, Nama Item, Qty, Harga per Unit)
 
+### Informasi:
 
+1. Quotation Customer (Nomor, Tanggal, Nomor Quotation, Nama Perusahaan, Bergerak di Bidang Apa, PIC, No. Telp, Nama Item, Qty, Harga/EA, Subtotal, PPN, Total Amount)
+2. Report Quotation per Status (Quotation Close, Quotation Sudah PO, Quotation Masih di FU, Remarks)
+    > NB: Pengambilan Data/Isi sama dengan di No. 1
+
+3. Report Quotation per Tahun (2022-2023 Perbandingan dari Tahun Sebelumnya dengan Sekarang)
+    > NB: Pengambilan Data/Isi sama dengan di No. 1
+
+4. Report Quotation Grafik Tahun 2022-2023 (Buat grafik perbandingan setiap bulan antara tahun 2022 & 2023)
+    > NB: Hasil dalam bentuk grafik dari Report sebelumnya
+
+5. Report Segmentasi Market (Pharmaceutical, Foods & Beverages, Automotive Parts Industry, Pulp & Paper, Palm Oil Refinery, Steel Manufacturer, Water Process Company, Marine/Diesel, Power Plants, Water Cooling, Chemical, Oil & Gas)
+    >  NB: Hasil grafik dalam % (persentasi) per segmen market
+
+### Entitas:
+
+1. Karyawan (Sales Support, Accounting, Administrasi)
+2. Customer
+3. Pemilik
+4. Product Specialist (Admin yang input data quotation)
