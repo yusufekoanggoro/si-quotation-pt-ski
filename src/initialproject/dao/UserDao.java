@@ -30,8 +30,6 @@ public class UserDao implements InterfaceDao<User> {
     @Override
     public List<User> findAll() {
         try {
-            closeStatement();
-            
             query = "SELECT * FROM users";
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
@@ -48,14 +46,14 @@ public class UserDao implements InterfaceDao<User> {
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 
     @Override
     public int create(User u) {
         try {
-            closeStatement();
-            
             query = "INSERT INTO users(name, age, created_at, updated_at) VALUES(?, ?, ?, ?)";
             pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, u.getName());
@@ -73,14 +71,14 @@ public class UserDao implements InterfaceDao<User> {
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 
     @Override
     public int update(User u) {
         try {
-            closeStatement();
-            
             query = "UPDATE users SET name=?, age=? WHERE id=?";
             pstmt = connection.prepareStatement(query);
             pstmt.setString(1, u.getName());
@@ -89,14 +87,14 @@ public class UserDao implements InterfaceDao<User> {
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 
     @Override
     public void delete(User u) {
         try {
-            closeStatement();
-            
             query = "DELETE FROM users WHERE id=?";
             pstmt = connection.prepareStatement(query);
             pstmt.setInt(1, u.getId());
@@ -104,14 +102,14 @@ public class UserDao implements InterfaceDao<User> {
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 
     @Override
     public User findOne(User u) {
         try {
-            closeStatement();
-            
             query = "SELECT * FROM users WHERE id=?";
             System.out.println(u.getId());
             pstmt = connection.prepareStatement(query);
@@ -129,6 +127,8 @@ public class UserDao implements InterfaceDao<User> {
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
     
