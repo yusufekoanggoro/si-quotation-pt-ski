@@ -24,7 +24,7 @@ public class Main {
             Main programm = new Main();
             programm.runExampleUsageDao();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -49,7 +49,6 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }finally {
-            userDao.closeStatement();
             userDao.closeConnection();
         }
     }
