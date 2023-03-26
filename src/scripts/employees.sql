@@ -1,4 +1,4 @@
-CREATE TABLE `quotations_management`.`employes` (
+CREATE TABLE `quotations_management`.`employees` (
   `id` INT NOT NULL AUTO_INCREMENT, 
   `name` VARCHAR(255) NOT NULL, 
   `gender` VARCHAR(15) NOT NULL, 
