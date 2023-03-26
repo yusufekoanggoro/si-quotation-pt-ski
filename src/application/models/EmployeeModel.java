@@ -1,6 +1,6 @@
 package application.models;
 
-public class EmployeModel {
+public class EmployeeModel {
     
     private int id;
     private String name;

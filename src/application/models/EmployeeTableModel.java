@@ -3,10 +3,10 @@ package application.models;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class EmployeTableModel extends AbstractTableModel {
-    List<EmployeModel> employes;
+public class EmployeeTableModel extends AbstractTableModel {
+    List<EmployeeModel> employes;
     
-    public EmployeTableModel(List<EmployeModel> employes) {
+    public EmployeeTableModel(List<EmployeeModel> employes) {
         this.employes = employes;
     }
 

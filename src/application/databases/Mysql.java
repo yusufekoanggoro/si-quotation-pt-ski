@@ -7,17 +7,23 @@ import java.util.Properties;
 
 public class Mysql {
     
-    private static final String DRIVER = System.getProperty("MYSQL_DRIVER");
-    private static final String URL = System.getProperty("MYSQL_URL");
-    private static final String USERNAME = System.getProperty("MYSQL_USERNAME");
-    private static final String PASSWORD = System.getProperty("MYSQL_PASSWORD");;
-    private static final String MAX_POOL = System.getProperty("MYSQL_MAX_POOL");
-    
-    private static Connection connection = null;
+    private Connection connection;
+    private final String DRIVER;
+    private final String URL;
+    private final String USERNAME;
+    private final String PASSWORD;
+    private final String MAX_POOL;
     private Properties properties;
-    
-    public void connect(){
+
+    public Mysql(){
         try {
+            this.connection = null;
+            this.DRIVER = System.getProperty("MYSQL_DRIVER");
+            this.URL = System.getProperty("MYSQL_URL");
+            this.USERNAME = System.getProperty("MYSQL_USERNAME");
+            this.PASSWORD = System.getProperty("MYSQL_PASSWORD");
+            this.MAX_POOL = System.getProperty("MYSQL_MAX_POOL");
+
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, getProperties());
         } catch (ClassNotFoundException | SQLException e) {
@@ -34,9 +40,9 @@ public class Mysql {
         }
         return properties;
     }
-
+    
     public Connection getConnection(){
         return connection;
     }
-
+  
 }

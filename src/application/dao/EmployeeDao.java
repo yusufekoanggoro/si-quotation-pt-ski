@@ -1,7 +1,8 @@
 package application.dao;
 
+import application.dao.interfaces.IEmployeeDao;
 import application.databases.Mysql;
-import application.models.EmployeModel;
+import application.models.EmployeeModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,37 +14,37 @@ import java.sql.Timestamp;
 import java.sql.Statement;
 import java.util.Date;
 
-public class EmployeDao implements InterfaceDao<EmployeModel> {
+public class EmployeeDao implements IEmployeeDao<EmployeeModel> {
     private Connection connection = null;
     private PreparedStatement pstmt = null;
     private ResultSet resultSet = null;
+    private final Mysql mysql;
 
-    private final List<EmployeModel> employes = new ArrayList<>();
-    
     private String query;
     
-    public EmployeDao() {
-        Mysql mysql = new Mysql();
-        mysql.connect();
+    public EmployeeDao() {
+        this.mysql = new Mysql();
         connection = mysql.getConnection();
     }
 
     @Override
-    public List<EmployeModel> findAll() {
+    public List<EmployeeModel> findAll() {
         try {
-            query = "SELECT * FROM employes";
+            query = "SELECT * FROM employees";
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
             
+            List<EmployeeModel> employees = new ArrayList<>();
+            
             while (resultSet.next()) {
-                EmployeModel employe = new EmployeModel();
-                employe.setId(resultSet.getInt("id"));
-                employe.setName(resultSet.getString("name"));
-                employe.setGender(resultSet.getString("geder"));
-                employes.add(employe);
+                EmployeeModel employee = new EmployeeModel();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("geder"));
+                employees.add(employee);
             }  
             
-            return employes;
+            return employees;
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
@@ -53,12 +54,12 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
     }
 
     @Override
-    public int create(EmployeModel employe) {
+    public int create(EmployeeModel employee) {
         try {
-            query = "INSERT INTO employes(name, gender, created_at, updated_at) VALUES(?, ?, ?, ?)";
+            query = "INSERT INTO employees(name, gender, created_at, updated_at) VALUES(?, ?, ?, ?)";
             pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, employe.getName());
-            pstmt.setString(2, employe.getGender());
+            pstmt.setString(1, employee.getName());
+            pstmt.setString(2, employee.getGender());
             pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
             pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
             
@@ -66,7 +67,7 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
             resultSet = pstmt.getGeneratedKeys();
             
             if (resultSet.next()) {
-                employe.setId(resultSet.getInt(1));
+                employee.setId(resultSet.getInt(1));
             }
             return result;
 	} catch (SQLException e) {
@@ -78,12 +79,12 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
     }
 
     @Override
-    public int update(EmployeModel employe) {
+    public int update(EmployeeModel employee) {
         try {
-            query = "UPDATE employes SET name=?, gender=? WHERE id=?";
+            query = "UPDATE employees SET name=?, gender=? WHERE id=?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, employe.getName());
-            pstmt.setString(2, employe.getGender());
+            pstmt.setString(1, employee.getName());
+            pstmt.setString(2, employee.getGender());
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
             // e.printStackTrace();
@@ -94,11 +95,11 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
     }
 
     @Override
-    public void delete(EmployeModel employe) {
+    public void delete(EmployeeModel employee) {
         try {
             query = "DELETE FROM users WHERE id=?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setInt(1, employe.getId());
+            pstmt.setInt(1, employee.getId());
             pstmt.executeUpdate();
 	} catch (SQLException e) {
             // e.printStackTrace();
@@ -109,22 +110,24 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
     }
 
     @Override
-    public EmployeModel findOne(EmployeModel employe) {
+    public List<EmployeeModel> findOne(EmployeeModel employee) {
         try {
-            query = "SELECT * FROM employes WHERE id=?";
-            System.out.println(employe.getId());
+            query = "SELECT * FROM employees WHERE id=?";
+            System.out.println(employee.getId());
             pstmt = connection.prepareStatement(query);
-            pstmt.setInt(1, employe.getId());
+            pstmt.setInt(1, employee.getId());
             resultSet = pstmt.executeQuery();
             
+            List<EmployeeModel> employees = new ArrayList<>();
+            
             while (resultSet.next()) {
-                employe.setId(resultSet.getInt("id"));
-                employe.setName(resultSet.getString("name"));
-                employe.setGender(resultSet.getString("gender"));
-                employes.add(employe);
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("gender"));
+                employees.add(employee);
             }  
             
-            return employes.get(0);
+            return employees;
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
@@ -158,6 +161,32 @@ public class EmployeDao implements InterfaceDao<EmployeModel> {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<EmployeeModel> findOneByUsername(EmployeeModel employee) {
+        try {
+            query = "SELECT * FROM employees WHERE username=?";
+            System.out.println(employee.getUsername());
+            pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, employee.getUsername());
+            resultSet = pstmt.executeQuery();
+            
+            List<EmployeeModel> employees = new ArrayList<>();
+            
+            while (resultSet.next()) {
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("gender"));
+                employees.add(employee);
+            }  
+            return employees;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 }
