@@ -1,18 +1,18 @@
-package initialproject.models;
+package application.models;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class UserTableModel extends AbstractTableModel {
-    List<User> users;
+public class EmployeTableModel extends AbstractTableModel {
+    List<EmployeModel> employes;
     
-    public UserTableModel(List<User> users) {
-        this.users = users;
+    public EmployeTableModel(List<EmployeModel> employes) {
+        this.employes = employes;
     }
 
     @Override
     public int getRowCount() {
-        return users.size();
+        return employes.size();
     }
     
     @Override
@@ -23,7 +23,7 @@ public class UserTableModel extends AbstractTableModel {
             case 1:
                 return "Name";
             case 2:
-                return "Age";
+                return "Gender";
             default:
                 return null;
         }
@@ -38,11 +38,11 @@ public class UserTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int column) {
         switch (column) {
             case 0:
-                return users.get(row).getId();
+                return employes.get(row).getId();
             case 1:
-                return users.get(row).getName();
+                return employes.get(row).getName();
             case 2:
-                return users.get(row).getAge();
+                return employes.get(row).getGender();
             default:
                 return null;
         }

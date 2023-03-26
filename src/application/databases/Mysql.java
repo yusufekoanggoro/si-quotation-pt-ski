@@ -1,4 +1,4 @@
-package initialproject.databases;
+package application.databases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,19 +7,19 @@ import java.util.Properties;
 
 public class Mysql {
     
-    private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/test";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
-    private static final String MAX_POOL = "250";
+    private static final String DRIVER = System.getProperty("MYSQL_DRIVER");
+    private static final String URL = System.getProperty("MYSQL_URL");
+    private static final String USERNAME = System.getProperty("MYSQL_USERNAME");
+    private static final String PASSWORD = System.getProperty("MYSQL_PASSWORD");;
+    private static final String MAX_POOL = System.getProperty("MYSQL_MAX_POOL");
     
     private static Connection connection = null;
     private Properties properties;
     
-    public Mysql(){
+    public void connect(){
         try {
-            Class.forName(DATABASE_DRIVER);
-            connection = DriverManager.getConnection(DATABASE_URL, getProperties());
+            Class.forName(DRIVER);
+            connection = DriverManager.getConnection(URL, getProperties());
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }  
@@ -38,4 +38,5 @@ public class Mysql {
     public Connection getConnection(){
         return connection;
     }
+
 }
