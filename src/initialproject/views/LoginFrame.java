@@ -4,6 +4,15 @@
  */
 package initialproject.views;
 
+import initialproject.databases.db;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  *
  * @author Jimmi Iskandar
@@ -32,9 +41,9 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        userF = new javax.swing.JTextField();
+        passF = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -74,13 +83,18 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
 
-        jTextField2.setText("Username");
+        userF.setText("Username");
 
-        jPasswordField1.setText("jPasswordField1");
+        passF.setText("jPasswordField1");
 
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 255));
-        jButton1.setText("Login");
+        btnLogin.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(0, 153, 255));
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,11 +113,11 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                            .addComponent(userF)
+                            .addComponent(passF, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addComponent(jButton1)))
+                        .addComponent(btnLogin)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -114,13 +128,13 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jButton1)
+                .addComponent(btnLogin)
                 .addGap(0, 88, Short.MAX_VALUE))
         );
 
@@ -180,6 +194,54 @@ public class LoginFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+                
+        String user = userF.getText();
+        String pass = passF.getText();
+        String hashedPassword = getMD5Hash(pass);
+        
+        try {
+            Connection conn = db.buatKoneksi();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
+            stmt.setString(1, user);
+            stmt.setString(2, hashedPassword);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Jika nama pengguna dan kata sandi benar, tampilkan pesan berhasil masuk
+                JOptionPane.showMessageDialog(null, "Berhasil Masuk");
+            } else {
+                // Jika nama pengguna dan kata sandi salah, tampilkan pesan kesalahan
+                JOptionPane.showMessageDialog(null, "Gagal login, silahkan coba kembali");
+            }
+
+
+            // Close the result set, statement, and connection
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat melakukan login");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+        public static String getMD5Hash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashInBytes = md.digest(input.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashInBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("MD5 algorithm not available");
+            return null;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -216,14 +278,15 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField passF;
+    private javax.swing.JTextField userF;
     // End of variables declaration//GEN-END:variables
+
 }
