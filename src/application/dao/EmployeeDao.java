@@ -1,7 +1,8 @@
-package initialproject.dao;
+package application.dao;
 
-import initialproject.databases.Mysql;
-import initialproject.models.User;
+import application.dao.interfaces.IEmployeeDao;
+import application.databases.Mysql;
+import application.models.EmployeeModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,36 +14,37 @@ import java.sql.Timestamp;
 import java.sql.Statement;
 import java.util.Date;
 
-public class UserDao implements InterfaceDao<User> {
+public class EmployeeDao implements IEmployeeDao<EmployeeModel> {
     private Connection connection = null;
     private PreparedStatement pstmt = null;
     private ResultSet resultSet = null;
+    private final Mysql mysql;
 
-    private final List<User> users = new ArrayList<>();
-    
     private String query;
     
-    public UserDao() {
-        Mysql mysql = new Mysql();
+    public EmployeeDao() {
+        this.mysql = new Mysql();
         connection = mysql.getConnection();
     }
 
     @Override
-    public List<User> findAll() {
+    public List<EmployeeModel> findAll() {
         try {
-            query = "SELECT * FROM users";
+            query = "SELECT * FROM employees";
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
             
+            List<EmployeeModel> employees = new ArrayList<>();
+            
             while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setAge(resultSet.getInt("age"));
-                users.add(user);
+                EmployeeModel employee = new EmployeeModel();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("geder"));
+                employees.add(employee);
             }  
             
-            return users;
+            return employees;
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
@@ -52,12 +54,12 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     @Override
-    public int create(User u) {
+    public int create(EmployeeModel employee) {
         try {
-            query = "INSERT INTO users(name, age, created_at, updated_at) VALUES(?, ?, ?, ?)";
+            query = "INSERT INTO employees(name, gender, created_at, updated_at) VALUES(?, ?, ?, ?)";
             pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, u.getName());
-            pstmt.setInt(2, u.getAge());
+            pstmt.setString(1, employee.getName());
+            pstmt.setString(2, employee.getGender());
             pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
             pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
             
@@ -65,7 +67,7 @@ public class UserDao implements InterfaceDao<User> {
             resultSet = pstmt.getGeneratedKeys();
             
             if (resultSet.next()) {
-                u.setId(resultSet.getInt(1));
+                employee.setId(resultSet.getInt(1));
             }
             return result;
 	} catch (SQLException e) {
@@ -77,12 +79,12 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     @Override
-    public int update(User u) {
+    public int update(EmployeeModel employee) {
         try {
-            query = "UPDATE users SET name=?, age=? WHERE id=?";
+            query = "UPDATE employees SET name=?, gender=? WHERE id=?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, u.getName());
-            pstmt.setInt(2, u.getAge());
+            pstmt.setString(1, employee.getName());
+            pstmt.setString(2, employee.getGender());
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
             // e.printStackTrace();
@@ -93,11 +95,11 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     @Override
-    public void delete(User u) {
+    public void delete(EmployeeModel employee) {
         try {
             query = "DELETE FROM users WHERE id=?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setInt(1, u.getId());
+            pstmt.setInt(1, employee.getId());
             pstmt.executeUpdate();
 	} catch (SQLException e) {
             // e.printStackTrace();
@@ -108,22 +110,24 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     @Override
-    public User findOne(User u) {
+    public List<EmployeeModel> findOne(EmployeeModel employee) {
         try {
-            query = "SELECT * FROM users WHERE id=?";
-            System.out.println(u.getId());
+            query = "SELECT * FROM employees WHERE id=?";
+            System.out.println(employee.getId());
             pstmt = connection.prepareStatement(query);
-            pstmt.setInt(1, u.getId());
+            pstmt.setInt(1, employee.getId());
             resultSet = pstmt.executeQuery();
             
+            List<EmployeeModel> employees = new ArrayList<>();
+            
             while (resultSet.next()) {
-                u.setId(resultSet.getInt("id"));
-                u.setName(resultSet.getString("name"));
-                u.setAge(resultSet.getInt("age"));
-                users.add(u);
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("gender"));
+                employees.add(employee);
             }  
             
-            return users.get(0);
+            return employees;
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
@@ -157,6 +161,32 @@ public class UserDao implements InterfaceDao<User> {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<EmployeeModel> findOneByUsername(EmployeeModel employee) {
+        try {
+            query = "SELECT * FROM employees WHERE username=?";
+            System.out.println(employee.getUsername());
+            pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, employee.getUsername());
+            resultSet = pstmt.executeQuery();
+            
+            List<EmployeeModel> employees = new ArrayList<>();
+            
+            while (resultSet.next()) {
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("gender"));
+                employees.add(employee);
+            }  
+            return employees;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
         }
     }
 }

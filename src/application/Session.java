@@ -1,4 +1,4 @@
-package initialproject;
+package application;
 
 public class Session {
     private static int id;
