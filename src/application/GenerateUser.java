@@ -28,7 +28,7 @@ public class GenerateUser {
         employee.setName("Yusuf Eko Anggoro");
         employee.setGender("Laki-laki");
         employee.setPlaceOfBirth("Jakarta");
-        employee.setPhoneNumber("08121859696");
+        employee.setPhoneNumber("08121857486");
         employee.setDateOfBirth(dateOfBirth);
         employee.setCreatedAt(dateNow);
         employee.setUpdatedAt(dateNow);
@@ -43,7 +43,7 @@ public class GenerateUser {
         employee2.setName("Yusuf Eko Anggoro");
         employee2.setGender("Laki-laki");
         employee2.setPlaceOfBirth("Jakarta");
-        employee2.setPhoneNumber("08121859696");
+        employee2.setPhoneNumber("08121857486");
         employee2.setDateOfBirth(dateOfBirth);
         employee2.setCreatedAt(dateNow);
         employee2.setUpdatedAt(dateNow);
