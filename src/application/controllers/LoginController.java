@@ -1,10 +1,9 @@
 package application.controllers;
 
-import application.views.*;
+import application.Password;
 import application.dao.*;
 import application.models.EmployeeModel;
 import application.dao.interfaces.IEmployeeDao;
-import java.util.List;
 
 public class LoginController {
     
@@ -17,7 +16,16 @@ public class LoginController {
     public boolean validateLogin(String username, String password){
         EmployeeModel employee = new EmployeeModel();
         employee.setUsername(username);
-        List<EmployeeModel> findOneByUsername = employeeDao.findOneByUsername(employee);
-        return findOneByUsername.size() == 1;
+        EmployeeModel findOneByUsername = employeeDao.findOneByUsername(employee);
+        if(findOneByUsername == null) return false;
+
+        String inputUser = Password.getSecurePassword(password);
+        String passwordDb = findOneByUsername.getPassword();
+        
+        return inputUser.equals(passwordDb);
+    }
+    
+    public void daoCloseConnection() {
+        employeeDao.closeConnection();
     }
 }

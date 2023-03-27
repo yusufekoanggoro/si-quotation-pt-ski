@@ -1,21 +1,24 @@
 package application.models;
 
+import java.sql.Date;
+
 public class EmployeeModel {
     
     private int id;
     private String name;
     private String gender;
     private String placeOfBirth;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String address;
     private String religion;
     private String status;
     private String phoneNumber;
-    private String joinDate;
-    private String createdAt;
-    private String updatedAt;
+    private Date joinDate;
+    private Date createdAt;
+    private Date updatedAt;
     private String username;
     private String password;
+    private int roleId;
 
     public int getId() {
         return id;
@@ -49,11 +52,11 @@ public class EmployeeModel {
         this.placeOfBirth = placeOfBirth;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -89,27 +92,27 @@ public class EmployeeModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getJoinDate() {
+    public Date getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -127,6 +130,14 @@ public class EmployeeModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
     
 }

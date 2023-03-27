@@ -21,6 +21,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
     @Override
     public void dispose(){
         // TODO add your handling code here:
+        loginController.daoCloseConnection();
         super.dispose();
     }
     
@@ -42,6 +43,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
+                    loginController.daoCloseConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     System.exit(0);
                 }
@@ -129,6 +131,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
         boolean validateLogin = loginController.validateLogin(username, password);
         if(validateLogin){
             jTextField1.setText("");
+            jTextField2.setText("");
             JOptionPane.showMessageDialog(null, "Berhasil Masuk");   
         }else{
             JOptionPane.showMessageDialog(null, "Username atau Password Anda Salah");   
