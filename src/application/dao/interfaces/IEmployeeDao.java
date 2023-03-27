@@ -6,7 +6,7 @@ public interface IEmployeeDao<T> {
     
     public List<T> findOne(T t);
     
-    public List<T> findOneByUsername(T t);
+    public T findOneByUsername(T t);
     
     public List<T> findAll();
     
