@@ -1,6 +1,6 @@
 package application.views;
 
-import application.controllers.LoginController;
+import application.usecases.LoginUsecase;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -8,20 +8,20 @@ import javax.swing.JOptionPane;
 
 public class LoginFrame2 extends javax.swing.JFrame {
 
-    private final LoginController loginController;
+    private final LoginUsecase loginUsecase;
     
     /**
      * Creates new form LoginFrame2
      */
     public LoginFrame2() {
         initComponents();
-        loginController = new LoginController();
+        loginUsecase = new LoginUsecase();
     }
     
     @Override
     public void dispose(){
         // TODO add your handling code here:
-        loginController.daoCloseConnection();
+        loginUsecase.daoCloseConnection();
         super.dispose();
     }
     
@@ -43,7 +43,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
-                    loginController.daoCloseConnection();
+                    loginUsecase.daoCloseConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     System.exit(0);
                 }
@@ -128,7 +128,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField1.getText();
         String password = jTextField1.getText();
-        boolean validateLogin = loginController.validateLogin(username, password);
+        boolean validateLogin = loginUsecase.validateLogin(username, password);
         if(validateLogin){
             jTextField1.setText("");
             jTextField2.setText("");
