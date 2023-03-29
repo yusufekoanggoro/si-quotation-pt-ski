@@ -14,7 +14,7 @@ public class GenerateUser {
     
     public GenerateUser(){
         java.util.Date utilDate = new java.util.Date();
-        java.sql.Timestamp dateNow = new java.sql.Timestamp(new java.util.Date().getTime());
+        java.sql.Timestamp dateNow = new java.sql.Timestamp(utilDate.getTime());
         
         Calendar cal = Calendar.getInstance();
         cal.set( Calendar.YEAR, 2001 );
@@ -67,5 +67,6 @@ public class GenerateUser {
             employeeDao.create(employee);
         }
         System.out.println("Success Generate User");
+        employeeDao.closeConnection();
     }
 }
