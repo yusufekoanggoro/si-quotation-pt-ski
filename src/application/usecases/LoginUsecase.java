@@ -1,16 +1,16 @@
-package application.controllers;
+package application.usecases;
 
 import application.Password;
 import application.dao.*;
 import application.models.EmployeeModel;
 import application.dao.interfaces.IEmployeeDao;
 
-public class LoginController {
+public class LoginUsecase {
     
     private final IEmployeeDao<EmployeeModel> employeeDao;
     
-    public LoginController() {
-          this.employeeDao = new EmployeeDao();
+    public LoginUsecase() {
+        this.employeeDao = new EmployeeDao();
     }
     
     public boolean validateLogin(String username, String password){
