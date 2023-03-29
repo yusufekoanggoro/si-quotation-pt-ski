@@ -1,4 +1,4 @@
-package application.views;
+package application.frames;
 
 import application.usecases.LoginUsecase;
 import java.awt.event.WindowAdapter;

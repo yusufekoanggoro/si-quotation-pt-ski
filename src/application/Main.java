@@ -1,6 +1,6 @@
 package application;
 
-import application.views.*;
+import application.frames.LoginFrame2;
 
 public class Main {
     
