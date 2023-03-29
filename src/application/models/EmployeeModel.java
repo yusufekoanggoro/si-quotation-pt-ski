@@ -13,9 +13,9 @@ public class EmployeeModel {
     private String religion;
     private String status;
     private String phoneNumber;
-    private Date joinDate;
-    private Date createdAt;
-    private Date updatedAt;
+    private java.sql.Timestamp joinDate;
+    private java.sql.Timestamp createdAt;
+    private java.sql.Timestamp updatedAt;
     private String username;
     private String password;
     private int roleId;
@@ -92,27 +92,27 @@ public class EmployeeModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getJoinDate() {
+    public java.sql.Timestamp getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(java.sql.Timestamp joinDate) {
         this.joinDate = joinDate;
     }
 
-    public Date getCreatedAt() {
+    public java.sql.Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(java.sql.Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public java.sql.Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(java.sql.Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 

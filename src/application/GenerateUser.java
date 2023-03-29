@@ -3,19 +3,18 @@ package application;
 import application.dao.EmployeeDao;
 import application.dao.interfaces.IEmployeeDao;
 import application.models.EmployeeModel;
+import application.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class GenerateUser {
     List<EmployeeModel> employees = new ArrayList<>();
-    private final IEmployeeDao<EmployeeModel> employeeDao;
+    private final IEmployeeDao<EmployeeModel> employeeDao = new EmployeeDao();
     
     public GenerateUser(){
-        this.employeeDao = new EmployeeDao();
-
         java.util.Date utilDate = new java.util.Date();
-        java.sql.Date dateNow = new java.sql.Date(utilDate.getTime());
+        java.sql.Timestamp dateNow = new java.sql.Timestamp(new java.util.Date().getTime());
         
         Calendar cal = Calendar.getInstance();
         cal.set( Calendar.YEAR, 2001 );
@@ -55,17 +54,6 @@ public class GenerateUser {
         employees.add(employee2);
     }
     
-    public static String getInitials(String fullName) {
-        String initials = String.valueOf(fullName.charAt(0));
-
-        for (int i = 1; i < fullName.length() - 1; i++){
-            if (fullName.charAt(i) == ' '){
-                initials = initials + String.valueOf(fullName.charAt(i + 1));
-            }                
-        }
-        return initials.toUpperCase();
-    }
-
     public void start(){
         int index = 1;
         String roleName = null;
@@ -73,7 +61,7 @@ public class GenerateUser {
             if(employee.getRoleId() == 1){
                 roleName = "salessupport";
             }
-            String username = getInitials(employee.getName()).toLowerCase() + index++  + "-" + roleName;
+            String username = StringUtils.getInitialsFullName(employee.getName()).toLowerCase() + index++  + "-" + roleName;
             employee.setUsername(username);
             employee.setPassword(Password.getSecurePassword(username));
             employeeDao.create(employee);

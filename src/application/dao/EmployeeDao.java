@@ -70,11 +70,11 @@ public class EmployeeDao implements IEmployeeDao<EmployeeModel> {
             pstmt.setString(6, employee.getReligion());
             pstmt.setString(7, employee.getStatus());
             pstmt.setString(8, employee.getPhoneNumber());
-            pstmt.setDate(9, employee.getJoinDate());
+            pstmt.setTimestamp(9, employee.getJoinDate());
             pstmt.setString(10, employee.getUsername());
             pstmt.setString(11, employee.getPassword());
-            pstmt.setDate(12, employee.getCreatedAt());
-            pstmt.setDate(13, employee.getUpdatedAt());
+            pstmt.setTimestamp(12, employee.getCreatedAt());
+            pstmt.setTimestamp(13, employee.getUpdatedAt());
             pstmt.setInt(14, employee.getRoleId());
             
             int result = pstmt.executeUpdate();
