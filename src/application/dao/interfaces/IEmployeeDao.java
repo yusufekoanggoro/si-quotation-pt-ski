@@ -1,11 +1,12 @@
-package initialproject.dao;
+package application.dao.interfaces;
 
-import initialproject.models.User;
 import java.util.List;
 
-public interface InterfaceDao<T> {
+public interface IEmployeeDao<T> {
     
-    public User findOne(T t);
+    public List<T> findOne(T t);
+    
+    public T findOneByUsername(T t);
     
     public List<T> findAll();
     
