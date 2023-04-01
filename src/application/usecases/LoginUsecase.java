@@ -13,7 +13,7 @@ public class LoginUsecase {
         this.employeeDao = new EmployeeDao();
     }
     
-    public boolean validateUsernameAndPassword(String username, String password){
+    public boolean usernameAndPasswordValidation(String username, String password){
         EmployeeModel employee = new EmployeeModel();
         employee.setUsername(username);
         
