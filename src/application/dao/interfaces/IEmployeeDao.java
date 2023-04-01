@@ -1,20 +1,23 @@
 package application.dao.interfaces;
 
+import application.models.EmployeeModel;
 import java.util.List;
 
-public interface IEmployeeDao<T> {
+public interface IEmployeeDao {
     
-    public List<T> findOne(T t);
+    public List<EmployeeModel> findOneById(EmployeeModel employee);
     
-    public T findOneByUsername(T t);
+    public EmployeeModel findOneByUsername(EmployeeModel employee);
     
-    public List<T> findAll();
+    public List<EmployeeModel> findAll();
     
-    public int create(T t);
+    public int create(EmployeeModel employee);
     
-    public int update(T t);
+    public int upsert(EmployeeModel employee);
     
-    public void delete(T t);
+    public int update(EmployeeModel employee);
+    
+    public void delete(EmployeeModel employee);
 
     public void closeStatement();
     

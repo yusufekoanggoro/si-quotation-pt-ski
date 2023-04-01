@@ -7,22 +7,23 @@ import application.dao.interfaces.IEmployeeDao;
 
 public class LoginUsecase {
     
-    private final IEmployeeDao<EmployeeModel> employeeDao;
+    private final IEmployeeDao employeeDao;
     
     public LoginUsecase() {
         this.employeeDao = new EmployeeDao();
     }
     
-    public boolean validateLogin(String username, String password){
+    public boolean validateUsernameAndPassword(String username, String password){
         EmployeeModel employee = new EmployeeModel();
         employee.setUsername(username);
-        EmployeeModel findOneByUsername = employeeDao.findOneByUsername(employee);
-        if(findOneByUsername == null) return false;
-
-        String inputUser = Password.getSecurePassword(password);
-        String passwordDb = findOneByUsername.getPassword();
         
-        return inputUser.equals(passwordDb);
+        EmployeeModel findOneEmployeeByUsername = employeeDao.findOneByUsername(employee);
+        if(findOneEmployeeByUsername == null) return false;
+
+        String userPasswordInput = Password.getSecurePassword(password);
+        String passwordDb = employee.getPassword();
+        
+        return userPasswordInput.equals(passwordDb);
     }
     
     public void daoCloseConnection() {
