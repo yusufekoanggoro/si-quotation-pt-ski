@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GenerateUser {
     List<EmployeeModel> employees = new ArrayList<>();
-    private final IEmployeeDao<EmployeeModel> employeeDao = new EmployeeDao();
+    private final IEmployeeDao employeeDao = new EmployeeDao();
     
     public GenerateUser(){
         java.util.Date utilDate = new java.util.Date();
@@ -23,20 +23,20 @@ public class GenerateUser {
 
         java.sql.Date dateOfBirth = new java.sql.Date(cal.getTimeInMillis());
         
-        EmployeeModel employee = new EmployeeModel();
-        employee.setName("Yusuf Eko Anggoro");
-        employee.setGender("Laki-laki");
-        employee.setPlaceOfBirth("Jakarta");
-        employee.setPhoneNumber("08121857486");
-        employee.setDateOfBirth(dateOfBirth);
-        employee.setCreatedAt(dateNow);
-        employee.setUpdatedAt(dateNow);
-        employee.setAddress("Jalan-jalan");
-        employee.setReligion("Islam");
-        employee.setJoinDate(dateNow);
-        employee.setStatus("Kawin");
-        employee.setRoleId(1);
-        employees.add(employee);
+        EmployeeModel employee1 = new EmployeeModel();
+        employee1.setName("Yusuf Eko Anggoro");
+        employee1.setGender("Laki-laki");
+        employee1.setPlaceOfBirth("Jakarta");
+        employee1.setPhoneNumber("08121857486");
+        employee1.setDateOfBirth(dateOfBirth);
+        employee1.setCreatedAt(dateNow);
+        employee1.setUpdatedAt(dateNow);
+        employee1.setAddress("Jalan-jalan");
+        employee1.setReligion("Islam");
+        employee1.setJoinDate(dateNow);
+        employee1.setStatus("Kawin");
+        employee1.setRoleId(1);
+        this.employees.add(employee1);
         
         EmployeeModel employee2 = new EmployeeModel();
         employee2.setName("Yusuf Eko Anggoro");
@@ -51,22 +51,22 @@ public class GenerateUser {
         employee2.setJoinDate(dateNow);
         employee2.setStatus("Kawin");
         employee2.setRoleId(1);
-        employees.add(employee2);
+        this.employees.add(employee2);
     }
     
     public void start(){
         int index = 1;
         String roleName = null;
-        for (EmployeeModel employee : employees) {
+        for (EmployeeModel employee : this.employees) {
             if(employee.getRoleId() == 1){
                 roleName = "salessupport";
             }
             String username = StringUtils.getInitialsFullName(employee.getName()).toLowerCase() + index++  + "-" + roleName;
             employee.setUsername(username);
             employee.setPassword(Password.getSecurePassword(username));
-            employeeDao.create(employee);
+            this.employeeDao.upsert(employee);
         }
         System.out.println("Success Generate User");
-        employeeDao.closeConnection();
+        this.employeeDao.closeConnection();
     }
 }
