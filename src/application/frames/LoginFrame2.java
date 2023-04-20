@@ -128,7 +128,7 @@ public class LoginFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField1.getText();
         String password = jTextField1.getText();
-        boolean validateUsernameAndPassword = loginUsecase.validateUsernameAndPassword(username, password);
+        boolean validateUsernameAndPassword = loginUsecase.usernameAndPasswordValidation(username, password);
         if(validateUsernameAndPassword){
             jTextField1.setText("");
             jTextField2.setText("");
