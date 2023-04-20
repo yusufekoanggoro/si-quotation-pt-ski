@@ -9,10 +9,10 @@ CREATE TABLE `quotations_management`.`employees` (
   `status` VARCHAR(15) NOT NULL, 
   `phone_number` VARCHAR(15) NOT NULL, 
   `join_date` DATETIME NOT NULL, 
-  `created_at` DATETIME NOT NULL, 
-  `updated_at` DATETIME NOT NULL, 
   `username` VARCHAR(30) NOT NULL, 
   `password` VARCHAR(255) NOT NULL, 
   `role_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL, 
+  `updated_at` DATETIME NOT NULL, 
   PRIMARY KEY (`id`), UNIQUE (`username`)
 ) ENGINE = InnoDB;

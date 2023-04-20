@@ -1,7 +1,6 @@
-CREATE TABLE `quotations_management`.`roles` (
+CREATE TABLE `quotations_management`.`segments` (
   `id` INT NOT NULL AUTO_INCREMENT, 
-  `name` VARCHAR(255) NOT NULL, 
-  `periode` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(100) NOT NULL, 
   `created_at` DATETIME NOT NULL, 
   `updated_at` DATETIME NOT NULL, 
   PRIMARY KEY (`id`)
