@@ -1,6 +1,7 @@
 package application;
 
 import application.frames.LoginFrame2;
+import application.frames.ResponsiveGUI;
 
 public class Main {
     

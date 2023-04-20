@@ -18,43 +18,6 @@ public class LoginFrame2 extends javax.swing.JFrame {
         loginUsecase = new LoginUsecase();
     }
     
-    @Override
-    public void dispose(){
-        // TODO add your handling code here:
-        loginUsecase.daoCloseConnection();
-        super.dispose();
-    }
-    
-    public void start(){
-        JFrame frame = new LoginFrame2();
-        frame.setTitle("Login Frame");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.addWindowListener( new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                JFrame frame = (JFrame)e.getSource();
-
-                int result = JOptionPane.showConfirmDialog(
-                    frame,
-                    "Are you sure you want to exit the application?",
-                    "Exit Application",
-                    JOptionPane.YES_NO_OPTION);
-
-                if (result == JOptionPane.YES_OPTION){
-                    loginUsecase.daoCloseConnection();
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    System.exit(0);
-                }
-            }
-        });
-        // TODO add your custom frame code here:
-        
-       
-        frame.setVisible( true );
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,4 +143,41 @@ public class LoginFrame2 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void dispose(){
+        // TODO add your handling code here:
+        loginUsecase.daoCloseConnection();
+        super.dispose();
+    }
+    
+    public void start(){
+        this.setTitle("Login Frame");
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                JFrame frame = (JFrame)e.getSource();
+
+                int result = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Are you sure you want to exit the application?",
+                    "Exit Application",
+                    JOptionPane.YES_NO_OPTION);
+
+                if (result == JOptionPane.YES_OPTION){
+                    loginUsecase.daoCloseConnection();
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    System.exit(0);
+                }
+            }
+        });
+        // TODO add your custom frame code here:
+        
+       
+        this.setVisible( true );
+    }
+
 }
