@@ -44,6 +44,7 @@ public class EmployeeDao implements IEmployeeDao {
                 employee.setName(resultSet.getString("name"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setPassword(resultSet.getString("password"));
+                employee.setRoleId(resultSet.getInt("role_id"));
                 return employee;
             }
             return null;

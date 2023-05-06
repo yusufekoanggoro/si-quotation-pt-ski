@@ -2,7 +2,7 @@ package application;
 
 public class Session {
     private static int id;
-    private static String level;
+    private static int level;
     
     public static void setId(int id){
         Session.id = id;
@@ -12,11 +12,11 @@ public class Session {
         return id;
     }
     
-    public static void setLevel(String level){
+    public static void setLevel(int level){
         Session.level = level;
     }
     
-    public static String getLevel(){
+    public static int getLevel(){
         return level;
     }
 }
