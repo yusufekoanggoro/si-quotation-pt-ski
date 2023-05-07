@@ -1,6 +1,7 @@
 package application;
 
 import application.views.CustomerView;
+import application.views.JasperView;
 import application.views.LoginView;
 
 public class Main {
@@ -10,9 +11,10 @@ public class Main {
             Config.build();
             new GenerateUser().start();
             
-//            new LoginView().start();
+            new LoginView().start();
 //            loginView.start();
-            new CustomerView().start();
+//            new CustomerView().start();
+//            new JasperView().setVisible(true);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
