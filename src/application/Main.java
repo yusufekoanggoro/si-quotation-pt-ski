@@ -10,9 +10,9 @@ public class Main {
             Config.build();
             new GenerateUser().start();
             
-//            new LoginView().start();
+            new LoginView().start();
 //            loginView.start();
-            new CustomerView().start();
+//            new CustomerView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
