@@ -64,7 +64,7 @@ public class CustomerView extends javax.swing.JFrame {
         customerIdTF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         keywordTF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonClear = new javax.swing.JButton();
         buttonUpdate = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
         buttonAdd = new javax.swing.JButton();
@@ -147,10 +147,10 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Clear");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonClear.setText("Clear");
+        buttonClear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                buttonClearMouseClicked(evt);
             }
         });
 
@@ -215,7 +215,7 @@ public class CustomerView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(buttonUpdate)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(buttonClear))
                             .addComponent(keywordTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -243,11 +243,11 @@ public class CustomerView extends javax.swing.JFrame {
                     .addComponent(phoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonUpdate)
-                    .addComponent(jButton1)
                     .addComponent(buttonDelete)
-                    .addComponent(buttonAdd))
+                    .addComponent(buttonAdd)
+                    .addComponent(buttonClear))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -330,10 +330,10 @@ public class CustomerView extends javax.swing.JFrame {
         customerIdTF.setText(customerId);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void buttonClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClearMouseClicked
         // TODO add your handling code here:
         clearField();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_buttonClearMouseClicked
 
     private void buttonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseClicked
         // TODO add your handling code here:
@@ -483,11 +483,11 @@ public class CustomerView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JTextField customerIdTF;
     private javax.swing.JTextField customerNameTF;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;

@@ -89,7 +89,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="buttonUpdate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonClear" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="keywordTF" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -128,11 +128,11 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="buttonUpdate" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonDelete" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonClear" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -249,12 +249,12 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="keywordTFKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="buttonClear">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonClearMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonUpdate">
