@@ -4,8 +4,11 @@
  */
 package application.views;
 
+import application.Password;
 import application.Session;
-import application.usecases.LoginUsecase;
+import application.dao.EmployeeDao;
+import application.dao.interfaces.IEmployeeDao;
+import application.models.EmployeeModel;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -18,14 +21,14 @@ import javax.swing.JOptionPane;
  */
 public class LoginView extends javax.swing.JFrame {
     
-    private final LoginUsecase loginUsecase;
-
+    private final IEmployeeDao employeeDao;
+    
     /**
      * Creates new form LoginForm
      */
     public LoginView() {
         initComponents();
-        loginUsecase = new LoginUsecase();
+        this.employeeDao = new EmployeeDao();
     }
 
     /**
@@ -39,7 +42,7 @@ public class LoginView extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         usernameTextField = new application.PlaceholderTextField();
-        jButton1 = new javax.swing.JButton();
+        buttonLogin = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         showPasswordCheckBox = new javax.swing.JCheckBox();
 
@@ -69,10 +72,10 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(100, 50, 10, 50);
         getContentPane().add(usernameTextField, gridBagConstraints);
 
-        jButton1.setText("Login");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonLogin.setText("Login");
+        buttonLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                buttonLoginMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -82,7 +85,7 @@ public class LoginView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 108;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 100, 50);
-        getContentPane().add(jButton1, gridBagConstraints);
+        getContentPane().add(buttonLogin, gridBagConstraints);
 
         passwordField.setText("password");
         passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -129,7 +132,7 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentAdded
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void buttonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLoginMouseClicked
         // TODO add your handling code here:
         String username = usernameTextField.getText();
         passwordField.setEchoChar('*');
@@ -142,20 +145,27 @@ public class LoginView extends javax.swing.JFrame {
         } else if(password.isEmpty() || password.equals("password")) {
             JOptionPane.showMessageDialog(null,"Password tidak boleh kosong");
         } else {
-            boolean validateUsernameAndPassword = loginUsecase.usernameAndPasswordValidation(username, password);
-            if(validateUsernameAndPassword){
+            
+            EmployeeModel employee = new EmployeeModel();
+            employee.setUsername(username);
+        
+            EmployeeModel findOneEmployeeByUsername = employeeDao.findOneByUsername(employee);
+            if(findOneEmployeeByUsername == null) {
+                JOptionPane.showMessageDialog(null, "Username atau Password Anda Salah");   
+            }else{
+                Session.setLevel(findOneEmployeeByUsername.getRoleId());
+                String userPasswordInput = Password.getSecurePassword(password);
+                String passwordDb = employee.getPassword();
                 usernameTextField.setText("");
                 passwordField.setText("");
                 JOptionPane.showMessageDialog(null, "Berhasil Masuk"); 
                 //menutup gui login
                 this.dispose();
                 //menampilkan gui customer
-                new CustomerMaster().start();
-            }else{
-                JOptionPane.showMessageDialog(null, "Username atau Password Anda Salah");   
+                new CustomerView().start();
             }
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_buttonLoginMouseClicked
 
     private void passwordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFieldFocusGained
         // TODO add your handling code here:
@@ -233,7 +243,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonLogin;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JCheckBox showPasswordCheckBox;
     private application.PlaceholderTextField usernameTextField;
@@ -242,7 +252,7 @@ public class LoginView extends javax.swing.JFrame {
     @Override
     public void dispose(){
         // TODO add your handling code here:
-        loginUsecase.daoCloseConnection();
+        employeeDao.closeConnection();
         super.dispose();
     }
     
@@ -266,7 +276,7 @@ public class LoginView extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
-                    loginUsecase.daoCloseConnection();
+                    employeeDao.closeConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     System.exit(0);
                 }

@@ -1,5 +1,6 @@
 package application;
 
+import application.views.CustomerView;
 import application.views.LoginView;
 
 public class Main {
@@ -9,8 +10,9 @@ public class Main {
             Config.build();
             new GenerateUser().start();
             
-            LoginView loginView = new LoginView();
-            loginView.start();
+//            new LoginView().start();
+//            loginView.start();
+            new CustomerView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
