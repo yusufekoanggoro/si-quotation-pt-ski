@@ -299,6 +299,7 @@ public class CustomerView extends javax.swing.JFrame {
                  int insertCustomer = customerDao.create(dataCustomerInsert);
                     if(insertCustomer > 0){
                         clearField();
+                        keywordTF.setText("");
                         loadTable(null);
                         JOptionPane.showMessageDialog(null,"Berhasil Menambah Customer");
                     }else{
@@ -356,6 +357,7 @@ public class CustomerView extends javax.swing.JFrame {
         int selectedSegment = jComboBox2.getSelectedIndex();
         String pic = personInChargeTF.getText();
         String phoneNumber = phoneNumberTF.getText();
+        
         JOptionPane.showMessageDialog(null,customerId);
         if(!customerId.isEmpty()){
             if(customerName.isEmpty()){
@@ -576,5 +578,6 @@ public class CustomerView extends javax.swing.JFrame {
         phoneNumberTF.setText("");
         jComboBox2.setSelectedIndex(0);
         customerIdTF.setText("");
+        keywordTF.setText("");
     }
 }
