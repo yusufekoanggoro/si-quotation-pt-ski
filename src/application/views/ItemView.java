@@ -73,6 +73,7 @@ public class ItemView extends javax.swing.JFrame {
         iditem.setPreferredSize(new java.awt.Dimension(35, 15));
 
         textiditem.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
+        textiditem.setEnabled(false);
         textiditem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textiditemActionPerformed(evt);
