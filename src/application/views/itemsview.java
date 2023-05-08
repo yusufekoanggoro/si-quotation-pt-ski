@@ -41,12 +41,14 @@ public class itemsview extends javax.swing.JFrame {
         hargaitem = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        Save1 = new javax.swing.JButton();
-        Save2 = new javax.swing.JButton();
-        Save3 = new javax.swing.JButton();
+        tambahitem = new javax.swing.JButton();
+        deleteitem = new javax.swing.JButton();
+        edititem = new javax.swing.JButton();
+        textcariitem = new javax.swing.JTextField();
+        cariitem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 700));
 
         header.setPreferredSize(new java.awt.Dimension(800, 60));
         header.setLayout(new java.awt.BorderLayout());
@@ -122,36 +124,54 @@ public class itemsview extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        Save1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Save1.setForeground(new java.awt.Color(51, 51, 51));
-        Save1.setText("Tambah");
-        Save1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Save1.setBorderPainted(false);
-        Save1.addActionListener(new java.awt.event.ActionListener() {
+        tambahitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tambahitem.setForeground(new java.awt.Color(51, 51, 51));
+        tambahitem.setText("Tambah");
+        tambahitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        tambahitem.setBorderPainted(false);
+        tambahitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Save1ActionPerformed(evt);
+                tambahitemActionPerformed(evt);
             }
         });
 
-        Save2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Save2.setForeground(new java.awt.Color(51, 51, 51));
-        Save2.setText("Delete");
-        Save2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Save2.setBorderPainted(false);
-        Save2.addActionListener(new java.awt.event.ActionListener() {
+        deleteitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deleteitem.setForeground(new java.awt.Color(51, 51, 51));
+        deleteitem.setText("Delete");
+        deleteitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        deleteitem.setBorderPainted(false);
+        deleteitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Save2ActionPerformed(evt);
+                deleteitemActionPerformed(evt);
             }
         });
 
-        Save3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Save3.setForeground(new java.awt.Color(51, 51, 51));
-        Save3.setText("Edit");
-        Save3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        Save3.setBorderPainted(false);
-        Save3.addActionListener(new java.awt.event.ActionListener() {
+        edititem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        edititem.setForeground(new java.awt.Color(51, 51, 51));
+        edititem.setText("Edit");
+        edititem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        edititem.setBorderPainted(false);
+        edititem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Save3ActionPerformed(evt);
+                edititemActionPerformed(evt);
+            }
+        });
+
+        textcariitem.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
+        textcariitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textcariitemActionPerformed(evt);
+            }
+        });
+
+        cariitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cariitem.setForeground(new java.awt.Color(51, 51, 51));
+        cariitem.setText("Cari");
+        cariitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        cariitem.setBorderPainted(false);
+        cariitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariitemActionPerformed(evt);
             }
         });
 
@@ -159,19 +179,25 @@ public class itemsview extends javax.swing.JFrame {
         dashbord.setLayout(dashbordLayout);
         dashbordLayout.setHorizontalGroup(
             dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashbordLayout.createSequentialGroup()
+            .addGroup(dashbordLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(dashbordLayout.createSequentialGroup()
+                        .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(dashbordLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(dashbordLayout.createSequentialGroup()
-                        .addComponent(Save1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
-                        .addComponent(Save3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Save2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(dashbordLayout.createSequentialGroup()
                             .addComponent(hargaitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,7 +215,7 @@ public class itemsview extends javax.swing.JFrame {
                             .addComponent(iditem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(68, 68, 68)
                             .addComponent(textiditem, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(54, 91, Short.MAX_VALUE))
+                .addGap(77, 77, Short.MAX_VALUE))
         );
         dashbordLayout.setVerticalGroup(
             dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,14 +236,18 @@ public class itemsview extends javax.swing.JFrame {
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hargaitem, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texthargaitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Save1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Save2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Save3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addContainerGap())
         );
 
         getContentPane().add(dashbord, java.awt.BorderLayout.CENTER);
@@ -241,17 +271,25 @@ public class itemsview extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_texthargaitemActionPerformed
 
-    private void Save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save1ActionPerformed
+    private void tambahitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahitemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Save1ActionPerformed
+    }//GEN-LAST:event_tambahitemActionPerformed
 
-    private void Save2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save2ActionPerformed
+    private void deleteitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteitemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Save2ActionPerformed
+    }//GEN-LAST:event_deleteitemActionPerformed
 
-    private void Save3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save3ActionPerformed
+    private void edititemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edititemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Save3ActionPerformed
+    }//GEN-LAST:event_edititemActionPerformed
+
+    private void textcariitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textcariitemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textcariitemActionPerformed
+
+    private void cariitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariitemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariitemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,10 +327,10 @@ public class itemsview extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Save1;
-    private javax.swing.JButton Save2;
-    private javax.swing.JButton Save3;
+    private javax.swing.JButton cariitem;
     private javax.swing.JPanel dashbord;
+    private javax.swing.JButton deleteitem;
+    private javax.swing.JButton edititem;
     private javax.swing.JLabel hargaitem;
     private javax.swing.JPanel header;
     private javax.swing.JLabel iditem;
@@ -302,6 +340,8 @@ public class itemsview extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel namaitem;
     private javax.swing.JLabel stockitem;
+    private javax.swing.JButton tambahitem;
+    private javax.swing.JTextField textcariitem;
     private javax.swing.JTextField texthargaitem;
     private javax.swing.JTextField textiditem;
     private javax.swing.JTextField textnamaitem;
