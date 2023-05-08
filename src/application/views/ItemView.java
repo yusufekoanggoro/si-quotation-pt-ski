@@ -46,6 +46,7 @@ public class ItemView extends javax.swing.JFrame {
         edititem = new javax.swing.JButton();
         textcariitem = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        clearitem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 700));
@@ -166,7 +167,18 @@ public class ItemView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Cari");
+        jLabel2.setText("Cari Data");
+
+        clearitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        clearitem.setForeground(new java.awt.Color(51, 51, 51));
+        clearitem.setText("Clear");
+        clearitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        clearitem.setBorderPainted(false);
+        clearitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearitemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dashbordLayout = new javax.swing.GroupLayout(dashbord);
         dashbord.setLayout(dashbordLayout);
@@ -174,23 +186,11 @@ public class ItemView extends javax.swing.JFrame {
             dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dashbordLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(dashbordLayout.createSequentialGroup()
-                        .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(dashbordLayout.createSequentialGroup()
                 .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(dashbordLayout.createSequentialGroup()
-                        .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(dashbordLayout.createSequentialGroup()
                             .addComponent(hargaitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +207,17 @@ public class ItemView extends javax.swing.JFrame {
                         .addGroup(dashbordLayout.createSequentialGroup()
                             .addComponent(iditem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(68, 68, 68)
-                            .addComponent(textiditem, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(textiditem, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dashbordLayout.createSequentialGroup()
+                        .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, Short.MAX_VALUE))
         );
         dashbordLayout.setVerticalGroup(
@@ -233,7 +243,8 @@ public class ItemView extends javax.swing.JFrame {
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,6 +291,10 @@ public class ItemView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textcariitemActionPerformed
 
+    private void clearitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearitemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearitemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -317,6 +332,7 @@ public class ItemView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearitem;
     private javax.swing.JPanel dashbord;
     private javax.swing.JButton deleteitem;
     private javax.swing.JButton edititem;
