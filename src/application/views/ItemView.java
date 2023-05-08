@@ -9,12 +9,12 @@ package application.views;
  *
  * @author Jimmi iskandar
  */
-public class itemsview extends javax.swing.JFrame {
+public class ItemView extends javax.swing.JFrame {
 
     /**
      * Creates new form itemsview
      */
-    public itemsview() {
+    public ItemView() {
         initComponents();
     }
 
@@ -45,7 +45,7 @@ public class itemsview extends javax.swing.JFrame {
         deleteitem = new javax.swing.JButton();
         edititem = new javax.swing.JButton();
         textcariitem = new javax.swing.JTextField();
-        cariitem = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 700));
@@ -164,16 +164,8 @@ public class itemsview extends javax.swing.JFrame {
             }
         });
 
-        cariitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cariitem.setForeground(new java.awt.Color(51, 51, 51));
-        cariitem.setText("Cari");
-        cariitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        cariitem.setBorderPainted(false);
-        cariitem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cariitemActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Cari");
 
         javax.swing.GroupLayout dashbordLayout = new javax.swing.GroupLayout(dashbord);
         dashbord.setLayout(dashbordLayout);
@@ -185,8 +177,8 @@ public class itemsview extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(dashbordLayout.createSequentialGroup()
                         .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(dashbordLayout.createSequentialGroup()
@@ -241,11 +233,11 @@ public class itemsview extends javax.swing.JFrame {
                     .addComponent(tambahitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edititem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(24, 24, 24)
                 .addGroup(dashbordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textcariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cariitem, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -287,10 +279,6 @@ public class itemsview extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textcariitemActionPerformed
 
-    private void cariitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariitemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cariitemActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -308,26 +296,26 @@ public class itemsview extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(itemsview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(itemsview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(itemsview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(itemsview.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new itemsview().setVisible(true);
+                new ItemView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cariitem;
     private javax.swing.JPanel dashbord;
     private javax.swing.JButton deleteitem;
     private javax.swing.JButton edititem;
@@ -335,6 +323,7 @@ public class itemsview extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JLabel iditem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
