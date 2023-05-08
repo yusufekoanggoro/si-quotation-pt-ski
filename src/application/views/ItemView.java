@@ -94,7 +94,6 @@ public class ItemView extends javax.swing.JFrame {
 
         stockitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         stockitem.setText("Stock");
-        stockitem.setPreferredSize(new java.awt.Dimension(35, 15));
 
         textstockitem.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
         textstockitem.addActionListener(new java.awt.event.ActionListener() {
