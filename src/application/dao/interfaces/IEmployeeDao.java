@@ -9,6 +9,10 @@ public interface IEmployeeDao {
     
     public EmployeeModel findOneByUsername(EmployeeModel employee);
     
+    public List<EmployeeModel> search(String keyword);
+    
+    public EmployeeModel findOneByName(EmployeeModel employee);
+    
     public List<EmployeeModel> findAll();
     
     public int create(EmployeeModel employee);
