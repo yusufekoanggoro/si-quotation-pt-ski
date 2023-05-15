@@ -167,6 +167,11 @@ public class CustomerView extends javax.swing.JFrame {
                 buttonDeleteMouseClicked(evt);
             }
         });
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteActionPerformed(evt);
+            }
+        });
 
         buttonAdd.setText("Tambah");
         buttonAdd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -444,6 +449,10 @@ public class CustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearField();
     }//GEN-LAST:event_keywordTFMouseClicked
+
+    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonDeleteActionPerformed
 
     /**
      * @param args the command line arguments

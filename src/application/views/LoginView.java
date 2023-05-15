@@ -161,8 +161,11 @@ public class LoginView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Berhasil Masuk"); 
                 //menutup gui login
                 this.dispose();
+                //menampilkan gui Item
+                new Master_ItemView().start();
+                
                 //menampilkan gui customer
-                new CustomerView().start();
+                //new CustomerView().start();
             }
         }
     }//GEN-LAST:event_buttonLoginMouseClicked
