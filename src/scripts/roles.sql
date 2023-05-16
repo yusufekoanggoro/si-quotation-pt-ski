@@ -6,3 +6,21 @@ CREATE TABLE `quotations_management`.`roles` (
   `updated_at` DATETIME NOT NULL, 
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+INSERT INTO `roles` (
+  `id`, `name`, `periode`, `created_at`, 
+  `updated_at`
+) 
+VALUES 
+  (
+    1, 'ADMINISTRASI', '1 Tahun', 
+    '2023-05-14 19:17:27', '2023-05-14 19:17:27'
+  ), 
+  (
+    2, 'ACCOUNTING', '1 Tahun', '2023-05-14 19:17:27', 
+    '2023-05-14 19:17:27'
+  ), 
+  (
+    3, 'SALES SUPPORT', '1 Tahun', '2023-05-14 19:17:27', 
+    '2023-05-14 19:17:27'
+  );
