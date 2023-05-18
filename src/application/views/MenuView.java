@@ -78,6 +78,9 @@ public class MenuView extends javax.swing.JFrame {
         jLabel2.setText("PT SINERGI KARSA INDOBENUA ");
 
         ToCustomer.setText("Customer Data");
+        ToCustomer.setMaximumSize(new java.awt.Dimension(130, 23));
+        ToCustomer.setMinimumSize(new java.awt.Dimension(130, 23));
+        ToCustomer.setPreferredSize(new java.awt.Dimension(118, 23));
         ToCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ToCustomerActionPerformed(evt);
@@ -85,6 +88,9 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         ToItem.setText("Items Data");
+        ToItem.setMaximumSize(new java.awt.Dimension(130, 23));
+        ToItem.setMinimumSize(new java.awt.Dimension(130, 23));
+        ToItem.setPreferredSize(new java.awt.Dimension(130, 23));
         ToItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ToItemActionPerformed(evt);
@@ -92,8 +98,19 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jButton3.setText("Role Data");
+        jButton3.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(130, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(130, 23));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Change Profile");
+        jButton4.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton4.setMinimumSize(new java.awt.Dimension(130, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(130, 23));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -101,12 +118,29 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         ToSegment.setText("Segment Data");
+        ToSegment.setMaximumSize(new java.awt.Dimension(118, 23));
+        ToSegment.setMinimumSize(new java.awt.Dimension(118, 23));
+        ToSegment.setPreferredSize(new java.awt.Dimension(118, 23));
 
         jButton6.setText("Employee Data");
+        jButton6.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton6.setMinimumSize(new java.awt.Dimension(130, 23));
+        jButton6.setPreferredSize(new java.awt.Dimension(130, 23));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Transaction Data");
+        jButton7.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton7.setMinimumSize(new java.awt.Dimension(130, 23));
+        jButton7.setPreferredSize(new java.awt.Dimension(130, 23));
 
         jButton8.setText("Create Report");
+        jButton8.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(130, 23));
+        jButton8.setPreferredSize(new java.awt.Dimension(130, 23));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,11 +151,10 @@ public class MenuView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(ToCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ToItem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton7)
-                    .addComponent(ToSegment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ToCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ToSegment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ToItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,21 +183,21 @@ public class MenuView extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ToCustomer)
+                        .addComponent(ToCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ToItem)
+                        .addComponent(ToItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ToSegment)
+                        .addComponent(ToSegment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -183,6 +216,14 @@ public class MenuView extends javax.swing.JFrame {
     private void ToItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToItemActionPerformed
         new Master_ItemView().start();
     }//GEN-LAST:event_ToItemActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
