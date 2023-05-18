@@ -103,6 +103,11 @@ public class MenuView extends javax.swing.JFrame {
         ToSegment.setText("Segment Data");
 
         jButton6.setText("Employee Data");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Transaction Data");
 
@@ -183,6 +188,10 @@ public class MenuView extends javax.swing.JFrame {
     private void ToItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToItemActionPerformed
         new Master_ItemView().start();
     }//GEN-LAST:event_ToItemActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new EmployeeView().start();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

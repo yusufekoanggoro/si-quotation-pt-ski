@@ -26,8 +26,33 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public List<EmployeeModel> findOneById(EmployeeModel employee) {
+    public EmployeeModel findOneById(EmployeeModel employee) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public EmployeeModel findOneByName(EmployeeModel employee) {
+        try {
+            query = "SELECT * FROM employee " 
+                    + "WHERE employee.name = ?";
+            
+            pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, employee.getName());
+            
+            resultSet = pstmt.executeQuery();
+            if(resultSet.next()){
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setPhoneNumber(resultSet.getString("phone_number"));
+                return employee;
+            }
+            return null;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
     }
 
     @Override
@@ -55,6 +80,37 @@ public class EmployeeDao implements IEmployeeDao {
             closeStatement();
         }
     }
+    
+    @Override
+    public List<EmployeeModel> search(String keyword) {
+            try {
+            query = "SELECT * "
+                    + "FROM Employees "
+                    + "WHERE Employees.name LIKE '%" + keyword + "%' "
+                    + "OR segments.name LIKE '%" + keyword + "%' "
+                    + "OR Employees.person_in_charge LIKE '%" + keyword + "%' "
+                    + "OR Employees.phone_number LIKE '%" + keyword + "%' ";
+            
+            pstmt = connection.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            
+            List<EmployeeModel> Employees = new ArrayList<>();
+
+            while (resultSet.next()) {
+                EmployeeModel Employee = new EmployeeModel();
+                Employee.setId(resultSet.getInt("id"));
+                Employee.setName(resultSet.getString("name"));
+                Employee.setPhoneNumber(resultSet.getString("phone_number"));
+                Employees.add(Employee);
+            }
+            return Employees;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
 
     @Override
     public List<EmployeeModel> findAll() {
@@ -70,7 +126,7 @@ public class EmployeeDao implements IEmployeeDao {
                     EmployeeModel employee = new EmployeeModel();
                     employee.setId(resultSet.getInt("id"));
                     employee.setName(resultSet.getString("name"));
-                    employee.setGender(resultSet.getString("geder"));
+                    employee.setGender(resultSet.getString("gender"));
                     employees.add(employee);
                 }
                 return employees;
@@ -136,10 +192,21 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public void delete(EmployeeModel employee) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(int id) {
+        try {
+            query = "DELETE FROM customers WHERE id = ?";
+            
+            pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, id);
+            
+            return pstmt.executeUpdate();
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
     }
-
     @Override
     public void closeStatement() {
         try {

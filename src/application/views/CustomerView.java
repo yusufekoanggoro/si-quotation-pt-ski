@@ -272,8 +272,8 @@ public class CustomerView extends javax.swing.JFrame {
                         .addComponent(buttonClear)
                         .addComponent(ToHome)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -440,10 +440,6 @@ public class CustomerView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonUpdateMouseClicked
 
-    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_personInChargeTFActionPerformed
-
     private void keywordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keywordTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_keywordTFActionPerformed
@@ -481,6 +477,10 @@ public class CustomerView extends javax.swing.JFrame {
         //menampilkan gui Menu
         new MenuView().start();
     }//GEN-LAST:event_ToHomeActionPerformed
+
+    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personInChargeTFActionPerformed
 
     /**
      * @param args the command line arguments
