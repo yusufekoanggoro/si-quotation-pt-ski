@@ -11,8 +11,8 @@ public class Main {
         try {
             Config.build();
             new GenerateUser().start();
-            new EmployeeView().start();            
-//            new LoginView().start();
+//            new EmployeeView().start();            
+            new LoginView().start();
 //            loginView.start();
 //            new CustomerView().start();
 //            new JasperView().setVisible(true);
