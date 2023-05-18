@@ -26,7 +26,7 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public List<EmployeeModel> findOneById(EmployeeModel employee) {
+    public EmployeeModel findOneById(EmployeeModel employee) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -126,7 +126,7 @@ public class EmployeeDao implements IEmployeeDao {
                     EmployeeModel employee = new EmployeeModel();
                     employee.setId(resultSet.getInt("id"));
                     employee.setName(resultSet.getString("name"));
-                    employee.setGender(resultSet.getString("geder"));
+                    employee.setGender(resultSet.getString("gender"));
                     employees.add(employee);
                 }
                 return employees;
@@ -192,10 +192,21 @@ public class EmployeeDao implements IEmployeeDao {
     }
 
     @Override
-    public void delete(EmployeeModel employee) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(int id) {
+        try {
+            query = "DELETE FROM customers WHERE id = ?";
+            
+            pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, id);
+            
+            return pstmt.executeUpdate();
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
     }
-
     @Override
     public void closeStatement() {
         try {

@@ -4,16 +4,20 @@
  */
 package application.views;
 
+import application.Session;
 import application.dao.EmployeeDao;
+import application.dao.SegmentDao;
 import application.dao.interfaces.IEmployeeDao;
 import application.models.EmployeeModel;
 import application.models.EmployeeTableModel;
+import application.models.SegmentModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
@@ -24,14 +28,14 @@ import javax.swing.table.TableRowSorter;
  * @author yusuf
  */
 public class EmployeeView extends javax.swing.JFrame {
-    private final IEmployeeDao EmployeeDao;
+    private final IEmployeeDao employeeDao;
 
     /**
-     * Creates new form employeeView
+     * Creates new form EmployeeView
      */
     public EmployeeView() {
         initComponents();
-        this.EmployeeDao = new EmployeeDao();
+        this.employeeDao = new EmployeeDao();
     }
 
     /**
@@ -46,23 +50,36 @@ public class EmployeeView extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
-        personInChargeTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         employeeNameTF = new javax.swing.JTextField();
         phoneNumberTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxDivision = new javax.swing.JComboBox<>();
         employeeIdTF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         keywordTF = new javax.swing.JTextField();
-        buttonClear = new javax.swing.JButton();
-        buttonUpdate = new javax.swing.JButton();
-        buttonDelete = new javax.swing.JButton();
-        buttonAdd = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        ToHome = new javax.swing.JButton();
+        jLabelAddress = new javax.swing.JLabel();
+        textAreaAddress = new java.awt.TextArea();
+        jLabelTTL = new javax.swing.JLabel();
+        TTLTF = new javax.swing.JTextField();
+        jLabelReligion = new javax.swing.JLabel();
+        religionTF = new javax.swing.JTextField();
+        statusTF = new javax.swing.JTextField();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabelJoinDate = new javax.swing.JLabel();
+        joinDateTF = new javax.swing.JTextField();
+        panel1 = new java.awt.Panel();
+        buttonAdd = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
+        buttonUpdate = new javax.swing.JButton();
+        buttonClear = new javax.swing.JButton();
+        panel3 = new java.awt.Panel();
+        jLabelDivisi = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -90,16 +107,7 @@ public class EmployeeView extends javax.swing.JFrame {
 
         jLabel2.setText("Nama");
 
-        personInChargeTF.setPreferredSize(new java.awt.Dimension(400, 23));
-        personInChargeTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personInChargeTFActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Segment");
-
-        jLabel4.setText("Nama PIC");
+        jLabel3.setText("Jenis Kelamin");
 
         employeeNameTF.setPreferredSize(new java.awt.Dimension(400, 23));
 
@@ -114,7 +122,7 @@ public class EmployeeView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboBoxDivision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         employeeIdTF.setEnabled(false);
         employeeIdTF.setPreferredSize(new java.awt.Dimension(400, 23));
@@ -141,24 +149,50 @@ public class EmployeeView extends javax.swing.JFrame {
             }
         });
 
-        buttonClear.setText("Clear");
-        buttonClear.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel7.setText("Cari Data");
+
+        ToHome.setText("Home");
+        ToHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonClearMouseClicked(evt);
+                ToHomeMouseClicked(evt);
+            }
+        });
+        ToHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToHomeActionPerformed(evt);
             }
         });
 
-        buttonUpdate.setText("Ubah");
-        buttonUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonUpdateMouseClicked(evt);
+        jLabelAddress.setText("Alamat");
+
+        jLabelTTL.setText("Tempat, Tgl Lahir");
+
+        TTLTF.setPreferredSize(new java.awt.Dimension(400, 23));
+
+        jLabelReligion.setText("Agama");
+
+        religionTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        religionTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                religionTFActionPerformed(evt);
             }
         });
 
-        buttonDelete.setText("Hapus");
-        buttonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonDeleteMouseClicked(evt);
+        statusTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        statusTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusTFActionPerformed(evt);
+            }
+        });
+
+        jLabelStatus.setText("Status");
+
+        jLabelJoinDate.setText("Bergabung");
+
+        joinDateTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        joinDateTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinDateTFActionPerformed(evt);
             }
         });
 
@@ -174,80 +208,184 @@ public class EmployeeView extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Cari Data");
+        buttonDelete.setText("Hapus");
+        buttonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseClicked(evt);
+            }
+        });
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteActionPerformed(evt);
+            }
+        });
+
+        buttonUpdate.setText("Ubah");
+        buttonUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonUpdateMouseClicked(evt);
+            }
+        });
+
+        buttonClear.setText("Clear");
+        buttonClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonClearMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addGap(0, 7, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonAdd)
+                    .addComponent(buttonDelete)
+                    .addComponent(buttonUpdate)
+                    .addComponent(buttonClear)))
+        );
+
+        javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
+        panel3.setLayout(panel3Layout);
+        panel3Layout.setHorizontalGroup(
+            panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 16, Short.MAX_VALUE)
+        );
+        panel3Layout.setVerticalGroup(
+            panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+
+        jLabelDivisi.setText("Divisi");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(ToHome)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(53, 53, 53)
+                            .addComponent(jLabelAddress)
+                            .addComponent(jLabelTTL)
+                            .addComponent(jLabelReligion)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelJoinDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelDivisi))
+                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(personInChargeTF, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-                            .addComponent(employeeNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(phoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(employeeIdTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buttonAdd)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonUpdate)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonClear))
-                            .addComponent(keywordTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(statusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(employeeIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(textAreaAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                                    .addComponent(phoneNumberTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(TTLTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(employeeNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(religionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(joinDateTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxDivision, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(employeeIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(employeeNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(personInChargeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonUpdate)
-                    .addComponent(buttonDelete)
-                    .addComponent(buttonAdd)
-                    .addComponent(buttonClear))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(employeeNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(ToHome)
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(employeeIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDivisi)
+                            .addComponent(jComboBoxDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(phoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelAddress)
+                            .addComponent(textAreaAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelTTL)
+                            .addComponent(TTLTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelReligion)
+                            .addComponent(religionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(statusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelStatus))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelJoinDate)
+                            .addComponent(joinDateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(8, 8, 8)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -262,40 +400,41 @@ public class EmployeeView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String employeeId = employeeIdTF.getText();
         String employeeName = employeeNameTF.getText();
-        String pic = personInChargeTF.getText();
+        int selectedSegment = jComboBoxDivision.getSelectedIndex();
         String phoneNumber = phoneNumberTF.getText();
 
         if(employeeId.isEmpty()){
             if(employeeName.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Nama employee tidak boleh kosong");
-            }else if(pic.isEmpty()){
-                JOptionPane.showMessageDialog(null,"PIC Name tidak boleh kosong");
-                personInChargeTF.requestFocus();
+                JOptionPane.showMessageDialog(null,"Nama Employee tidak boleh kosong");
+                employeeNameTF.requestFocus();
+            }else if(selectedSegment == 0){
+                JOptionPane.showMessageDialog(null,"Segment tidak boleh kosong");
+                jComboBoxDivision.requestFocus();
             }else if(phoneNumber.isEmpty()){
                 JOptionPane.showMessageDialog(null,"No. Telp tidak boleh kosong");
                 phoneNumberTF.requestFocus();
             }else{
-                EmployeeModel dataemployeeInsert = new EmployeeModel();
-                dataemployeeInsert.setName(employeeName);
-                dataemployeeInsert.setPhoneNumber(phoneNumber);
+                EmployeeModel dataEmployeeInsert = new EmployeeModel();
+                dataEmployeeInsert.setName(employeeName);
+                dataEmployeeInsert.setPhoneNumber(phoneNumber);
                 
-                EmployeeModel findOneemployeeByName = EmployeeDao.findOneByName(dataemployeeInsert);
-                if(findOneemployeeByName != null){
-                    JOptionPane.showMessageDialog(null,"Nama employee Sudah Ada");
+                EmployeeModel findOneEmployeeByName = employeeDao.findOneByName(dataEmployeeInsert);
+                if(findOneEmployeeByName != null){
+                    JOptionPane.showMessageDialog(null,"Nama Employee Sudah Ada");
                 }else{
-                 int insertemployee = EmployeeDao.create(dataemployeeInsert);
-                    if(insertemployee > 0){
+                 int insertEmployee = employeeDao.create(dataEmployeeInsert);
+                    if(insertEmployee > 0){
                         clearField();
                         keywordTF.setText("");
                         loadTable(null);
-                        JOptionPane.showMessageDialog(null,"Berhasil Menambah employee");
+                        JOptionPane.showMessageDialog(null,"Berhasil Menambah Employee");
                     }else{
-                        JOptionPane.showMessageDialog(null,"Gagal Menambah employee");
+                        JOptionPane.showMessageDialog(null,"Gagal Menambah Employee");
                     }   
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(null,"Tidak Bisa Menambah employee");
+            JOptionPane.showMessageDialog(null,"Tidak Bisa Menambah Employee");
         }
        
     }//GEN-LAST:event_buttonAddMouseClicked
@@ -303,6 +442,15 @@ public class EmployeeView extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int selectedRow = jTable1.getSelectedRow();
+
+        TableModel model = jTable1.getModel();
+        String employeeName = model.getValueAt(selectedRow, 1).toString();
+        String phoneNumber = model.getValueAt(selectedRow, 4).toString();
+        String employeeId = model.getValueAt(selectedRow, 0).toString();
+        
+        employeeNameTF.setText(employeeName);
+        phoneNumberTF.setText(phoneNumber);
+        employeeIdTF.setText(employeeId);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void buttonClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClearMouseClicked
@@ -312,15 +460,78 @@ public class EmployeeView extends javax.swing.JFrame {
 
     private void buttonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseClicked
         // TODO add your handling code here:
+        String employeeId = employeeIdTF.getText();
+        if(!employeeId.isEmpty()){
+            int id = Integer.parseInt(employeeId);
+            int deleteEmployee = employeeDao.delete(id);
+            if(deleteEmployee == 1){
+                clearField();
+                loadTable(null); 
+                JOptionPane.showMessageDialog(null,"Berhasil Hapus");
+            }
+        }
     }//GEN-LAST:event_buttonDeleteMouseClicked
 
     private void buttonUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonUpdateMouseClicked
         // TODO add your handling code here:
+        String employeeId = employeeIdTF.getText();
+        String employeeName = employeeNameTF.getText();
+        int selectedSegment = jComboBoxDivision.getSelectedIndex();
+        String phoneNumber = phoneNumberTF.getText();
+        
+        JOptionPane.showMessageDialog(null,employeeId);
+        if(!employeeId.isEmpty()){
+            if(employeeName.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Nama Employee tidak boleh kosong");
+                employeeNameTF.requestFocus();
+            }else if(selectedSegment == 0){
+                JOptionPane.showMessageDialog(null,"Segment tidak boleh kosong");
+                jComboBoxDivision.requestFocus();
+            }else if(phoneNumber.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No. Telp tidak boleh kosong");
+                phoneNumberTF.requestFocus();
+            }else{
+                int id = Integer.parseInt(employeeIdTF.getText());
+                EmployeeModel dataUpdateEmployee = new EmployeeModel();
+                dataUpdateEmployee.setName(employeeName);
+                dataUpdateEmployee.setPhoneNumber(phoneNumber);
+                dataUpdateEmployee.setId(id);
+                
+                EmployeeModel daoFindOneById = new EmployeeModel();
+                daoFindOneById.setId(id);
+                
+                EmployeeModel previousEmployee = employeeDao.findOneById(daoFindOneById);
+                if(previousEmployee == null){
+                    JOptionPane.showMessageDialog(null,"Employee Tidak Ditemukan");
+                }else{
+                    if(previousEmployee.getName().equals(dataUpdateEmployee.getName())){
+                        int updateEmployee = employeeDao.update(dataUpdateEmployee);
+                        if(updateEmployee > 0){
+                            clearField();
+                            loadTable(null);
+                            JOptionPane.showMessageDialog(null,"Berhasil Mengubah Employee");
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Gagal Mengubah Employee");
+                        } 
+                    }else{
+                        EmployeeModel findOneEmployeeByName = employeeDao.findOneByName(dataUpdateEmployee);
+                        if(findOneEmployeeByName != null){
+                            JOptionPane.showMessageDialog(null,"Nama Employee Sudah Ada");
+                        }else{
+                            int updateDataEmployee = employeeDao.update(dataUpdateEmployee);
+                            if(updateDataEmployee > 0){
+                                clearField();
+                                loadTable(null);
+                                JOptionPane.showMessageDialog(null,"Berhasil Mengubah Employee");
+                            }else{
+                                JOptionPane.showMessageDialog(null,"Gagal Mengubah Employee");
+                            }   
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_buttonUpdateMouseClicked
-
-    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_personInChargeTFActionPerformed
 
     private void keywordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keywordTFActionPerformed
         // TODO add your handling code here:
@@ -330,7 +541,7 @@ public class EmployeeView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String keyword = keywordTF.getText();
         if(!keyword.equals("")){
-            List<EmployeeModel> employees = EmployeeDao.search(keyword);
+            List<EmployeeModel> employees = employeeDao.search(keyword);
             loadTable(employees);
         }else{
             loadTable(null);
@@ -345,6 +556,32 @@ public class EmployeeView extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearField();
     }//GEN-LAST:event_keywordTFMouseClicked
+
+    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void ToHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ToHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ToHomeMouseClicked
+
+    private void ToHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToHomeActionPerformed
+        this.dispose();
+        //menampilkan gui Menu
+        new MenuView().start();
+    }//GEN-LAST:event_ToHomeActionPerformed
+
+    private void religionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_religionTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_religionTFActionPerformed
+
+    private void statusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusTFActionPerformed
+
+    private void joinDateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinDateTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_joinDateTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,37 +626,50 @@ public class EmployeeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TTLTF;
+    private javax.swing.JButton ToHome;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonUpdate;
     private javax.swing.JTextField employeeIdTF;
     private javax.swing.JTextField employeeNameTF;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBoxDivision;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelAddress;
+    private javax.swing.JLabel jLabelDivisi;
+    private javax.swing.JLabel jLabelJoinDate;
+    private javax.swing.JLabel jLabelReligion;
+    private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JLabel jLabelTTL;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField joinDateTF;
     private javax.swing.JTextField keywordTF;
-    private javax.swing.JTextField personInChargeTF;
+    private java.awt.Panel panel1;
+    private java.awt.Panel panel3;
     private javax.swing.JTextField phoneNumberTF;
+    private javax.swing.JTextField religionTF;
+    private javax.swing.JTextField statusTF;
+    private java.awt.TextArea textAreaAddress;
     // End of variables declaration//GEN-END:variables
     
     @Override
     public void dispose(){
         // TODO add your handling code here:
-        EmployeeDao.closeConnection();
+        employeeDao.closeConnection();
         super.dispose();
     }
     
     public void start(){
-        this.setTitle("employee Master");
+        this.setTitle("Employee Master");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false); // fixed width
         this.setLocationRelativeTo(null); // Set JFrame to center of Screenn
@@ -436,7 +686,7 @@ public class EmployeeView extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
-                    EmployeeDao.closeConnection();
+                    employeeDao.closeConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     System.exit(0);
                 }
@@ -450,7 +700,7 @@ public class EmployeeView extends javax.swing.JFrame {
     
     public void loadTable(List<EmployeeModel> employees) {
         if(employees == null){
-            employees = EmployeeDao.findAll();
+            employees = employeeDao.findAll();
         }
         EmployeeTableModel employeeTableModel = new EmployeeTableModel(employees);
         
@@ -462,12 +712,16 @@ public class EmployeeView extends javax.swing.JFrame {
         List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
+//        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+//        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
         sorter.setSortKeys(sortKeys);
     }
-
+    
     public void clearField(){
+        employeeNameTF.setText("");
+        phoneNumberTF.setText("");
+        jComboBoxDivision.setSelectedIndex(0);
+        employeeIdTF.setText("");
         keywordTF.setText("");
     }
 }
