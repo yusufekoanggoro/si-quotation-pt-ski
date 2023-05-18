@@ -69,6 +69,7 @@ public class CustomerView extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
         buttonAdd = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        ToHome = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -187,6 +188,18 @@ public class CustomerView extends javax.swing.JFrame {
 
         jLabel7.setText("Cari Data");
 
+        ToHome.setText("Home");
+        ToHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ToHomeMouseClicked(evt);
+            }
+        });
+        ToHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,27 +214,30 @@ public class CustomerView extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel6))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(personInChargeTF, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                            .addComponent(personInChargeTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(customerNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(phoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(customerIdTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buttonAdd)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(107, 107, 107))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buttonDelete)
+                                .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buttonUpdate)
+                                .addComponent(buttonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buttonClear))
-                            .addComponent(keywordTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ToHome)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,10 +268,12 @@ public class CustomerView extends javax.swing.JFrame {
                     .addComponent(buttonUpdate)
                     .addComponent(buttonDelete)
                     .addComponent(buttonAdd)
-                    .addComponent(buttonClear))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonClear)
+                        .addComponent(ToHome)))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,10 +440,6 @@ public class CustomerView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonUpdateMouseClicked
 
-    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_personInChargeTFActionPerformed
-
     private void keywordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keywordTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_keywordTFActionPerformed
@@ -453,6 +467,20 @@ public class CustomerView extends javax.swing.JFrame {
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void ToHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ToHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ToHomeMouseClicked
+
+    private void ToHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToHomeActionPerformed
+        this.dispose();
+        //menampilkan gui Menu
+        new MenuView().start();
+    }//GEN-LAST:event_ToHomeActionPerformed
+
+    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personInChargeTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -493,6 +521,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ToHome;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonDelete;
