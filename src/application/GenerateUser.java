@@ -24,10 +24,10 @@ public class GenerateUser {
         java.sql.Date dateOfBirth = new java.sql.Date(cal.getTimeInMillis());
         
         EmployeeModel employee1 = new EmployeeModel();
-        employee1.setName("Yusuf Eko Anggoro");
+        employee1.setName("Athalarik");
         employee1.setGender("Laki-laki");
         employee1.setPlaceOfBirth("Jakarta");
-        employee1.setPhoneNumber("08121857486");
+        employee1.setPhoneNumber("087884890913");
         employee1.setDateOfBirth(dateOfBirth);
         employee1.setCreatedAt(dateNow);
         employee1.setUpdatedAt(dateNow);
@@ -36,22 +36,7 @@ public class GenerateUser {
         employee1.setJoinDate(dateNow);
         employee1.setStatus("Kawin");
         employee1.setRoleId(1);
-        this.employees.add(employee1);
-        
-        EmployeeModel employee2 = new EmployeeModel();
-        employee2.setName("Yusuf Eko Anggoro");
-        employee2.setGender("Laki-laki");
-        employee2.setPlaceOfBirth("Jakarta");
-        employee2.setPhoneNumber("08121857486");
-        employee2.setDateOfBirth(dateOfBirth);
-        employee2.setCreatedAt(dateNow);
-        employee2.setUpdatedAt(dateNow);
-        employee2.setAddress("Jalan-jalan");
-        employee2.setReligion("Islam");
-        employee2.setJoinDate(dateNow);
-        employee2.setStatus("Kawin");
-        employee2.setRoleId(1);
-        this.employees.add(employee2);
+        this.employees.add(employee1); 
     }
     
     public void start(){
