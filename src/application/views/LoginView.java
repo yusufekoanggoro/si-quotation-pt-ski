@@ -162,8 +162,9 @@ public class LoginView extends javax.swing.JFrame {
                 //menutup gui login
                 this.dispose();
                 //menampilkan gui Item
-                new Master_ItemView().start();
-                
+                //new Master_ItemView().start();
+                //menampilkan gui Profile
+                new ProfileView().start();
                 //menampilkan gui customer
                 //new CustomerView().start();
             }
