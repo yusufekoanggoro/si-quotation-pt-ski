@@ -123,9 +123,12 @@ public class MenuView extends javax.swing.JFrame {
         ToSegment.setPreferredSize(new java.awt.Dimension(118, 23));
 
         jButton6.setText("Employee Data");
+<<<<<<< HEAD
         jButton6.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton6.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton6.setPreferredSize(new java.awt.Dimension(130, 23));
+=======
+>>>>>>> 6e7e9261c886aafae59a6dc2cea573799dc41a6b
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -217,12 +220,17 @@ public class MenuView extends javax.swing.JFrame {
         new Master_ItemView().start();
     }//GEN-LAST:event_ToItemActionPerformed
 
+<<<<<<< HEAD
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+=======
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new EmployeeView().start();
+>>>>>>> 6e7e9261c886aafae59a6dc2cea573799dc41a6b
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
