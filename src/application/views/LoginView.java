@@ -18,8 +18,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author yusuf
- */
-public class LoginView extends javax.swing.JFrame {
+ */public class LoginView extends javax.swing.JFrame {
     
     private final IEmployeeDao employeeDao;
     

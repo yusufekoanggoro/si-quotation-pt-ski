@@ -100,6 +100,11 @@ public class MenuView extends javax.swing.JFrame {
         jButton3.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton3.setPreferredSize(new java.awt.Dimension(130, 23));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -219,6 +224,11 @@ public class MenuView extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         new EmployeeView().start();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        new RoleView().start();
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
