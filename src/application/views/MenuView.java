@@ -41,7 +41,7 @@ public class MenuView extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        ToReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,10 +136,15 @@ public class MenuView extends javax.swing.JFrame {
         jButton7.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton7.setPreferredSize(new java.awt.Dimension(130, 23));
 
-        jButton8.setText("Create Report");
-        jButton8.setMaximumSize(new java.awt.Dimension(130, 23));
-        jButton8.setMinimumSize(new java.awt.Dimension(130, 23));
-        jButton8.setPreferredSize(new java.awt.Dimension(130, 23));
+        ToReport.setText("Create Report");
+        ToReport.setMaximumSize(new java.awt.Dimension(130, 23));
+        ToReport.setMinimumSize(new java.awt.Dimension(130, 23));
+        ToReport.setPreferredSize(new java.awt.Dimension(130, 23));
+        ToReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,7 +176,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(246, 246, 246))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ToReport, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(227, 227, 227))))
         );
         layout.setVerticalGroup(
@@ -197,7 +202,7 @@ public class MenuView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ToReport, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -229,6 +234,11 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         new RoleView().start();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void ToReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToReportActionPerformed
+        // TODO add your handling code here:
+        new ReportView().start();
+    }//GEN-LAST:event_ToReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,11 +303,11 @@ public void start(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ToCustomer;
     private javax.swing.JButton ToItem;
+    private javax.swing.JButton ToReport;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
