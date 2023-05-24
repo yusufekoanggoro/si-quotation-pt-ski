@@ -55,7 +55,7 @@
                       <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton8" min="-2" pref="118" max="-2" attributes="0"/>
+                      <Component id="ToReport" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -88,7 +88,7 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton8" min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="ToReport" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -251,7 +251,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="ToReport">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create Report"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -264,6 +264,9 @@
           <Dimension value="[130, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ToReportActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
