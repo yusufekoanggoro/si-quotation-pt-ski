@@ -215,10 +215,12 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void ToCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToCustomerActionPerformed
+        this.setVisible(false);
         new CustomerView().start();
     }//GEN-LAST:event_ToCustomerActionPerformed
 
     private void ToItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToItemActionPerformed
+        this.setVisible(false);
         new Master_ItemView().start();
     }//GEN-LAST:event_ToItemActionPerformed
 
@@ -227,16 +229,20 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
         new EmployeeView().start();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
+        this.setVisible( false );
         new RoleView().start();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void ToReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToReportActionPerformed
         // TODO add your handling code here:
+        this.setVisible( false );
         new ReportView().start();
     }//GEN-LAST:event_ToReportActionPerformed
 

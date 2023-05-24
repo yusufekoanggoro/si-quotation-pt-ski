@@ -5,10 +5,23 @@
  */
 package application.views;
 
+import application.databases.Mysql;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -48,8 +61,13 @@ public class ReportView extends javax.swing.JFrame {
         jLabel1.setText("Pilih data yang ingin dicetak");
 
         jButton2.setText("Generate Quotation");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Transaction", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Transaction", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -61,6 +79,11 @@ public class ReportView extends javax.swing.JFrame {
         jLabel3.setText("Tanggal Akhir");
 
         jToggleButton1.setText("Generate Report");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -145,6 +168,16 @@ public class ReportView extends javax.swing.JFrame {
         new MenuView().start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+        this.jasperViewer();
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        this.jasperViewer();
+    }//GEN-LAST:event_jButton2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -217,5 +250,29 @@ public class ReportView extends javax.swing.JFrame {
         });
        
         this.setVisible( true );
+    }
+    
+    public void jasperViewer(){
+        try {    
+            String selectedReport = jComboBox1.getSelectedItem().toString();
+            String templateName = "CustomerReport.jrxml";
+            if(selectedReport.equals("Customer")) templateName = "CustomerReport.jrxml";
+            
+            InputStream reportStream = JasperView.class.getResourceAsStream("/resources/templates/" + templateName);
+            JasperDesign jd = JRXmlLoader.load(reportStream);
+            
+            Connection connection = new Mysql().getConnection();
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            
+//            Map<String, Object> params = new HashMap<>();
+//            
+//            BufferedImage image = ImageIO.read(getClass().getResource("/resources/templates/cherry.jpg"));
+//            params.put("logo", image );
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr,null, connection);
+            JasperViewer.viewReport(jp, false);
+        } catch (JRException ex) {
+            Logger.getLogger(JasperView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

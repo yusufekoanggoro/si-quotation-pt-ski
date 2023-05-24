@@ -1,9 +1,6 @@
 package application;
 
-import application.views.CustomerView;
-import application.views.EmployeeView;
-import application.views.JasperView;
-import application.views.LoginView;
+import application.views.*;
 
 public class Main {
     
@@ -13,6 +10,7 @@ public class Main {
             new GenerateUser().start();
 //            new EmployeeView().start();            
             new LoginView().start();
+//            new MenuView().start();
 //            loginView.start();
 //            new CustomerView().start();
 //            new JasperView().setVisible(true);
