@@ -5,12 +5,10 @@
 package application.views;
 
 import application.Session;
-import application.dao.CustomerDao;
-import application.dao.SegmentDao;
-import application.dao.interfaces.ICustomerDao;
-import application.models.CustomerModel;
-import application.models.CustomerTableModel;
-import application.models.SegmentModel;
+import application.dao.RoleDao;
+import application.dao.interfaces.IRoleDao;
+import application.models.RoleModel;
+import application.models.RoleTableModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -27,17 +25,15 @@ import javax.swing.table.TableRowSorter;
  *
  * @author yusuf
  */
-public class CustomerView extends javax.swing.JFrame {
-    private final ICustomerDao customerDao;
-    private final SegmentDao segmentDao;
+public class RoleView extends javax.swing.JFrame {
+    private final IRoleDao roleDao;
 
     /**
      * Creates new form CustomerView
      */
-    public CustomerView() {
+    public RoleView() {
         initComponents();
-        this.customerDao = new CustomerDao();
-        this.segmentDao = new SegmentDao();
+        this.roleDao = new RoleDao();
     }
 
     /**
@@ -52,16 +48,12 @@ public class CustomerView extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
-        personInChargeTF = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        periodeTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        customerNameTF = new javax.swing.JTextField();
-        phoneNumberTF = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        roleNameTF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        customerIdTF = new javax.swing.JTextField();
+        roleIdTF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         keywordTF = new javax.swing.JTextField();
         buttonClear = new javax.swing.JButton();
@@ -97,22 +89,21 @@ public class CustomerView extends javax.swing.JFrame {
 
         jLabel2.setText("Nama");
 
-        personInChargeTF.setPreferredSize(new java.awt.Dimension(400, 23));
-        personInChargeTF.addActionListener(new java.awt.event.ActionListener() {
+        periodeTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        periodeTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personInChargeTFActionPerformed(evt);
+                periodeTFActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Segment");
+        jLabel4.setText("Periode");
 
-        jLabel4.setText("Nama PIC");
-
-        customerNameTF.setPreferredSize(new java.awt.Dimension(400, 23));
-
-        phoneNumberTF.setPreferredSize(new java.awt.Dimension(400, 23));
-
-        jLabel5.setText("No. Telp");
+        roleNameTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        roleNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleNameTFActionPerformed(evt);
+            }
+        });
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,10 +112,8 @@ public class CustomerView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-
-        customerIdTF.setEnabled(false);
-        customerIdTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        roleIdTF.setEnabled(false);
+        roleIdTF.setPreferredSize(new java.awt.Dimension(400, 23));
 
         jLabel6.setText("ID");
 
@@ -211,23 +200,17 @@ public class CustomerView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(53, 53, 53)
+                        .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(personInChargeTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customerNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(phoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(customerIdTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roleNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                            .addComponent(roleIdTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(keywordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addGap(107, 107, 107))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -237,7 +220,11 @@ public class CustomerView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(buttonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ToHome)))))
+                                .addComponent(ToHome))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(57, 57, 57)
+                        .addComponent(periodeTF, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -245,24 +232,16 @@ public class CustomerView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(customerNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(roleNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(personInChargeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(periodeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonUpdate)
@@ -289,49 +268,40 @@ public class CustomerView extends javax.swing.JFrame {
 
     private void buttonAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseClicked
         // TODO add your handling code here:
-        String customerId = customerIdTF.getText();
-        String customerName = customerNameTF.getText();
-        int selectedSegment = jComboBox2.getSelectedIndex();
-        String pic = personInChargeTF.getText();
-        String phoneNumber = phoneNumberTF.getText();
+        String roleId = roleIdTF.getText();
+        String roleName = roleNameTF.getText();
+        String periode = periodeTF.getText();
 
-        if(customerId.isEmpty()){
-            if(customerName.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Nama Customer tidak boleh kosong");
-                customerNameTF.requestFocus();
-            }else if(selectedSegment == 0){
-                JOptionPane.showMessageDialog(null,"Segment tidak boleh kosong");
-                jComboBox2.requestFocus();
-            }else if(pic.isEmpty()){
-                JOptionPane.showMessageDialog(null,"PIC Name tidak boleh kosong");
-                personInChargeTF.requestFocus();
-            }else if(phoneNumber.isEmpty()){
-                JOptionPane.showMessageDialog(null,"No. Telp tidak boleh kosong");
-                phoneNumberTF.requestFocus();
+
+        if(roleId.isEmpty()){
+            if(roleName.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Nama Role tidak boleh kosong");
+                roleNameTF.requestFocus();
+            }else if(periode.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Periode tidak boleh kosong");
+                periodeTF.requestFocus();
             }else{
-                CustomerModel dataCustomerInsert = new CustomerModel();
-                dataCustomerInsert.setName(customerName);
-                dataCustomerInsert.setSegmentId(selectedSegment);
-                dataCustomerInsert.setPersonInCharge(pic);
-                dataCustomerInsert.setPhoneNumber(phoneNumber);
+                RoleModel dataRoleInsert = new RoleModel();
+                dataRoleInsert.setName(roleName);
+                dataRoleInsert.setPeriode(periode);
                 
-                CustomerModel findOneCustomerByName = customerDao.findOneByName(dataCustomerInsert);
-                if(findOneCustomerByName != null){
-                    JOptionPane.showMessageDialog(null,"Nama Customer Sudah Ada");
+                RoleModel findOneRoleByName = roleDao.findOneByName(dataRoleInsert);
+                if(findOneRoleByName != null){
+                    JOptionPane.showMessageDialog(null,"Nama Role Sudah Ada");
                 }else{
-                 int insertCustomer = customerDao.create(dataCustomerInsert);
-                    if(insertCustomer > 0){
+                 int insertRole = roleDao.create(dataRoleInsert);
+                    if(insertRole > 0){
                         clearField();
                         keywordTF.setText("");
                         loadTable(null);
-                        JOptionPane.showMessageDialog(null,"Berhasil Menambah Customer");
+                        JOptionPane.showMessageDialog(null,"Berhasil Menambah Role");
                     }else{
-                        JOptionPane.showMessageDialog(null,"Gagal Menambah Customer");
+                        JOptionPane.showMessageDialog(null,"Gagal Menambah Role");
                     }   
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(null,"Tidak Bisa Menambah Customer");
+            JOptionPane.showMessageDialog(null,"Tidak Bisa Menambah Role");
         }
        
     }//GEN-LAST:event_buttonAddMouseClicked
@@ -341,17 +311,13 @@ public class CustomerView extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         TableModel model = jTable1.getModel();
-        String customerName = model.getValueAt(selectedRow, 1).toString();
-        String segmentName = model.getValueAt(selectedRow, 2).toString();
-        String pic = model.getValueAt(selectedRow, 3).toString();
-        String phoneNumber = model.getValueAt(selectedRow, 4).toString();
-        String customerId = model.getValueAt(selectedRow, 0).toString();
+        String roleId = model.getValueAt(selectedRow, 0).toString();
+        String roleName = model.getValueAt(selectedRow, 1).toString();
+        String periode = model.getValueAt(selectedRow, 2).toString();
         
-        customerNameTF.setText(customerName);
-        jComboBox2.setSelectedItem(segmentName);
-        personInChargeTF.setText(pic);
-        phoneNumberTF.setText(phoneNumber);
-        customerIdTF.setText(customerId);
+        roleIdTF.setText(roleId);
+        roleNameTF.setText(roleName);
+        periodeTF.setText(periode);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void buttonClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClearMouseClicked
@@ -361,11 +327,11 @@ public class CustomerView extends javax.swing.JFrame {
 
     private void buttonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseClicked
         // TODO add your handling code here:
-        String customerId = customerIdTF.getText();
-        if(!customerId.isEmpty()){
-            int id = Integer.parseInt(customerId);
-            int deleteCustomer = customerDao.delete(id);
-            if(deleteCustomer == 1){
+        String roleId = roleIdTF.getText();
+        if(!roleId.isEmpty()){
+            int id = Integer.parseInt(roleId);
+            int deleteRole = roleDao.delete(id);
+            if(deleteRole == 1){
                 clearField();
                 loadTable(null); 
                 JOptionPane.showMessageDialog(null,"Berhasil Hapus");
@@ -375,63 +341,52 @@ public class CustomerView extends javax.swing.JFrame {
 
     private void buttonUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonUpdateMouseClicked
         // TODO add your handling code here:
-        String customerId = customerIdTF.getText();
-        String customerName = customerNameTF.getText();
-        int selectedSegment = jComboBox2.getSelectedIndex();
-        String pic = personInChargeTF.getText();
-        String phoneNumber = phoneNumberTF.getText();
+        String roleId = roleIdTF.getText();
+        String roleName = roleNameTF.getText();
+        String periode = periodeTF.getText();
         
-        JOptionPane.showMessageDialog(null,customerId);
-        if(!customerId.isEmpty()){
-            if(customerName.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Nama Customer tidak boleh kosong");
-                customerNameTF.requestFocus();
-            }else if(selectedSegment == 0){
-                JOptionPane.showMessageDialog(null,"Segment tidak boleh kosong");
-                jComboBox2.requestFocus();
-            }else if(pic.isEmpty()){
-                JOptionPane.showMessageDialog(null,"PIC Name tidak boleh kosong");
-                personInChargeTF.requestFocus();
-            }else if(phoneNumber.isEmpty()){
-                JOptionPane.showMessageDialog(null,"No. Telp tidak boleh kosong");
-                phoneNumberTF.requestFocus();
+        if(!roleId.isEmpty()){
+            if(roleName.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Nama Role tidak boleh kosong");
+                roleNameTF.requestFocus();
+            }else if(periode.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Periode tidak boleh kosong");
+                periodeTF.requestFocus();
             }else{
-                int id = Integer.parseInt(customerIdTF.getText());
-                CustomerModel dataUpdateCustomer = new CustomerModel();
-                dataUpdateCustomer.setName(customerName);
-                dataUpdateCustomer.setSegmentId(selectedSegment);
-                dataUpdateCustomer.setPersonInCharge(pic);
-                dataUpdateCustomer.setPhoneNumber(phoneNumber);
-                dataUpdateCustomer.setId(id);
+                int id = Integer.parseInt(roleIdTF.getText());
+                RoleModel dataUpdateRole = new RoleModel();
+                dataUpdateRole.setName(roleName);
+                dataUpdateRole.setPeriode(periode);
+                dataUpdateRole.setId(id);
                 
-                CustomerModel daoFindOneById = new CustomerModel();
+                RoleModel daoFindOneById = new RoleModel();
                 daoFindOneById.setId(id);
                 
-                CustomerModel previousCustomer = customerDao.findOneById(daoFindOneById);
-                if(previousCustomer == null){
-                    JOptionPane.showMessageDialog(null,"Customer Tidak Ditemukan");
+                RoleModel previousRole = roleDao.findOneById(daoFindOneById);
+                if(previousRole == null){
+                    JOptionPane.showMessageDialog(null,"Role Tidak Ditemukan");
                 }else{
-                    if(previousCustomer.getName().equals(dataUpdateCustomer.getName())){
-                        int updateCustomer = customerDao.update(dataUpdateCustomer);
-                        if(updateCustomer > 0){
+                    if(previousRole.getName().equals(dataUpdateRole.getName())){
+                        int updateRole = roleDao.update(dataUpdateRole);
+                        if(updateRole > 0){
                             clearField();
                             loadTable(null);
-                            JOptionPane.showMessageDialog(null,"Berhasil Mengubah Customer");
+                            JOptionPane.showMessageDialog(null,"Berhasil Mengubah Role");
                         }else{
-                            JOptionPane.showMessageDialog(null,"Gagal Mengubah Customer");
+                            JOptionPane.showMessageDialog(null,"Gagal Mengubah Role");
                         } 
                     }else{
-                        CustomerModel findOneCustomerByName = customerDao.findOneByName(dataUpdateCustomer);
-                        if(findOneCustomerByName != null){
-                            JOptionPane.showMessageDialog(null,"Nama Customer Sudah Ada");
+                        RoleModel findOneRoleByName = roleDao.findOneByName(dataUpdateRole);
+                        if(findOneRoleByName != null){
+                            JOptionPane.showMessageDialog(null,"Nama Role Sudah Ada");
                         }else{
-                            int updateDataCustomer = customerDao.update(dataUpdateCustomer);
-                            if(updateDataCustomer > 0){
+                            int updateDataRole = roleDao.update(dataUpdateRole);
+                            if(updateDataRole > 0){
                                 clearField();
                                 loadTable(null);
-                                JOptionPane.showMessageDialog(null,"Berhasil Mengubah Customer");
+                                JOptionPane.showMessageDialog(null,"Berhasil Mengubah Role");
                             }else{
-                                JOptionPane.showMessageDialog(null,"Gagal Mengubah Customer");
+                                JOptionPane.showMessageDialog(null,"Gagal Mengubah Role");
                             }   
                         }
                     }
@@ -448,8 +403,8 @@ public class CustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String keyword = keywordTF.getText();
         if(!keyword.equals("")){
-            List<CustomerModel> customers = customerDao.search(keyword);
-            loadTable(customers);
+            List<RoleModel> roles = roleDao.search(keyword);
+            loadTable(roles);
         }else{
             loadTable(null);
         } 
@@ -478,9 +433,13 @@ public class CustomerView extends javax.swing.JFrame {
         new MenuView().start();
     }//GEN-LAST:event_ToHomeActionPerformed
 
-    private void personInChargeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personInChargeTFActionPerformed
+    private void periodeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodeTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_personInChargeTFActionPerformed
+    }//GEN-LAST:event_periodeTFActionPerformed
+
+    private void roleNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleNameTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,14 +458,18 @@ public class CustomerView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -515,7 +478,7 @@ public class CustomerView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerView().setVisible(true);
+                new RoleView().setVisible(true);
             }
         });
     }
@@ -526,29 +489,24 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonUpdate;
-    private javax.swing.JTextField customerIdTF;
-    private javax.swing.JTextField customerNameTF;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField keywordTF;
-    private javax.swing.JTextField personInChargeTF;
-    private javax.swing.JTextField phoneNumberTF;
+    private javax.swing.JTextField periodeTF;
+    private javax.swing.JTextField roleIdTF;
+    private javax.swing.JTextField roleNameTF;
     // End of variables declaration//GEN-END:variables
     
     @Override
     public void dispose(){
         // TODO add your handling code here:
-        customerDao.closeConnection();
-        segmentDao.closeConnection();
+        roleDao.closeConnection();
         super.dispose();
     }
     
@@ -570,8 +528,7 @@ public class CustomerView extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
-                    customerDao.closeConnection();
-                    segmentDao.closeConnection();
+                    roleDao.closeConnection();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     System.exit(0);
                 }
@@ -579,18 +536,17 @@ public class CustomerView extends javax.swing.JFrame {
         });
         // TODO add your custom frame code here:
         loadTable(null);
-        loadComboBox();
        
         this.setVisible( true );
     }
     
-    public void loadTable(List<CustomerModel> customers) {
-        if(customers == null){
-            customers = customerDao.findAll();
+    public void loadTable(List<RoleModel> roles) {
+        if(roles == null){
+            roles = roleDao.findAll();
         }
-        CustomerTableModel customerTableModel = new CustomerTableModel(customers);
+        RoleTableModel roleTableModel = new RoleTableModel(roles);
         
-        jTable1.setModel(customerTableModel);
+        jTable1.setModel(roleTableModel);
         
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
         jTable1.setRowSorter(sorter);
@@ -599,23 +555,13 @@ public class CustomerView extends javax.swing.JFrame {
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
         sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
         sorter.setSortKeys(sortKeys);
     }
     
-    public void loadComboBox(){
-        List<SegmentModel> segments = segmentDao.findAll();
-        segments.forEach(v -> {
-            jComboBox2.addItem(v.getName());
-        });
-    }
-    
     public void clearField(){
-        customerNameTF.setText("");
-        personInChargeTF.setText("");
-        phoneNumberTF.setText("");
-        jComboBox2.setSelectedIndex(0);
-        customerIdTF.setText("");
+        roleNameTF.setText("");
+        periodeTF.setText("");
+        roleIdTF.setText("");
         keywordTF.setText("");
     }
 }

@@ -18,8 +18,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author yusuf
- */
-public class LoginView extends javax.swing.JFrame {
+ */public class LoginView extends javax.swing.JFrame {
     
     private final IEmployeeDao employeeDao;
     
@@ -161,11 +160,8 @@ public class LoginView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Berhasil Masuk"); 
                 //menutup gui login
                 this.dispose();
-                //menampilkan gui Item
-                new Master_ItemView().start();
-                
-                //menampilkan gui customer
-                //new CustomerView().start();
+                //menampilkan gui Menu
+                new MenuView().start(); 
             }
         }
     }//GEN-LAST:event_buttonLoginMouseClicked
