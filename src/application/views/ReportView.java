@@ -67,7 +67,7 @@ public class ReportView extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Transaction", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Transaction", "Role" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -256,7 +256,10 @@ public class ReportView extends javax.swing.JFrame {
         try {    
             String selectedReport = jComboBox1.getSelectedItem().toString();
             String templateName = "CustomerReport.jrxml";
+            
             if(selectedReport.equals("Customer")) templateName = "CustomerReport.jrxml";
+            if(selectedReport.equals("Segment")) templateName = "SegmentReport.jrxml";
+            if(selectedReport.equals("Role")) templateName = "RoleReport.jrxml";
             
             InputStream reportStream = JasperView.class.getResourceAsStream("/resources/templates/" + templateName);
             JasperDesign jd = JRXmlLoader.load(reportStream);

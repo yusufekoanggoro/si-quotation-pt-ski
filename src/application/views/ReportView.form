@@ -111,7 +111,7 @@
             <StringItem index="1" value="Segment"/>
             <StringItem index="2" value="Customer"/>
             <StringItem index="3" value="Transaction"/>
-            <StringItem index="4" value=" "/>
+            <StringItem index="4" value="Role"/>
           </StringArray>
         </Property>
       </Properties>
