@@ -4,15 +4,17 @@ import application.views.CustomerView;
 import application.views.EmployeeView;
 import application.views.JasperView;
 import application.views.LoginView;
+import application.views.TransactionView;
 
 public class Main {
     
     public static void main(String[] args) {
         try {
             Config.build();
-            new GenerateUser().start();
+            //new GenerateUser().start();
 //            new EmployeeView().start();            
-            new LoginView().start();
+            //new LoginView().start();
+            new TransactionView().start();
 //            loginView.start();
 //            new CustomerView().start();
 //            new JasperView().setVisible(true);
