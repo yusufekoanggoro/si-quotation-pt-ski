@@ -239,8 +239,22 @@ public class ReportView extends javax.swing.JFrame {
         try {    
             String selectedReport = jComboBox1.getSelectedItem().toString();
             String templateName = "CustomerReport.jrxml";
-            if(selectedReport.equals("Customer")) templateName = "CustomerReport.jrxml";
-            
+            switch (selectedReport) {
+                case "Employee":
+                    templateName = "EmployeeReport.jrxml";
+                    break;
+                case "Segment":
+                    templateName = "SegmentReport.jrxml";
+                    break;
+                case "Customer":
+                    templateName = "CustomerReport.jrxml";
+                    break;
+                case "Transaction":
+                    templateName = "TransactionReport.jrxml";
+                    break;
+                default:
+                    break;
+            }
             InputStream reportStream = JasperView.class.getResourceAsStream("/resources/templates/" + templateName);
             JasperDesign jd = JRXmlLoader.load(reportStream);
             
