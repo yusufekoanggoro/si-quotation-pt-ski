@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             Config.build();
-            //new GenerateUser().start();
+//            new GenerateUser().start();
 //            new EmployeeView().start();            
             new LoginView().start();
 //            new MenuView().start();

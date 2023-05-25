@@ -126,8 +126,13 @@ public class EmployeeDao implements IEmployeeDao {
                 EmployeeModel employee = new EmployeeModel();
                 employee.setId(resultSet.getInt("id"));
                 employee.setName(resultSet.getString("name"));
-                employee.setGender(resultSet.getString("gender"));
                 employee.setRoleName(resultSet.getString("role_name"));
+                employee.setGender(resultSet.getString("gender"));
+                employee.setPlaceOfBirth(resultSet.getString("place_of_birth"));
+                employee.setDateOfBirth(resultSet.getDate("date_of_birth"));
+                employee.setPhoneNumber(resultSet.getString("phone_number"));
+                employee.setAddress(resultSet.getString("address"));
+                employee.setJoinDate(resultSet.getTimestamp("join_date"));
                 employees.add(employee);
             }
 

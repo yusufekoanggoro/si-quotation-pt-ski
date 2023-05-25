@@ -60,6 +60,7 @@ public class EmployeeModel {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+    
 
     public String getAddress() {
         return address;
