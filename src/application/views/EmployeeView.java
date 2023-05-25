@@ -6,11 +6,9 @@ package application.views;
 
 import application.Session;
 import application.dao.EmployeeDao;
-import application.dao.SegmentDao;
 import application.dao.interfaces.IEmployeeDao;
 import application.models.EmployeeModel;
 import application.models.EmployeeTableModel;
-import application.models.SegmentModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -68,7 +66,7 @@ public class EmployeeView extends javax.swing.JFrame {
         TTLTF = new javax.swing.JTextField();
         jLabelReligion = new javax.swing.JLabel();
         religionTF = new javax.swing.JTextField();
-        statusTF = new javax.swing.JTextField();
+        roleNameTF = new javax.swing.JTextField();
         jLabelStatus = new javax.swing.JLabel();
         jLabelJoinDate = new javax.swing.JLabel();
         joinDateTF = new javax.swing.JTextField();
@@ -115,6 +113,14 @@ public class EmployeeView extends javax.swing.JFrame {
 
         jLabel5.setText("No. Telp");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -178,14 +184,14 @@ public class EmployeeView extends javax.swing.JFrame {
             }
         });
 
-        statusTF.setPreferredSize(new java.awt.Dimension(400, 23));
-        statusTF.addActionListener(new java.awt.event.ActionListener() {
+        roleNameTF.setPreferredSize(new java.awt.Dimension(400, 23));
+        roleNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusTFActionPerformed(evt);
+                roleNameTFActionPerformed(evt);
             }
         });
 
-        jLabelStatus.setText("Status");
+        jLabelStatus.setText("Jabatan");
 
         jLabelJoinDate.setText("Bergabung");
 
@@ -300,7 +306,7 @@ public class EmployeeView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(statusTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(roleNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addComponent(employeeIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addComponent(textAreaAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                                     .addComponent(phoneNumberTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -378,7 +384,7 @@ public class EmployeeView extends javax.swing.JFrame {
                             .addComponent(religionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(statusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roleNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelStatus))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -444,13 +450,15 @@ public class EmployeeView extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         TableModel model = jTable1.getModel();
-        String employeeName = model.getValueAt(selectedRow, 1).toString();
-        String phoneNumber = model.getValueAt(selectedRow, 4).toString();
+        String employeeName = model.getValueAt(selectedRow, 2).toString();
+        String phoneNumber = model.getValueAt(selectedRow, 3).toString();
         String employeeId = model.getValueAt(selectedRow, 0).toString();
+        String roleName = model.getValueAt(selectedRow, 1).toString();
         
         employeeNameTF.setText(employeeName);
         phoneNumberTF.setText(phoneNumber);
         employeeIdTF.setText(employeeId);
+        roleNameTF.setText(roleName);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void buttonClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonClearMouseClicked
@@ -575,9 +583,9 @@ public class EmployeeView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_religionTFActionPerformed
 
-    private void statusTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTFActionPerformed
+    private void roleNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleNameTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_statusTFActionPerformed
+    }//GEN-LAST:event_roleNameTFActionPerformed
 
     private void joinDateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinDateTFActionPerformed
         // TODO add your handling code here:
@@ -657,7 +665,7 @@ public class EmployeeView extends javax.swing.JFrame {
     private java.awt.Panel panel3;
     private javax.swing.JTextField phoneNumberTF;
     private javax.swing.JTextField religionTF;
-    private javax.swing.JTextField statusTF;
+    private javax.swing.JTextField roleNameTF;
     private java.awt.TextArea textAreaAddress;
     // End of variables declaration//GEN-END:variables
     
@@ -712,7 +720,8 @@ public class EmployeeView extends javax.swing.JFrame {
         List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-//        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
 //        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
         sorter.setSortKeys(sortKeys);
     }

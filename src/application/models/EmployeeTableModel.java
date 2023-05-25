@@ -21,8 +21,10 @@ public class EmployeeTableModel extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Name";
+                return "Role Name";
             case 2:
+                return "Name";
+            case 3:
                 return "Gender";
             default:
                 return null;
@@ -31,7 +33,7 @@ public class EmployeeTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -40,8 +42,10 @@ public class EmployeeTableModel extends AbstractTableModel {
             case 0:
                 return employes.get(row).getId();
             case 1:
-                return employes.get(row).getName();
+                return employes.get(row).getRoleName();
             case 2:
+                return employes.get(row).getName();
+            case 3:
                 return employes.get(row).getGender();
             default:
                 return null;

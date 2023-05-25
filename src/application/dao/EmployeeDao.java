@@ -69,7 +69,6 @@ public class EmployeeDao implements IEmployeeDao {
                 employee.setName(resultSet.getString("name"));
                 employee.setGender(resultSet.getString("gender"));
                 employee.setPassword(resultSet.getString("password"));
-                employee.setRoleId(resultSet.getInt("role_id"));
                 return employee;
             }
             return null;
@@ -87,8 +86,7 @@ public class EmployeeDao implements IEmployeeDao {
             query = "SELECT * "
                     + "FROM Employees "
                     + "WHERE Employees.name LIKE '%" + keyword + "%' "
-                    + "OR segments.name LIKE '%" + keyword + "%' "
-                    + "OR Employees.person_in_charge LIKE '%" + keyword + "%' "
+                    + "OR roles.name LIKE '%" + keyword + "%' "
                     + "OR Employees.phone_number LIKE '%" + keyword + "%' ";
             
             pstmt = connection.prepareStatement(query);
@@ -115,27 +113,29 @@ public class EmployeeDao implements IEmployeeDao {
     @Override
     public List<EmployeeModel> findAll() {
         try {
-            query = "SELECT * FROM employees";
+            query = "SELECT employees.*, roles.name AS `role_name` " 
+                    + "FROM employees "
+                    + "INNER JOIN roles ON employees.role_id = roles.id";
+
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
-            
+
             List<EmployeeModel> employees = new ArrayList<>();
-            
-            if(resultSet.next()){
-                while (resultSet.next()) {
-                    EmployeeModel employee = new EmployeeModel();
-                    employee.setId(resultSet.getInt("id"));
-                    employee.setName(resultSet.getString("name"));
-                    employee.setGender(resultSet.getString("gender"));
-                    employees.add(employee);
-                }
-                return employees;
+
+            while (resultSet.next()) {
+                EmployeeModel employee = new EmployeeModel();
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setGender(resultSet.getString("gender"));
+                employee.setRoleName(resultSet.getString("role_name"));
+                employees.add(employee);
             }
-            return null;
-	} catch (SQLException e) {
+
+            return employees;
+        } catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
-        }finally{
+        } finally {
             closeStatement();
         }
     }
