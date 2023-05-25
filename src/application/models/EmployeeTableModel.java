@@ -21,9 +21,21 @@ public class EmployeeTableModel extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Name";
+                return "Nama";
             case 2:
-                return "Gender";
+                return "Jabatan";
+            case 3:
+                return "Jenis Kelamin";
+            case 4:
+                return "Tmp Lahir";
+            case 5:
+                return "Tgl Lahir";
+            case 6:
+                return "No. Telp";
+            case 7:
+                return "Alamat";
+            case 8:
+                return "Bergabung";
             default:
                 return null;
         }
@@ -31,7 +43,7 @@ public class EmployeeTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 9;
     }
 
     @Override
@@ -42,7 +54,19 @@ public class EmployeeTableModel extends AbstractTableModel {
             case 1:
                 return employes.get(row).getName();
             case 2:
+                return employes.get(row).getRoleName();
+            case 3:
                 return employes.get(row).getGender();
+            case 4:
+                return employes.get(row).getPlaceOfBirth();
+            case 5:
+                return employes.get(row).getDateOfBirth();
+            case 6:
+                return employes.get(row).getPhoneNumber();
+            case 7:
+                return employes.get(row).getAddress();
+            case 8:
+                return employes.get(row).getJoinDate();
             default:
                 return null;
         }

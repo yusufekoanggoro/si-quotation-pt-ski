@@ -18,6 +18,7 @@ public class EmployeeModel {
     private java.sql.Timestamp updatedAt;
     private String username;
     private String password;
+    private String roleName;
     private int roleId;
 
     public int getId() {
@@ -59,6 +60,7 @@ public class EmployeeModel {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+    
 
     public String getAddress() {
         return address;
@@ -139,5 +141,14 @@ public class EmployeeModel {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+   
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+    
+    public String getRoleName() {
+        return roleName;
+    }
+   
     
 }
