@@ -99,6 +99,11 @@ public class MenuView extends javax.swing.JFrame {
         jButton7.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton7.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton7.setPreferredSize(new java.awt.Dimension(130, 23));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Employee Data");
         jButton6.setMaximumSize(new java.awt.Dimension(130, 23));
@@ -260,6 +265,12 @@ public class MenuView extends javax.swing.JFrame {
         this.setVisible( false );
         new ReportView().start();
     }//GEN-LAST:event_ToReportActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible( false );
+        new TransactionView().start();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
