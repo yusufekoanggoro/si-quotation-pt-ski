@@ -15,18 +15,21 @@ import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author she
  */
-public class statusQmChartView extends javax.swing.JFrame {
+public class StatusQmChartView extends javax.swing.JFrame {
 
     /**
      * Creates new form statusQmChartView
      */
-    public statusQmChartView() {
+    public StatusQmChartView() {
         initComponents();
     }
 
@@ -72,15 +75,28 @@ public class statusQmChartView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(statusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(statusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(statusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(statusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StatusQmChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StatusQmChartView().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
+
+    public void start(){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         // Data dummy untuk status kutipan per tahun dalam Rupiah
@@ -133,22 +149,17 @@ public class statusQmChartView extends javax.swing.JFrame {
         plot.getRenderer().setBaseItemLabelsVisible(true);
 
         JFrame frame = new JFrame("Chart Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setResizable(false); // fixed width
+        
 
         ChartPanel chartPanel = new ChartPanel(chart);
         frame.getContentPane().add(chartPanel);
         frame.pack();
+        frame.setLocationRelativeTo(null); // Set JFrame to center of Screen
         frame.setVisible(true);
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new statusQmChartView().setVisible(true);
-            }
-        });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    
+    
 }

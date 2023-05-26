@@ -2,7 +2,6 @@ package application.dao;
 
 import application.dao.interfaces.ISegmentDao;
 import application.databases.Mysql;
-import application.models.EmployeeModel;
 import application.models.SegmentModel;
 
 import java.sql.Connection;

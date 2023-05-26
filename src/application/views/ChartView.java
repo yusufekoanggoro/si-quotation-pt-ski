@@ -16,12 +16,12 @@ import java.awt.Dimension;
  *
  * @author she
  */
-public class chartView extends javax.swing.JFrame {
+public class ChartView extends javax.swing.JFrame {
 
     /**
      * Creates new form chartView
      */
-    public chartView() {
+    public ChartView() {
         initComponents();
     }
 
@@ -67,15 +67,26 @@ public class chartView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(chartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(chartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(chartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(chartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ChartView().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
+    public void start(){
         DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue("Pharmaceutical", 12);
         dataset.setValue("Foods & Beverages", 18);
@@ -96,21 +107,15 @@ public class chartView extends javax.swing.JFrame {
         plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {2}%"));
 
         JFrame frame = new JFrame("Chart Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(500, 400));
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setResizable(false); // fixed width
 
         ChartPanel chartPanel = new ChartPanel(chart);
         frame.getContentPane().add(chartPanel);
         frame.pack();
+        frame.setLocationRelativeTo(null); // Set JFrame to center of Screen
         frame.setVisible(true);
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new chartView().setVisible(true);
-            }
-        });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
 }
