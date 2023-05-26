@@ -3,7 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RoleReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter Quotation"/>
-        <property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -48,11 +48,11 @@
 	<title>
 		<band height="132" splitType="Stretch">
 			<image>
-				<reportElement x="456" y="0" width="99" height="132" uuid="97705585-a0b5-4ec7-86f3-ae10c220e6af"/>
-				<imageExpression><![CDATA["https://picsum.photos/200/300"]]></imageExpression>
+				<reportElement x="456" y="0" width="99" height="95" uuid="97705585-a0b5-4ec7-86f3-ae10c220e6af"/>
+				<imageExpression><![CDATA["C:/Users/diasf/si-quotation-pt-ski/src/resources/images/logo_pt_ski_75px.png"]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a"/>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#1BC221" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a"/>
 				<staticText>
 					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21"/>
 					<textElement>
@@ -61,17 +61,17 @@
 					<text><![CDATA[Data Role]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="8978eac3-c578-41c9-837e-48d2b0184642"/>
+					<reportElement style="SubTitle" x="120" y="66" width="286" height="29" uuid="8978eac3-c578-41c9-837e-48d2b0184642"/>
 					<textElement>
 						<font size="22" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Report]]></text>
+					<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4"/>
+				<reportElement mode="Opaque" x="0" y="100" width="553" height="32" forecolor="#000000" backcolor="#1EA3EB" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8"/>
+					<reportElement x="401" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8"/>
 					<textElement textAlignment="Right">
 						<font size="12"/>
 					</textElement>
@@ -92,7 +92,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[id]]></text>
+				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="111" y="7" width="111" height="18" forecolor="#000000" uuid="7c48066f-f934-4296-9219-4630a97d9f15">
@@ -101,7 +101,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[name]]></text>
+				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="222" y="7" width="111" height="18" forecolor="#000000" uuid="d520d7ec-fbda-437c-b604-e07866c601b2">
@@ -110,7 +110,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[periode]]></text>
+				<text><![CDATA[Periode]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="333" y="7" width="111" height="18" forecolor="#000000" uuid="e0b45c6b-aa9d-4857-8b09-4c761f54dd60">
@@ -119,7 +119,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[created_at]]></text>
+				<text><![CDATA[Tgl Dibuat]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="444" y="7" width="111" height="18" forecolor="#000000" uuid="3026fa45-39d8-44d6-95b4-5c6e7ebe466a">
@@ -128,7 +128,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[updated_at]]></text>
+				<text><![CDATA[Update Terakhir]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
