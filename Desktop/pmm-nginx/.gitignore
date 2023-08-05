@@ -1,3 +1,4 @@
 .env
 prometheus
-README.md
+docker/README.md
+ansible/inventory
