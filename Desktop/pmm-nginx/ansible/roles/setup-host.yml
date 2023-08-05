@@ -1,0 +1,59 @@
+---
+- name: Setup
+  hosts: "{{ HOSTS }}"
+  become: yes
+  vars:
+    - workdir: "/opt/monstack"
+
+  tasks:
+    - name: Download Docker installation script
+      command: "{{ item }}"
+      with_items:
+       - curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+       - sudo sh /tmp/get-docker.sh
+
+    - name: Install docker-compose
+      apt:
+        name:
+          - docker-compose
+          - rsync
+
+    - name:  Synchronization monstack 
+      ansible.posix.synchronize:
+        src: "../../docker/monstack"
+        dest: /opt
+
+    - name: Create pmm-data container
+      command: "docker create --volume /srv --name pmm-data percona/pmm-server:2 /bin/true"
+      become: yes
+
+    - name: Copy data from pmm-data container
+      command: "docker cp pmm-data:/srv/ ./pmm-server"
+      args:
+        chdir: "{{ workdir }}"
+      become: yes
+
+    - name: Start PMM Server with docker-compose
+      command: docker-compose up -d
+      args:
+        chdir: "{{ workdir }}" 
+      become: yes
+
+    - name: Change owner to root
+      command: docker-compose exec pmm-server bash -c "chown -R root:root /srv && chown -R pmm:pmm /srv/alertmanager && chown -R root:pmm /srv/clickhouse && chown -R grafana:grafana /srv/grafana && chown -R pmm:pmm /srv/logs && chown -R postgres:postgres /srv/postgres14 && chown -R pmm:pmm /srv/prometheus && chown -R pmm:pmm /srv/victoriametrics && chown -R postgres:postgres /srv/logs/postgresql14.log"
+      args:
+        chdir: "{{ workdir }}"  
+      become: yes
+
+    - name: Find all .key and .crt files in the directory
+      find:
+        paths: "{{ workdir }}/nginx/certs/"
+        recurse: yes
+        patterns: "*.key,*.crt"
+      register: key_crt_files
+
+    - name: Change permissions for each .key and .crt file
+      file:
+        path: "{{ item.path }}"
+        mode: '0644'
+      with_items: "{{ key_crt_files.files }}"
