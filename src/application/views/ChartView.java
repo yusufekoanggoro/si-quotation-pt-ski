@@ -21,7 +21,7 @@ import java.util.List;
  * @author she
  */
 public class ChartView extends javax.swing.JFrame {
-private final ICustomerDao customerDao;
+    private final ICustomerDao customerDao;
 
     /**
      * Creates new form chartView

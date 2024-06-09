@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package application.views;
+import application.dao.interfaces.ITransactionDao;
+import application.dao.TransactionDao;
+import application.models.TransactionChartModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -18,19 +21,22 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
+import java.time.Month;
 
 /**
  *
  * @author she
  */
 public class StatusQmChartView extends javax.swing.JFrame {
-
+    private final ITransactionDao transactionDao;
     /**
      * Creates new form statusQmChartView
      */
     public StatusQmChartView() {
         initComponents();
+        this.transactionDao = new TransactionDao();
     }
 
     /**
@@ -99,32 +105,43 @@ public class StatusQmChartView extends javax.swing.JFrame {
     public void start(){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        // Data dummy untuk status kutipan per tahun dalam Rupiah
-        dataset.addValue(2000, "2022", "Jan");
-        dataset.addValue(2500, "2022", "Feb");
-        dataset.addValue(3000, "2022", "Mar");
-        dataset.addValue(2800, "2022", "Apr");
-        dataset.addValue(3200, "2022", "May");
-        dataset.addValue(3000, "2022", "Jun");
-        dataset.addValue(2800, "2022", "Jul");
-        dataset.addValue(2600, "2022", "Aug");
-        dataset.addValue(2900, "2022", "Sep");
-        dataset.addValue(2500, "2022", "Ock");
-        dataset.addValue(2700, "2022", "Nov");
-        dataset.addValue(3100, "2022", "Des");
+        
 
-        dataset.addValue(1500, "2021", "Jan");
-        dataset.addValue(1800, "2021", "Feb");
-        dataset.addValue(2000, "2021", "Mar");
-        dataset.addValue(1800, "2021", "Apr");
-        dataset.addValue(2200, "2021", "May");
-        dataset.addValue(2000, "2021", "Jun");
-        dataset.addValue(1900, "2021", "Jul");
-        dataset.addValue(1700, "2021", "Aug");
-        dataset.addValue(2100, "2021", "Sep");
-        dataset.addValue(2000, "2021", "Ock");
-        dataset.addValue(2200, "2021", "Nov");
-        dataset.addValue(2400, "2021", "Des");
+        
+        List<TransactionChartModel> transactionsModel = transactionDao.getTransactionChart();
+         
+         for (TransactionChartModel transactionModel : transactionsModel) {
+            Month month = Month.of(transactionModel.getMonth());
+            String monthName = month.name();
+            dataset.addValue(transactionModel.getTotal(), transactionModel.getYear(), monthName);
+        }
+        
+        // Data dummy untuk status kutipan per tahun dalam Rupiah
+//        dataset.addValue(2000, "2022", "Jan");
+//        dataset.addValue(2500, "2022", "Feb");
+//        dataset.addValue(3000, "2022", "Mar");
+//        dataset.addValue(2800, "2022", "Apr");
+//        dataset.addValue(3200, "2022", "May");
+//        dataset.addValue(3000, "2022", "Jun");
+//        dataset.addValue(2800, "2022", "Jul");
+//        dataset.addValue(2600, "2022", "Aug");
+//        dataset.addValue(2900, "2022", "Sep");
+//        dataset.addValue(2500, "2022", "Ock");
+//        dataset.addValue(2700, "2022", "Nov");
+//        dataset.addValue(3100, "2022", "Des");
+//
+//        dataset.addValue(1500, "2021", "Jan");
+//        dataset.addValue(1800, "2021", "Feb");
+//        dataset.addValue(2000, "2021", "Mar");
+//        dataset.addValue(1800, "2021", "Apr");
+//        dataset.addValue(2200, "2021", "May");
+//        dataset.addValue(2000, "2021", "Jun");
+//        dataset.addValue(1900, "2021", "Jul");
+//        dataset.addValue(1700, "2021", "Aug");
+//        dataset.addValue(2100, "2021", "Sep");
+//        dataset.addValue(2000, "2021", "Ock");
+//        dataset.addValue(2200, "2021", "Nov");
+//        dataset.addValue(2400, "2021", "Des");
         JFreeChart chart = ChartFactory.createLineChart(
                 "Status Quotation per Tahun",
                 "Bulan",
