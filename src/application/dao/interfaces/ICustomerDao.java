@@ -1,6 +1,7 @@
 package application.dao.interfaces;
 
 import application.models.CustomerModel;
+import application.models.SegmentMarketModel;
 import java.util.List;
 
 public interface ICustomerDao {
@@ -26,5 +27,7 @@ public interface ICustomerDao {
     public void closeStatement();
     
     public void closeConnection();
+    
+    public List<SegmentMarketModel> getSegmentMarket();
     
 }

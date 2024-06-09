@@ -3,6 +3,7 @@ package application.dao;
 import application.dao.interfaces.ICustomerDao;
 import application.databases.Mysql;
 import application.models.CustomerModel;
+import application.models.SegmentMarketModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -224,7 +225,7 @@ public class CustomerDao implements ICustomerDao {
 
     @Override
     public List<CustomerModel> search(String keyword) {
-            try {
+        try {
             query = "SELECT customers.*, segments.name AS segment_name "
                     + "FROM customers "
                     + "INNER JOIN segments "
@@ -250,6 +251,38 @@ public class CustomerDao implements ICustomerDao {
                 customers.add(customer);
             }
             return customers;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
+
+    @Override
+    public List<SegmentMarketModel> getSegmentMarket() {
+            try {
+            query = "SELECT "
+                    + "s.name AS segment_name, COUNT(c.id) AS customer_count, ROUND((COUNT(c.id) / (SELECT COUNT(*) FROM customers) * 100), 2) AS percentage "
+                    + "FROM customers c "
+                    + "INNER JOIN segments s ON c.segment_id = s.id "
+                    + "GROUP BY s.name "
+                    + "ORDER BY percentage DESC";
+            
+            pstmt = connection.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            
+            List<SegmentMarketModel> segmentsMarket = new ArrayList<>();
+
+            while (resultSet.next()) {
+                SegmentMarketModel segmentMarket = new SegmentMarketModel();
+                segmentMarket.setSegmentName(resultSet.getString("segment_name"));
+                segmentMarket.setCustomerCount(resultSet.getInt("customer_count"));
+                segmentMarket.setPercentage(resultSet.getDouble("percentage"));
+    
+                segmentsMarket.add(segmentMarket);
+            }
+            return segmentsMarket;
 	} catch (SQLException e) {
             // e.printStackTrace();
             throw new RuntimeException(e);
