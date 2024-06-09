@@ -2,6 +2,22 @@ package application.models;
 
 public class TransactionChartModel {
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     public String getYear() {
         return year;
     }
@@ -29,5 +45,7 @@ public class TransactionChartModel {
     private String year;
     private int month;
     private int total;
+    private String status;
+    private int count;
     
 }

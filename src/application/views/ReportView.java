@@ -59,7 +59,7 @@ public class ReportView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setText("Pilih data yang ingin dicetak");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Transaction", "Role", "Segmentasi Market", "Quotation Grafik" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Transaction", "Role", "Segmentasi Market", "Quotation Grafik", "Quotation Per Status Chart" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -164,6 +164,9 @@ public class ReportView extends javax.swing.JFrame {
                 break;
             case "Quotation Grafik":
                 new StatusQmChartView().start();   
+                break;
+            case "Quotation Per Status Chart":
+                new QuotationPerStatusChart().start();   
                 break;
             default:
                 this.jasperViewer();

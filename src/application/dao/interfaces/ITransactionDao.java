@@ -31,4 +31,6 @@ public interface ITransactionDao {
     public TransactionModel findOneByName(TransactionModel customer);
     
     public List<TransactionChartModel> getTransactionChart();
+    
+    public List<TransactionChartModel> getTransactionPerStatusChart();
 }

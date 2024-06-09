@@ -243,4 +243,30 @@ public class TransactionDao implements ITransactionDao {
         }
     }
 
+    @Override
+    public List<TransactionChartModel> getTransactionPerStatusChart() {
+                try {
+            query = "SELECT status, COUNT(*) as count FROM transactions GROUP BY status";
+            
+            pstmt = connection.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            
+            List<TransactionChartModel> transactionsChart = new ArrayList<>();
+
+            while (resultSet.next()) {
+                TransactionChartModel transactionChart = new TransactionChartModel();
+                transactionChart.setStatus(resultSet.getString("status"));
+                transactionChart.setCount(resultSet.getInt("count"));
+    
+                transactionsChart.add(transactionChart);
+            }
+            return transactionsChart;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
+
 }

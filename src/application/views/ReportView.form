@@ -90,7 +90,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="Employee"/>
             <StringItem index="1" value="Segment"/>
             <StringItem index="2" value="Customer"/>
@@ -98,6 +98,7 @@
             <StringItem index="4" value="Role"/>
             <StringItem index="5" value="Segmentasi Market"/>
             <StringItem index="6" value="Quotation Grafik"/>
+            <StringItem index="7" value="Quotation Per Status Chart"/>
           </StringArray>
         </Property>
       </Properties>
