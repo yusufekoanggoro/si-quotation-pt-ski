@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package application.views;
+import application.dao.CustomerDao;
+import application.dao.interfaces.ICustomerDao;
+import application.models.SegmentMarketModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,17 +15,20 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.util.List;
 /**
  *
  * @author she
  */
 public class ChartView extends javax.swing.JFrame {
+private final ICustomerDao customerDao;
 
     /**
      * Creates new form chartView
      */
     public ChartView() {
         initComponents();
+        this.customerDao = new CustomerDao();
     }
 
     /**
@@ -88,18 +94,26 @@ public class ChartView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public void start(){
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Pharmaceutical", 12);
-        dataset.setValue("Foods & Beverages", 18);
-        dataset.setValue("Automotive Parts Industry", 8);
-        dataset.setValue("Pulp & Paper", 6);
-        dataset.setValue("Palm Oil Refinery", 9);
-        dataset.setValue("Steel Manufacturer", 15);
-        dataset.setValue("Water Process Company", 5);
-        dataset.setValue("MARINE/ Diesel", 7);
-        dataset.setValue("Power Plants", 10);
-        dataset.setValue("Water Cooling", 4);
-        dataset.setValue("Chemical", 6);
-        dataset.setValue("Oil & Gas", 10);
+        
+        
+        List<SegmentMarketModel> segmentsMarket = customerDao.getSegmentMarket();
+         
+         for (SegmentMarketModel segmentMarket : segmentsMarket) {
+            dataset.setValue(segmentMarket.getSegmentName(), segmentMarket.getPercentage());
+        }
+//        dummy datas
+//        dataset.setValue("Pharmaceutical", 12);
+//        dataset.setValue("Foods & Beverages", 18);
+//        dataset.setValue("Automotive Parts Industry", 8);
+//        dataset.setValue("Pulp & Paper", 6);
+//        dataset.setValue("Palm Oil Refinery", 9);
+//        dataset.setValue("Steel Manufacturer", 15);
+//        dataset.setValue("Water Process Company", 5);
+//        dataset.setValue("MARINE/ Diesel", 7);
+//        dataset.setValue("Power Plants", 10);
+//        dataset.setValue("Water Cooling", 4);
+//        dataset.setValue("Chemical", 6);
+//        dataset.setValue("Oil & Gas", 10);
 
         JFreeChart chart = ChartFactory.createPieChart("Segment Market Share", dataset, true, true, false);
 
