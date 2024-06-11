@@ -9,11 +9,11 @@ public class Main {
             Config.build();
 //            new GenerateUser().start();
 //            new EmployeeView().start();            
-            new LoginView().start();
+//            new LoginView().start();
 //            new MenuView().start();
 //            loginView.start();
 //            new CustomerView().start();
-//            new JasperView().setVisible(true);
+            new ReportView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

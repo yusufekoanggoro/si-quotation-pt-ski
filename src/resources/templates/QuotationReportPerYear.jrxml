@@ -13,7 +13,7 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-        <parameter name="Status" class="java.lang.String"/>
+        <parameter name="Year" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
   ROW_NUMBER() OVER (ORDER BY transactions.id) as seq_num,
@@ -34,7 +34,7 @@ FROM quotations_management.transactions
 INNER JOIN quotations_management.customers ON transactions.customer_id = customers.id 
 INNER JOIN quotations_management.segments ON customers.segment_id = segments.id 
 INNER JOIN quotations_management.items ON transactions.item_id = items.id
-WHERE quotations_management.transactions.status = $P{Status}
+WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 ]]>
 	</queryString>
 	<field name="seq_num" class="java.lang.Long">
@@ -128,7 +128,7 @@ WHERE quotations_management.transactions.status = $P{Status}
 					<textElement textAlignment="Right">
 						<font size="22" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Status " + $P{Status}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Tahun " + $P{Year}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
