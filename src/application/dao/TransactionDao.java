@@ -9,6 +9,7 @@ import application.dao.interfaces.IItemDao;
 import application.dao.interfaces.ITransactionDao;
 import application.databases.Mysql;
 import application.models.ItemModel;
+import application.models.TransactionChartModel;
 import application.models.TransactionModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -209,6 +210,63 @@ public class TransactionDao implements ITransactionDao {
     @Override
     public TransactionModel findOneByName(TransactionModel customer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<TransactionChartModel> getTransactionChart() {
+        try {
+            query = "SELECT "
+                    + "YEAR(created_at) AS year, MONTH(created_at) AS month, SUM(Total) AS total "
+                    + "FROM transactions "
+                    + "GROUP BY YEAR(created_at), MONTH(created_at) "
+                    + "ORDER BY YEAR(created_at), MONTH(created_at)";
+            
+            pstmt = connection.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            
+            List<TransactionChartModel> transactionsChart = new ArrayList<>();
+
+            while (resultSet.next()) {
+                TransactionChartModel transactionChart = new TransactionChartModel();
+                transactionChart.setYear(resultSet.getString("year"));
+                transactionChart.setMonth(resultSet.getInt("month"));
+                transactionChart.setTotal(resultSet.getInt("total"));
+    
+                transactionsChart.add(transactionChart);
+            }
+            return transactionsChart;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
+
+    @Override
+    public List<TransactionChartModel> getTransactionPerStatusChart() {
+                try {
+            query = "SELECT status, COUNT(*) as count FROM transactions GROUP BY status";
+            
+            pstmt = connection.prepareStatement(query);
+            resultSet = pstmt.executeQuery();
+            
+            List<TransactionChartModel> transactionsChart = new ArrayList<>();
+
+            while (resultSet.next()) {
+                TransactionChartModel transactionChart = new TransactionChartModel();
+                transactionChart.setStatus(resultSet.getString("status"));
+                transactionChart.setCount(resultSet.getInt("count"));
+    
+                transactionsChart.add(transactionChart);
+            }
+            return transactionsChart;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
     }
 
 }

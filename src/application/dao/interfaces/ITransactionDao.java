@@ -6,6 +6,7 @@
 package application.dao.interfaces;
 
 import application.models.TransactionModel;
+import application.models.TransactionChartModel;
 import java.util.List;
 
 /**
@@ -28,4 +29,8 @@ public interface ITransactionDao {
     public int update(TransactionModel item);
     
     public TransactionModel findOneByName(TransactionModel customer);
+    
+    public List<TransactionChartModel> getTransactionChart();
+    
+    public List<TransactionChartModel> getTransactionPerStatusChart();
 }
