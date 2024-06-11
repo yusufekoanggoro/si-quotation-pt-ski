@@ -155,7 +155,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[no]]></text>
+				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="56" y="0" width="56" height="18" forecolor="#000000" uuid="c4d1869a-fba1-416c-a723-38e9b5c7fa24">
@@ -164,7 +164,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[id]]></text>
+				<text><![CDATA[No QTN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="112" y="0" width="56" height="18" forecolor="#000000" uuid="4b9ba1a7-069b-41ab-9c54-704eaf1a1454">
@@ -173,7 +173,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[status]]></text>
+				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="168" y="0" width="56" height="18" forecolor="#000000" uuid="e9377a52-4217-4ee5-9cfa-c86fabcea7a7">
@@ -182,7 +182,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[created_at]]></text>
+				<text><![CDATA[Date]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="224" y="0" width="56" height="18" forecolor="#000000" uuid="cdbf132b-c50e-417e-bda3-769179bc6fb0">
@@ -191,7 +191,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[name]]></text>
+				<text><![CDATA[Cust Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="280" y="0" width="56" height="18" forecolor="#000000" uuid="685938bf-3e91-4864-a19c-2adf49d5cee5">
@@ -200,7 +200,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[segment_Name]]></text>
+				<text><![CDATA[Segment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="336" y="0" width="56" height="18" forecolor="#000000" uuid="3b4e8eaa-e84c-43a4-ab8b-6554253295f2">
@@ -209,7 +209,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[pic]]></text>
+				<text><![CDATA[PIC]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="392" y="0" width="56" height="18" forecolor="#000000" uuid="11fcfaab-cd4e-4e6c-9ef5-391f8e3d900f">
@@ -218,7 +218,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[phone_number]]></text>
+				<text><![CDATA[No Tel]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="448" y="0" width="56" height="18" forecolor="#000000" uuid="e54ded92-7210-49a7-a9e4-5d4350cc5edd">
@@ -227,7 +227,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[item_name]]></text>
+				<text><![CDATA[Nama Item]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="504" y="0" width="56" height="18" forecolor="#000000" uuid="b0550927-3dec-46c9-80cd-009ee6ef63c2">
@@ -236,7 +236,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[qty]]></text>
+				<text><![CDATA[QTY]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="560" y="0" width="56" height="18" forecolor="#000000" uuid="9dcd65c1-7088-4bf7-ba9e-f8d45e82dea2">
@@ -245,7 +245,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[price]]></text>
+				<text><![CDATA[Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="616" y="0" width="56" height="18" forecolor="#000000" uuid="3b2a6d68-58bb-464d-8813-440cf5e04f47">
@@ -254,7 +254,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[sub_total]]></text>
+				<text><![CDATA[Sub Total]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="672" y="0" width="56" height="18" forecolor="#000000" uuid="4d092707-39d5-47ce-9fd4-c714ba1997ab">
@@ -263,7 +263,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[ppn]]></text>
+				<text><![CDATA[PPN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="728" y="0" width="56" height="18" forecolor="#000000" uuid="68f4efe8-dbdb-4a3c-82d9-9ac4414e6283">
@@ -272,7 +272,7 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[total_amount]]></text>
+				<text><![CDATA[Total Amount]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
