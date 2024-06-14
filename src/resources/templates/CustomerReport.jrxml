@@ -49,7 +49,7 @@
 		<band height="132" splitType="Stretch">
 			<image>
 				<reportElement x="456" y="0" width="99" height="95" uuid="97705585-a0b5-4ec7-86f3-ae10c220e6af"/>
-				<imageExpression><![CDATA["C:/Users/diasf/si-quotation-pt-ski/src/resources/images/logo_pt_ski_75px.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/resources/images/logo_pt_ski_75px.png"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#1BC221" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a"/>
