@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cherry_5" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter Quotation"/>
@@ -89,7 +89,14 @@
 				<reportElement style="Column header" x="0" y="7" width="111" height="18" forecolor="#000000" uuid="1d7545e7-488f-4c7c-aef8-dcddf6c022c5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39597b5d-94f3-461d-9965-6f4f1f3d682e"/>
 				</reportElement>
-				<textElement>
+				<box>
+					<pen lineColor="#030101"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
@@ -98,7 +105,14 @@
 				<reportElement style="Column header" x="111" y="7" width="111" height="18" forecolor="#000000" uuid="57078900-658f-4e15-a762-3f1bc7ec24bb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="070c324c-e3df-4f02-a821-0784ac30f9da"/>
 				</reportElement>
-				<textElement>
+				<box>
+					<pen lineColor="#030101"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
@@ -107,7 +121,14 @@
 				<reportElement style="Column header" x="222" y="7" width="111" height="18" forecolor="#000000" uuid="3a1b009a-3b7c-4c8d-8c5a-3a50103c0fe9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d6be5d3-5541-4f77-ba69-d3d5ffbbdd0b"/>
 				</reportElement>
-				<textElement>
+				<box>
+					<pen lineColor="#030101"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[PIC]]></text>
@@ -116,7 +137,14 @@
 				<reportElement style="Column header" x="333" y="7" width="111" height="18" forecolor="#000000" uuid="58771959-f924-4728-a82f-1b5b339a11c8">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d54eb370-5baf-4297-b54d-56009c29b581"/>
 				</reportElement>
-				<textElement>
+				<box>
+					<pen lineColor="#030101"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[No. Telp]]></text>
@@ -125,7 +153,14 @@
 				<reportElement style="Column header" x="444" y="7" width="111" height="18" forecolor="#000000" uuid="c6e046a3-ff4d-47cb-a39c-ec96f6173a99">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ced141d2-16e6-43da-bc84-7380e04e09a8"/>
 				</reportElement>
-				<textElement>
+				<box>
+					<pen lineColor="#030101"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#030101"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Segmentasi]]></text>
@@ -140,7 +175,7 @@
 					<reportElement style="Detail" positionType="Float" x="0" y="0" width="111" height="18" uuid="4f888c9b-6c8b-450b-879d-170b5ec650f2">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39597b5d-94f3-461d-9965-6f4f1f3d682e"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
@@ -149,7 +184,7 @@
 					<reportElement style="Detail" positionType="Float" x="111" y="0" width="111" height="18" uuid="55676709-43a3-4e98-bc2b-201370a227e6">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="070c324c-e3df-4f02-a821-0784ac30f9da"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
@@ -158,7 +193,7 @@
 					<reportElement style="Detail" positionType="Float" x="222" y="0" width="111" height="18" uuid="7eebb70f-3f17-4c19-8068-4a23b4a59235">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d6be5d3-5541-4f77-ba69-d3d5ffbbdd0b"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{person_in_charge}]]></textFieldExpression>
@@ -167,7 +202,7 @@
 					<reportElement style="Detail" positionType="Float" x="333" y="0" width="111" height="18" uuid="3f276e1d-c465-41e7-be03-2f303cd226b9">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d54eb370-5baf-4297-b54d-56009c29b581"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{phone_number}]]></textFieldExpression>
@@ -176,7 +211,7 @@
 					<reportElement style="Detail" positionType="Float" x="444" y="0" width="111" height="18" uuid="8bdd2775-3ed7-4059-a920-19cadbacce5d">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ced141d2-16e6-43da-bc84-7380e04e09a8"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{segment_name}]]></textFieldExpression>

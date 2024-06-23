@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="dd9905cd-5931-4b1f-a6b6-18698de3df41">
 	<property name="ireport.zoom" value="1.6105100000000012"/>
 	<property name="ireport.x" value="0"/>
@@ -13,7 +13,7 @@
 	</queryString>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="name" class="java.lang.String"/>
-	<field name="price_per_unit" class="java.lang.Integer"/> 
+	<field name="price_per_unit" class="java.lang.Integer"/>
 	<field name="created_at" class="java.sql.Date"/>
 	<field name="updated_at" class="java.sql.Date"/>
 	<background>
@@ -45,7 +45,7 @@
 		<band height="109" splitType="Stretch">
 			<staticText>
 				<reportElement style="SubTitle" x="245" y="67" width="341" height="37" forecolor="#000000" uuid="065f97f5-95c0-45d1-bbea-1eb3aa97df51"/>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Center">
 					<font size="26"/>
 				</textElement>
 				<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
@@ -56,7 +56,7 @@
 			</image>
 			<staticText>
 				<reportElement style="SubTitle" x="274" y="10" width="282" height="53" forecolor="#000000" uuid="8f887ac0-7c8a-45a7-b097-2ccf4ef18ab8"/>
-				<textElement textAlignment="Right">
+				<textElement textAlignment="Center">
 					<font size="40"/>
 				</textElement>
 				<text><![CDATA[Data Items]]></text>
@@ -72,23 +72,27 @@
 				<reportElement mode="Opaque" x="0" y="5" width="802" height="20" backcolor="#0099CC" uuid="b548b8c9-79be-4006-8025-54ff10107c91"/>
 				<staticText>
 					<reportElement style="Column header" x="0" y="0" width="70" height="15" uuid="40494c1c-bd22-4762-bda3-f714d5dda64b"/>
-					<text><![CDATA[No.Id]]></text>
+					<text><![CDATA[NO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="70" y="0" width="140" height="15" uuid="3c635e82-eee1-4878-a98b-7e9081c0da8d"/>
+					<reportElement style="Column header" x="70" y="0" width="175" height="15" uuid="3c635e82-eee1-4878-a98b-7e9081c0da8d"/>
+					<textElement textAlignment="Center"/>
 					<text><![CDATA[Nama]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="230" y="0" width="70" height="15" uuid="70ecae02-a3d1-4a2b-abef-594db078c191"/>
-					<text><![CDATA[Price PerUnit]]></text>
+					<reportElement style="Column header" x="270" y="0" width="150" height="15" uuid="70ecae02-a3d1-4a2b-abef-594db078c191"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Harga Per Unit]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="350" y="0" width="88" height="15" uuid="2dcf5ffa-0fd5-4527-9b91-21b130cf3493"/>
-					<text><![CDATA[Waktu Dibuat]]></text>
+					<reportElement style="Column header" x="460" y="0" width="139" height="15" uuid="2dcf5ffa-0fd5-4527-9b91-21b130cf3493"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Waktu dibuat]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="Column header" x="450" y="0" width="140" height="15" uuid="351566c3-cb73-4dfa-bdbd-1138230de46d"/>
-					<text><![CDATA[Waktu DiUpdate]]></text>
+					<reportElement style="Column header" x="640" y="0" width="140" height="15" uuid="351566c3-cb73-4dfa-bdbd-1138230de46d"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Waktu diupdate]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -102,22 +106,26 @@
 					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Detail" x="70" y="0" width="140" height="15" uuid="af1e7e35-4857-4184-b733-612208ba6928"/>
+					<reportElement style="Detail" x="70" y="0" width="175" height="15" uuid="af1e7e35-4857-4184-b733-612208ba6928"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Detail" x="230" y="0" width="70" height="15" uuid="258f0e63-f747-4d43-9766-008036e21035"/>
+					<reportElement style="Detail" x="270" y="0" width="150" height="15" uuid="258f0e63-f747-4d43-9766-008036e21035"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{price_per_unit}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Detail" x="350" y="0" width="88" height="15" uuid="4e71fffc-fa5a-49cf-a123-d40d3787bcb0"/>
+					<reportElement style="Detail" x="460" y="0" width="139" height="15" uuid="4e71fffc-fa5a-49cf-a123-d40d3787bcb0"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{created_at}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Detail" x="450" y="0" width="140" height="15" uuid="6c90f38b-8794-4d33-b746-f69efbeb80a5"/>
+					<reportElement style="Detail" x="640" y="0" width="140" height="15" uuid="6c90f38b-8794-4d33-b746-f69efbeb80a5"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{updated_at}]]></textFieldExpression>
-				</textField> 
-			</frame>  
+				</textField>
+			</frame>
 		</band>
 	</detail>
 	<columnFooter>
