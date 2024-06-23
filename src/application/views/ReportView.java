@@ -57,22 +57,22 @@ public class ReportView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<String>();
+        jComboBox5 = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setText("Pilih data yang ingin dicetak");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Role", "Quotation Per Status", "Quotation Per Tahun", "Quotation Grafik Per Tahun Chart", "Segmentasi Market Chart", "Quotation Per Status Chart" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Employee", "Segment", "Customer", "Role", "Items", "Quotation Per Status", "Quotation Per Tahun", "Quotation Grafik Per Tahun Chart", "Segmentasi Market Chart", "Quotation Per Status Chart" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -102,9 +102,9 @@ public class ReportView extends javax.swing.JFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status Quotation", "Sudah PO", "Sedang di FU", "Close" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Status Quotation", "Sudah PO", "Sedang di FU", "Close" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tahun" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Tahun" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,6 +290,9 @@ public class ReportView extends javax.swing.JFrame {
                     break;
                 case "Role":
                     templateName = "RoleReport.jrxml";
+                    break;
+                case "Items":
+                    templateName = "ItemsReport.jrxml";
                     break;
                 case "Quotation Per Status":
                     templateName = "QuotationReportPerStatus.jrxml";
