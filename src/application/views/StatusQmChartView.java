@@ -143,7 +143,7 @@ public class StatusQmChartView extends javax.swing.JFrame {
 //        dataset.addValue(2200, "2021", "Nov");
 //        dataset.addValue(2400, "2021", "Des");
         JFreeChart chart = ChartFactory.createLineChart(
-                "Status Quotation per Tahun",
+                "Quotation per Tahun",
                 "Bulan",
                 "Nilai (M)",
                 dataset,

@@ -76,7 +76,7 @@ WHERE
 			</staticText>
 			<image>
 				<reportElement x="42" y="14" width="75" height="75" uuid="ee52ab0b-cbb5-4cc3-b5a3-ff3e0330a03d"/>
-				<imageExpression><![CDATA["src\resources\images\logo_pt_ski_75px.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/resources/images/logo_pt_ski_75px.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="SubTitle" x="274" y="10" width="282" height="53" forecolor="#000000" uuid="8f887ac0-7c8a-45a7-b097-2ccf4ef18ab8"/>
