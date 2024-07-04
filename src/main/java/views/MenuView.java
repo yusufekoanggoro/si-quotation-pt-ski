@@ -142,7 +142,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel2.setText("PT SINERGI KARSA INDOBENUA ");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_pt_ski_75px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resources/images/logo_pt_ski_75px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
