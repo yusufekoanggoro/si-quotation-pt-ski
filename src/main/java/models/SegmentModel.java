@@ -1,0 +1,45 @@
+package main.java.models;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+public class SegmentModel {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    private int id;
+    private String name;
+    private java.sql.Timestamp createdAt;
+    private java.sql.Timestamp updatedAt;
+
+}
