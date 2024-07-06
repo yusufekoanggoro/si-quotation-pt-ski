@@ -30,17 +30,21 @@ public class TransactionTableModel  extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Quote";
+                return "No. Ref";
             case 2:
-                return "Customer";
+                return "Nama Pengirim";
             case 3:
-                return "Item";
+                return "Pelanggan";
             case 4:
-                return "Status";
+                return "Item";
             case 5:
                 return "Qty";
             case 6:
                 return "Total";
+            case 7:
+                return "Status";
+            case 8:
+                return "Date";
             default:
                 return null;
         }
@@ -48,7 +52,7 @@ public class TransactionTableModel  extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 9;
     }
 
     @Override
@@ -59,15 +63,19 @@ public class TransactionTableModel  extends AbstractTableModel {
             case 1:
                 return trx.get(row).getQuoteNumber();
             case 2:
-                return trx.get(row).getCustomer();
+                return trx.get(row).getSenderName();
             case 3:
-                return trx.get(row).getItem();
+                return trx.get(row).getCustomer();
             case 4:
-                return trx.get(row).getStatus();
+                return trx.get(row).getItem();
             case 5:
                 return trx.get(row).getQty();
             case 6:
-                return trx.get(row).getTotal(); 
+                return trx.get(row).getTotal();
+            case 7:
+                return trx.get(row).getStatus();
+            case 8:
+                return trx.get(row).getCustomDate(); 
             default:
                 return null;
         }

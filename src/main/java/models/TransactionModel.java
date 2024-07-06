@@ -13,6 +13,14 @@ import java.sql.Timestamp;
  */
 public class TransactionModel {
 
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
     public String getCustomer() {
         return customer;
     }
@@ -21,12 +29,12 @@ public class TransactionModel {
         this.customer = customer;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     public Timestamp getCustomDate() {
@@ -110,7 +118,8 @@ public class TransactionModel {
     private int Total;
     private java.sql.Timestamp createdAt;
     private java.sql.Timestamp updatedAt;
-    private String userId;
+    private String employeeId;
     private java.sql.Timestamp customDate;
+    private String senderName;
  
 }

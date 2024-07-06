@@ -3,7 +3,7 @@ CREATE TABLE `quotations_management`.`transactions` (
   `quote_number` VARCHAR(100) NOT NULL, 
   `Qty` INT NOT NULL, 
   `Total` INT NOT NULL, 
-  `user_id` INT NOT NULL, 
+  `employee_id` INT NOT NULL, 
   `customer_id` INT NOT NULL, 
   `item_id` INT NOT NULL, 
   `status` VARCHAR(20) NOT NULL, 

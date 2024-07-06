@@ -34,6 +34,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.java.models.EmployeeModel;
 
 /**
@@ -55,12 +58,25 @@ public class TransactionView extends javax.swing.JFrame {
         initComponents();
 //        jTextField2.setEnabled(false);
         jTextField4.setEnabled(false);  
+        jTextField4.setText("0");
         jTextField3.setText("0");
         this.customerDao = new CustomerDao();
         this.segmentDao = new SegmentDao();
         this.itemDao = new ItemDao();
         this.trxDao = new TransactionDao();
         this.employeeDao = new EmployeeDao();
+    }
+    
+    private void clearForm(){
+        jTextField5.setText("");
+        jTextField2.setText("");
+        jComboBox2.setSelectedIndex(0);
+        jComboBox5.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jTextField3.setText("0");
+        jTextField4.setText("0");
+        jComboBox4.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
     }
 
     /**
@@ -90,6 +106,8 @@ public class TransactionView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -150,6 +168,10 @@ public class TransactionView extends javax.swing.JFrame {
 
         jLabel10.setText("Pelanggan ");
 
+        jLabel11.setText("ID");
+
+        jTextField5.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,35 +180,45 @@ public class TransactionView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4)
-                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 809, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(38, 38, 38)
-                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4)
+                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField2)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 809, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(90, 90, 90)
+                                .addComponent(jTextField5)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -381,17 +413,31 @@ public class TransactionView extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         TableModel model = jTable1.getModel();
-        String quote = model.getValueAt(selectedRow, 0).toString();
-        String customer = model.getValueAt(selectedRow, 2).toString();
-        String item = model.getValueAt(selectedRow, 3).toString();
-        String status = model.getValueAt(selectedRow, 4).toString();
+        String id = model.getValueAt(selectedRow, 0).toString();
+        String quoteNumber = model.getValueAt(selectedRow, 1).toString();
+        String employee = model.getValueAt(selectedRow,2).toString();
+        String customer = model.getValueAt(selectedRow, 3).toString();
+        String item = model.getValueAt(selectedRow, 4).toString();
+        String status = model.getValueAt(selectedRow, 7).toString();
         String qty = model.getValueAt(selectedRow, 5).toString();
         String total = model.getValueAt(selectedRow,6).toString();
+        String timestampString = model.getValueAt(selectedRow,8).toString();
         
-        jComboBox2.setSelectedItem(customer);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dateString;
+        try {
+            dateString = dateFormat.parse(timestampString);
+            jDateChooser1.setDate(dateString);
+        } catch (ParseException ex) {
+            Logger.getLogger(TransactionView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jComboBox2.setSelectedItem(employee);
+        jComboBox5.setSelectedItem(customer);
         jComboBox3.setSelectedItem(item); 
         jComboBox4.setSelectedItem(status);
-        jTextField2.setText(quote);
+        jTextField2.setText(quoteNumber);
+        jTextField5.setText(id);
         jTextField3.setText(qty);
         jTextField4.setText(total);
     }//GEN-LAST:event_jTable1MouseClicked
@@ -421,7 +467,7 @@ public class TransactionView extends javax.swing.JFrame {
             }else{
                 int item = jComboBox3.getSelectedIndex()+1;
                 int customers = jComboBox5.getSelectedIndex()+1;
-                int userSelectedIndex = jComboBox2.getSelectedIndex()+1;
+                int employeeSelectedIndex = jComboBox2.getSelectedIndex()+1;
                 
                 TransactionModel datainsert = new TransactionModel();
                 datainsert.setItem("" + item);
@@ -430,12 +476,13 @@ public class TransactionView extends javax.swing.JFrame {
                 datainsert.setQty(qty);
                 datainsert.setTotal(total);
                 datainsert.setCustomDate(sqlDate);
-                datainsert.setUserId("" + userSelectedIndex);
+                datainsert.setEmployeeId("" + employeeSelectedIndex);
                 datainsert.setQuoteNumber(quoteNumber);
                  
                  int inserttrx = trxDao.create(datainsert);
                     if(inserttrx > 0){ 
                         loadTable(null);
+                        clearForm();
                         JOptionPane.showMessageDialog(null,"Berhasil Menambah Transaction");
                     }else{
                         JOptionPane.showMessageDialog(null,"Gagal Menambah Transaction");
@@ -445,9 +492,10 @@ public class TransactionView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          // TODO add your handling code here:  
-        int id = Integer.parseInt(jTextField2.getText());
+        int id = Integer.parseInt(jTextField5.getText());
         int qty = Integer.parseInt(jTextField3.getText());
         int total = Integer.parseInt(jTextField4.getText());
+        System.out.println(jTextField4.getText());
             if(id == 0){ 
                 JOptionPane.showMessageDialog(null,"Pilih Data Terlebih Dahulu");
             }
@@ -457,7 +505,7 @@ public class TransactionView extends javax.swing.JFrame {
             }else{
                 int item = jComboBox3.getSelectedIndex()+1;
                 int customers = jComboBox2.getSelectedIndex()+1;
-                
+
                 TransactionModel datainsert = new TransactionModel();
                 datainsert.setItem("" + item);
                 datainsert.setCustomer("" + customers);
@@ -465,22 +513,30 @@ public class TransactionView extends javax.swing.JFrame {
                 datainsert.setQty(qty);
                 datainsert.setTotal(total);
                 datainsert.setId(id);
-                datainsert.setUserId(jComboBox2.getSelectedItem().toString());
-                 
+                datainsert.setEmployeeId("" + (jComboBox2.getSelectedIndex() + 1));
+                datainsert.setQuoteNumber(jTextField2.getText());
+                
+                Date selectedDate = jDateChooser1.getDate();
+                java.sql.Timestamp sqlDate = new java.sql.Timestamp(selectedDate.getTime());
+        
+                datainsert.setCustomDate(sqlDate);
+                
                  int inserttrx = trxDao.update(datainsert);
                     if(inserttrx > 0){ 
                         loadTable(null);
+                        clearForm();
                         JOptionPane.showMessageDialog(null,"Berhasil Update Transaction");
                     }else{
                         JOptionPane.showMessageDialog(null,"Gagal Update Transaction");
-                    }    
+                    }
             } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTextField2.setText("");
-        jTextField3.setText("0");
-        jTextField4.setText("0");
+//        jTextField2.setText("");
+//        jTextField3.setText("0");
+//        jTextField4.setText("0");
+        clearForm();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -493,10 +549,8 @@ public class TransactionView extends javax.swing.JFrame {
             if(result == JOptionPane.YES_OPTION){
                int insertCustomer = trxDao.delete( Integer.parseInt(id));
                     if(insertCustomer > 0){                                     
-                    jTextField2.setText("");
-                    jTextField3.setText("0");
-                    jTextField4.setText("0");
                         loadTable(null);
+                        clearForm();
                         JOptionPane.showMessageDialog(null,"Berhasil Menghapus Item");
                     }else{
                         JOptionPane.showMessageDialog(null,"Gagal Menghapus Item");
@@ -559,6 +613,7 @@ public class TransactionView extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -574,6 +629,7 @@ public class TransactionView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
     @Override

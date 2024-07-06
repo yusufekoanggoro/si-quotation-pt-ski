@@ -37,12 +37,14 @@ public class TransactionDao implements ITransactionDao {
     @Override
     public List<TransactionModel> findAll() {
        try {
-            query = "SELECT transactions.id, transactions.quote_number,  customers.name as customer, items.name as item"
+            query = "SELECT transactions.id, transactions.quote_number, customers.name as customer, items.name as item"
                     + ", transactions.Qty, transactions.Total, transactions.status "
+                    + ", employees.name as sender_name, transactions.custom_date "
                     + "FROM transactions "
+                    + "INNER JOIN employees ON transactions.employee_id = employees.id "
                     + "INNER JOIN customers ON transactions.customer_id = customers.id "
                     + "INNER JOIN items ON transactions.item_id = items.id";
-             
+
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
             
@@ -57,6 +59,8 @@ public class TransactionDao implements ITransactionDao {
                 transactiondtl.setStatus(resultSet.getString("status"));
                 transactiondtl.setQty(resultSet.getInt("Qty"));
                 transactiondtl.setTotal(resultSet.getInt("Total"));
+                transactiondtl.setSenderName(resultSet.getString("sender_name"));
+                transactiondtl.setCustomDate(resultSet.getTimestamp("custom_date"));
                 transaction.add(transactiondtl);
             }
             return transaction;
@@ -98,16 +102,17 @@ public class TransactionDao implements ITransactionDao {
     @Override
     public List<TransactionModel> search(String keyword) {
         try {
-            query = "SELECT transactions.id, customers.name as customer, items.name as item"
-                    + ", transactions.Qty, transactions.Total, transactions.status "
+            query = "SELECT transactions.id, customers.name as customer, items.name as item, employees.name as sender_name, transactions.custom_date"
+                    + ", transactions.Qty, transactions.Total, transactions.status, transactions.quote_number "
                     + "FROM transactions "
                     + "INNER JOIN customers ON transactions.customer_id = customers.id "
                     + "INNER JOIN items ON transactions.item_id = items.id "
+                    + "INNER JOIN employees ON transactions.employee_id = employees.id "
                     + "WHERE transactions.id LIKE '%" + keyword + "%' "  
                     + "OR customers.name LIKE '%" + keyword + "%' "
                     + "OR items.name LIKE '%" + keyword + "%' "
                     + "OR transactions.status LIKE '%" + keyword + "%' ";
-            
+
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
             
@@ -122,6 +127,8 @@ public class TransactionDao implements ITransactionDao {
                 transactiondtl.setStatus(resultSet.getString("status"));
                 transactiondtl.setQty(resultSet.getInt("Qty"));
                 transactiondtl.setTotal(resultSet.getInt("Total"));
+                transactiondtl.setSenderName(resultSet.getString("sender_name"));
+                transactiondtl.setCustomDate(resultSet.getTimestamp("custom_date"));
                 transaction.add(transactiondtl);
             }
             return transaction;
@@ -140,7 +147,7 @@ public class TransactionDao implements ITransactionDao {
             java.util.Date utilDate = new java.util.Date();
             java.sql.Timestamp dateNow = new java.sql.Timestamp(utilDate.getTime());
         
-            query = "INSERT INTO transactions(customer_id, item_id, status, Qty, Total, created_at, updated_at, quote_number, user_id, custom_date) "
+            query = "INSERT INTO transactions(customer_id, item_id, status, Qty, Total, created_at, updated_at, quote_number, employee_id, custom_date) "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -152,7 +159,7 @@ public class TransactionDao implements ITransactionDao {
             pstmt.setTimestamp(6, dateNow);
             pstmt.setTimestamp(7, dateNow);
             pstmt.setString(8, item.getQuoteNumber());
-            pstmt.setString(9, item.getUserId());
+            pstmt.setString(9, item.getEmployeeId());
             pstmt.setTimestamp(10, item.getCustomDate());
             
             return pstmt.executeUpdate();
@@ -188,10 +195,11 @@ public class TransactionDao implements ITransactionDao {
             java.util.Date utilDate = new java.util.Date();
             java.sql.Timestamp dateNow = new java.sql.Timestamp(utilDate.getTime());
   
+            
             query = "UPDATE transactions " 
-                    + "SET customer_id = ?, item_id = ?, status = ?, Qty = ?, Total = ?, updated_at = ?"
+                    + "SET customer_id = ?, item_id = ?, status = ?, Qty = ?, Total = ?, updated_at = ?, employee_id = ?, custom_date = ?, quote_number = ? "
                     + "WHERE id = ?";
-
+            
             pstmt = connection.prepareStatement(query); 
             pstmt.setInt(1, Integer.parseInt(item.getCustomer()));
             pstmt.setInt(2, Integer.parseInt(item.getItem()));
@@ -199,7 +207,10 @@ public class TransactionDao implements ITransactionDao {
             pstmt.setInt(4, item.getQty());
             pstmt.setInt(5, item.getTotal());
             pstmt.setTimestamp(6, dateNow);
-            pstmt.setInt(7, item.getId());
+            pstmt.setInt(7, Integer.parseInt(item.getEmployeeId()));
+            pstmt.setTimestamp(8, item.getCustomDate());
+            pstmt.setString(9, item.getQuoteNumber());
+            pstmt.setInt(10, item.getId());
             
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
