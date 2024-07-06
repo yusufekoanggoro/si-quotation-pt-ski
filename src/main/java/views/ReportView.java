@@ -68,7 +68,7 @@ public class ReportView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setText("Pilih data yang ingin dicetak");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee", "Segment", "Customer", "Role", "Items", "Quotation Per Status", "Quotation Per Tahun", "Grafik Quotation Per Tahun", "Grafik Segmentasi Market", "Grafik Quotation Per Status" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Karyawan", "Segmen", "Pelanggan", "Jabatan", "Item", "Quotation Per Status", "Quotation Per Tahun", "Grafik Quotation Per Tahun", "Grafik Segmentasi Market", "Grafik Quotation Per Status" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -251,19 +251,19 @@ public class ReportView extends javax.swing.JFrame {
             String selectedReport = jComboBox1.getSelectedItem().toString();
             String templateName = "CustomerReport.jrxml";
             switch (selectedReport) {
-                case "Employee":
+                case "Karyawan":
                     templateName = "EmployeeReport.jrxml";
                     break;
-                case "Segment":
+                case "Segmen":
                     templateName = "SegmentReport.jrxml";
                     break;
-                case "Customer":
+                case "Pelanggan":
                     templateName = "CustomerReport.jrxml";
                     break;
-                case "Role":
+                case "Jabatan":
                     templateName = "RoleReport.jrxml";
                     break;
-                case "Items":
+                case "Item":
                     templateName = "ItemsReport.jrxml";
                     break;
                 case "Quotation Per Status":

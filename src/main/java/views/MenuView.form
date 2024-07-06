@@ -173,8 +173,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="ToItem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Data Produk"/>
-            <Property name="actionCommand" type="java.lang.String" value="Data Produk"/>
+            <Property name="text" type="java.lang.String" value="Data Item"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[130, 23]"/>
             </Property>
@@ -192,7 +191,6 @@
         <Component class="javax.swing.JButton" name="jButton7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Quotation"/>
-            <Property name="actionCommand" type="java.lang.String" value="Data Quotation"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[130, 23]"/>
             </Property>
@@ -210,7 +208,6 @@
         <Component class="javax.swing.JButton" name="jButton6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Karyawan"/>
-            <Property name="actionCommand" type="java.lang.String" value="Data Karyawan"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[130, 23]"/>
             </Property>
@@ -228,7 +225,6 @@
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Data Jabatan"/>
-            <Property name="actionCommand" type="java.lang.String" value="Data Jabatan"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[130, 23]"/>
             </Property>
@@ -247,7 +243,6 @@
         <Component class="javax.swing.JButton" name="ToReport">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cetak Laporan"/>
-            <Property name="actionCommand" type="java.lang.String" value="Cetak Laporan"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[130, 23]"/>
             </Property>

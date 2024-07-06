@@ -84,8 +84,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        ToItem.setText("Data Produk");
-        ToItem.setActionCommand("Data Produk");
+        ToItem.setText("Data Item");
         ToItem.setMaximumSize(new java.awt.Dimension(130, 23));
         ToItem.setMinimumSize(new java.awt.Dimension(130, 23));
         ToItem.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -96,7 +95,6 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jButton7.setText("Data Quotation");
-        jButton7.setActionCommand("Data Quotation");
         jButton7.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton7.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton7.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -107,7 +105,6 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jButton6.setText("Data Karyawan");
-        jButton6.setActionCommand("Data Karyawan");
         jButton6.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton6.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton6.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -118,7 +115,6 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jButton3.setText("Data Jabatan");
-        jButton3.setActionCommand("Data Jabatan");
         jButton3.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton3.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -134,7 +130,6 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         ToReport.setText("Cetak Laporan");
-        ToReport.setActionCommand("Cetak Laporan");
         ToReport.setMaximumSize(new java.awt.Dimension(130, 23));
         ToReport.setMinimumSize(new java.awt.Dimension(130, 23));
         ToReport.setPreferredSize(new java.awt.Dimension(130, 23));
