@@ -75,7 +75,7 @@ public class ReportView extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("Generate Report");
+        jToggleButton1.setText("Cetak Laporan");
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jToggleButton1MouseClicked(evt);

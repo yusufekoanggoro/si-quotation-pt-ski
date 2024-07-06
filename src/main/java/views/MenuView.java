@@ -74,7 +74,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        ToCustomer.setText("Customer Data");
+        ToCustomer.setText("Data Pelanggan");
         ToCustomer.setMaximumSize(new java.awt.Dimension(130, 23));
         ToCustomer.setMinimumSize(new java.awt.Dimension(130, 23));
         ToCustomer.setPreferredSize(new java.awt.Dimension(118, 23));
@@ -84,7 +84,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        ToItem.setText("Items Data");
+        ToItem.setText("Data Produk");
+        ToItem.setActionCommand("Data Produk");
         ToItem.setMaximumSize(new java.awt.Dimension(130, 23));
         ToItem.setMinimumSize(new java.awt.Dimension(130, 23));
         ToItem.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -94,7 +95,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Transaction Data");
+        jButton7.setText("Data Quotation");
+        jButton7.setActionCommand("Data Quotation");
         jButton7.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton7.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton7.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -104,7 +106,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Employee Data");
+        jButton6.setText("Data Karyawan");
+        jButton6.setActionCommand("Data Karyawan");
         jButton6.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton6.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton6.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -114,7 +117,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Role Data");
+        jButton3.setText("Data Jabatan");
+        jButton3.setActionCommand("Data Jabatan");
         jButton3.setMaximumSize(new java.awt.Dimension(130, 23));
         jButton3.setMinimumSize(new java.awt.Dimension(130, 23));
         jButton3.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -129,7 +133,8 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        ToReport.setText("Create Report");
+        ToReport.setText("Cetak Laporan");
+        ToReport.setActionCommand("Cetak Laporan");
         ToReport.setMaximumSize(new java.awt.Dimension(130, 23));
         ToReport.setMinimumSize(new java.awt.Dimension(130, 23));
         ToReport.setPreferredSize(new java.awt.Dimension(130, 23));
