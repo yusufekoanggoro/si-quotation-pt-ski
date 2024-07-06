@@ -6,10 +6,12 @@
 package main.java.views;
 
 import main.java.dao.CustomerDao;
+import main.java.dao.EmployeeDao;
 import main.java.dao.ItemDao;
 import main.java.dao.SegmentDao;
 import main.java.dao.TransactionDao;
 import main.java.dao.interfaces.ICustomerDao;
+import main.java.dao.interfaces.IEmployeeDao;
 import main.java.dao.interfaces.IItemDao;
 import main.java.dao.interfaces.ITransactionDao;
 import main.java.models.CustomerModel;
@@ -32,6 +34,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.Date;
 import com.toedter.calendar.JDateChooser;
+import main.java.models.EmployeeModel;
 
 /**
  *
@@ -42,6 +45,7 @@ public class TransactionView extends javax.swing.JFrame {
     private final SegmentDao segmentDao;
     private final IItemDao itemDao;
     private final ITransactionDao trxDao;
+    private final IEmployeeDao employeeDao;
     private Component frame;
 
     /**
@@ -49,13 +53,14 @@ public class TransactionView extends javax.swing.JFrame {
      */
     public TransactionView() {
         initComponents();
-        jTextField2.setEnabled(false);
+//        jTextField2.setEnabled(false);
         jTextField4.setEnabled(false);  
         jTextField3.setText("0");
         this.customerDao = new CustomerDao();
         this.segmentDao = new SegmentDao();
         this.itemDao = new ItemDao();
         this.trxDao = new TransactionDao();
+        this.employeeDao = new EmployeeDao();
     }
 
     /**
@@ -83,6 +88,8 @@ public class TransactionView extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -97,7 +104,7 @@ public class TransactionView extends javax.swing.JFrame {
 
         jLabel3.setText("No. Ref");
 
-        jLabel4.setText("Pelanggan ");
+        jLabel4.setText("Pengirim");
 
         jLabel5.setText("Item");
 
@@ -141,6 +148,8 @@ public class TransactionView extends javax.swing.JFrame {
 
         jLabel9.setText("Date");
 
+        jLabel10.setText("Pelanggan ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,25 +157,31 @@ public class TransactionView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4)
-                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4)
+                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 809, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(38, 38, 38)
+                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +194,10 @@ public class TransactionView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -195,13 +214,10 @@ public class TransactionView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -344,6 +360,11 @@ public class TransactionView extends javax.swing.JFrame {
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
         String value = jTextField3.getText(); 
+        
+        if (value == null || value.trim().isEmpty()) {
+            value = "0";
+            jTextField3.setText(value);
+        }
             int kali = Integer.parseInt(value);
             String itemname = (String)jComboBox3.getSelectedItem();
             List<ItemModel> item = itemDao.search(itemname); 
@@ -389,23 +410,28 @@ public class TransactionView extends javax.swing.JFrame {
          // TODO add your handling code here:  
         int qty = Integer.parseInt(jTextField3.getText());
         int total = Integer.parseInt(jTextField4.getText());
+        String quoteNumber = jTextField2.getText();
         
         Date selectedDate = jDateChooser1.getDate();
-        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
+        java.sql.Timestamp sqlDate = new java.sql.Timestamp(selectedDate.getTime());
        
             if(qty == 0){
                 JOptionPane.showMessageDialog(null,"Qty Harus Diisi");
                 jTextField2.requestFocus();
             }else{
                 int item = jComboBox3.getSelectedIndex()+1;
-                int customers = jComboBox2.getSelectedIndex()+1;
+                int customers = jComboBox5.getSelectedIndex()+1;
+                int userSelectedIndex = jComboBox2.getSelectedIndex()+1;
                 
                 TransactionModel datainsert = new TransactionModel();
                 datainsert.setItem("" + item);
-                datainsert.setCustomers("" + customers);
+                datainsert.setCustomer("" + customers);
                 datainsert.setStatus(jComboBox4.getSelectedItem().toString());
                 datainsert.setQty(qty);
                 datainsert.setTotal(total);
+                datainsert.setCustomDate(sqlDate);
+                datainsert.setUserId("" + userSelectedIndex);
+                datainsert.setQuoteNumber(quoteNumber);
                  
                  int inserttrx = trxDao.create(datainsert);
                     if(inserttrx > 0){ 
@@ -434,11 +460,12 @@ public class TransactionView extends javax.swing.JFrame {
                 
                 TransactionModel datainsert = new TransactionModel();
                 datainsert.setItem("" + item);
-                datainsert.setCustomers("" + customers);
+                datainsert.setCustomer("" + customers);
                 datainsert.setStatus(jComboBox4.getSelectedItem().toString());
                 datainsert.setQty(qty);
                 datainsert.setTotal(total);
                 datainsert.setId(id);
+                datainsert.setUserId(jComboBox2.getSelectedItem().toString());
                  
                  int inserttrx = trxDao.update(datainsert);
                     if(inserttrx > 0){ 
@@ -528,8 +555,10 @@ public class TransactionView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -554,6 +583,7 @@ public class TransactionView extends javax.swing.JFrame {
         itemDao.closeConnection();
         segmentDao.closeConnection();
         trxDao.closeConnection();
+        employeeDao.closeConnection();
         super.dispose();
     }
      public void start(){
@@ -595,6 +625,11 @@ public class TransactionView extends javax.swing.JFrame {
         
         List<CustomerModel> customer = customerDao.findAll();
         customer.forEach(z -> {
+            jComboBox5.addItem(z.getName());
+        });
+        
+        List<EmployeeModel> employees = employeeDao.findAll();
+        employees.forEach(z -> {
             jComboBox2.addItem(z.getName());
         });
     }

@@ -57,9 +57,9 @@ public class TransactionTableModel  extends AbstractTableModel {
             case 0:
                 return trx.get(row).getId();
             case 1:
-                return trx.get(row).getQuote();
+                return trx.get(row).getQuoteNumber();
             case 2:
-                return trx.get(row).getCustomers();
+                return trx.get(row).getCustomer();
             case 3:
                 return trx.get(row).getItem();
             case 4:

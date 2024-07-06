@@ -6,13 +6,36 @@
 package main.java.models;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  *
  * @author athal
  */
 public class TransactionModel {
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Timestamp getCustomDate() {
+        return customDate;
+    }
+
+    public void setCustomDate(Timestamp customDate) {
+        this.customDate = customDate;
+    }
  
      public int getId() {
         return id;
@@ -22,20 +45,12 @@ public class TransactionModel {
         this.id = id;
     }
 
-    public String getQuote() {
-        return quote;
+    public String getQuoteNumber() {
+        return quoteNumber;
     }
 
-    public void setQuote(String quote) {
-        this.quote = quote;
-    }
-    
-    public String getCustomers() {
-        return customer;
-    }
-
-    public void setCustomers(String customers) {
-        this.customer = customers;
+    public void setQuoteNumber(String quote) {
+        this.quoteNumber = quote;
     }
     
     public String getItem() {
@@ -87,7 +102,7 @@ public class TransactionModel {
     }
 
     private int id;
-    private String quote;
+    private String quoteNumber;
     private String customer;
     private String item;
     private String status;
@@ -95,5 +110,7 @@ public class TransactionModel {
     private int Total;
     private java.sql.Timestamp createdAt;
     private java.sql.Timestamp updatedAt;
+    private String userId;
+    private java.sql.Timestamp customDate;
  
 }

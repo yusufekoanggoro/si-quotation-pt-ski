@@ -37,7 +37,7 @@ public class TransactionDao implements ITransactionDao {
     @Override
     public List<TransactionModel> findAll() {
        try {
-            query = "SELECT transactions.id,  customers.name as customer, items.name as item"
+            query = "SELECT transactions.id, transactions.quote_number,  customers.name as customer, items.name as item"
                     + ", transactions.Qty, transactions.Total, transactions.status "
                     + "FROM transactions "
                     + "INNER JOIN customers ON transactions.customer_id = customers.id "
@@ -51,8 +51,8 @@ public class TransactionDao implements ITransactionDao {
             while (resultSet.next()) {
                 TransactionModel transactiondtl = new TransactionModel();
                 transactiondtl.setId(resultSet.getInt("id"));
-                transactiondtl.setQuote(resultSet.getString("Qty"));
-                transactiondtl.setCustomers(resultSet.getString("customer"));
+                transactiondtl.setQuoteNumber(resultSet.getString("quote_number"));
+                transactiondtl.setCustomer(resultSet.getString("customer"));
                 transactiondtl.setItem(resultSet.getString("item"));
                 transactiondtl.setStatus(resultSet.getString("status"));
                 transactiondtl.setQty(resultSet.getInt("Qty"));
@@ -116,8 +116,8 @@ public class TransactionDao implements ITransactionDao {
             while (resultSet.next()) {
                  TransactionModel transactiondtl = new TransactionModel();
                 transactiondtl.setId(resultSet.getInt("id"));
-                transactiondtl.setQuote(resultSet.getString("Qty"));
-                transactiondtl.setCustomers(resultSet.getString("customer"));
+                transactiondtl.setQuoteNumber(resultSet.getString("quote_number"));
+                transactiondtl.setCustomer(resultSet.getString("customer"));
                 transactiondtl.setItem(resultSet.getString("item"));
                 transactiondtl.setStatus(resultSet.getString("status"));
                 transactiondtl.setQty(resultSet.getInt("Qty"));
@@ -140,17 +140,20 @@ public class TransactionDao implements ITransactionDao {
             java.util.Date utilDate = new java.util.Date();
             java.sql.Timestamp dateNow = new java.sql.Timestamp(utilDate.getTime());
         
-            query = "INSERT INTO transactions(customer_id, item_id, status, Qty, Total, created_at, updated_at) "
-                    + "VALUES( ?, ?, ?, ?, ?, ?, ?)";
+            query = "INSERT INTO transactions(customer_id, item_id, status, Qty, Total, created_at, updated_at, quote_number, user_id, custom_date) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, Integer.parseInt(item.getCustomers()));
+            pstmt.setInt(1, Integer.parseInt(item.getCustomer()));
             pstmt.setInt(2, Integer.parseInt(item.getItem())); 
             pstmt.setString(3, item.getStatus()); 
             pstmt.setInt(4, item.getQty()); 
             pstmt.setInt(5, item.getTotal()); 
             pstmt.setTimestamp(6, dateNow);
             pstmt.setTimestamp(7, dateNow);
+            pstmt.setString(8, item.getQuoteNumber());
+            pstmt.setString(9, item.getUserId());
+            pstmt.setTimestamp(10, item.getCustomDate());
             
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
@@ -190,7 +193,7 @@ public class TransactionDao implements ITransactionDao {
                     + "WHERE id = ?";
 
             pstmt = connection.prepareStatement(query); 
-            pstmt.setInt(1, Integer.parseInt(item.getCustomers()));
+            pstmt.setInt(1, Integer.parseInt(item.getCustomer()));
             pstmt.setInt(2, Integer.parseInt(item.getItem()));
             pstmt.setString(3, item.getStatus());
             pstmt.setInt(4, item.getQty());
