@@ -1,6 +1,6 @@
 package main.java;
 
-import main.java.views.LoginView;
+import main.java.views.*;
 import main.java.views.ReportView;
 
 public class Main {
@@ -10,8 +10,8 @@ public class Main {
             Config.build();
 //            new GenerateUser().start();
 //            new EmployeeView().start();            
-            new LoginView().start();
-//            new MenuView().start();
+//            new LoginView().start();
+            new MenuView().start();
 //            loginView.start();
 //            new CustomerView().start();
 //            new ReportView().start();
