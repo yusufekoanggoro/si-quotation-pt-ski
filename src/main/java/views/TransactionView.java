@@ -21,6 +21,7 @@ import main.java.models.TransactionTableModel;
 import java.awt.Component;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -29,6 +30,8 @@ import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.util.Date;
+import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -386,6 +389,10 @@ public class TransactionView extends javax.swing.JFrame {
          // TODO add your handling code here:  
         int qty = Integer.parseInt(jTextField3.getText());
         int total = Integer.parseInt(jTextField4.getText());
+        
+        Date selectedDate = jDateChooser1.getDate();
+        java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
+       
             if(qty == 0){
                 JOptionPane.showMessageDialog(null,"Qty Harus Diisi");
                 jTextField2.requestFocus();
