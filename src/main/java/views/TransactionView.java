@@ -709,18 +709,18 @@ public class TransactionView extends javax.swing.JFrame {
         
         jTable1.setModel(TrM);
         
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);
+//        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
+//        jTable1.setRowSorter(sorter);
 
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
-        sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
-        sortKeys.add(new RowSorter.SortKey(2, SortOrder.DESCENDING)); 
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING)); 
-        sortKeys.add(new RowSorter.SortKey(4, SortOrder.DESCENDING)); 
-        sortKeys.add(new RowSorter.SortKey(5, SortOrder.DESCENDING)); 
-        sortKeys.add(new RowSorter.SortKey(6, SortOrder.DESCENDING)); 
-        sorter.setSortKeys(sortKeys);
+//        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+//        sortKeys.add(new RowSorter.SortKey(0, SortOrder.DESCENDING));
+//        sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+//        sortKeys.add(new RowSorter.SortKey(2, SortOrder.DESCENDING)); 
+//        sortKeys.add(new RowSorter.SortKey(3, SortOrder.DESCENDING)); 
+//        sortKeys.add(new RowSorter.SortKey(4, SortOrder.DESCENDING)); 
+//        sortKeys.add(new RowSorter.SortKey(5, SortOrder.DESCENDING)); 
+//        sortKeys.add(new RowSorter.SortKey(6, SortOrder.DESCENDING)); 
+//        sorter.setSortKeys(sortKeys);
     }
 
 }
