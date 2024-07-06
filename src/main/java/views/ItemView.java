@@ -59,8 +59,8 @@ public class ItemView extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Gautami", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Master Items");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 140, 60));
+        jLabel1.setText("Data Produk");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 150, 60));
 
         header.add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -137,7 +137,7 @@ public class ItemView extends javax.swing.JFrame {
 
         deleteitem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteitem.setForeground(new java.awt.Color(51, 51, 51));
-        deleteitem.setText("Delete");
+        deleteitem.setText("Hapus");
         deleteitem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         deleteitem.setBorderPainted(false);
         deleteitem.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +148,7 @@ public class ItemView extends javax.swing.JFrame {
 
         edititem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         edititem.setForeground(new java.awt.Color(51, 51, 51));
-        edititem.setText("Edit");
+        edititem.setText("Ubah");
         edititem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         edititem.setBorderPainted(false);
         edititem.addActionListener(new java.awt.event.ActionListener() {
