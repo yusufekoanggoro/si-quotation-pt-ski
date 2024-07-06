@@ -168,6 +168,12 @@ public class TransactionView extends javax.swing.JFrame {
 
         jLabel10.setText("Pelanggan ");
 
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
         jLabel11.setText("ID");
 
         jTextField5.setEditable(false);
@@ -204,7 +210,7 @@ public class TransactionView extends javax.swing.JFrame {
                                     .addComponent(jTextField3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 809, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(90, 90, 90)
@@ -504,7 +510,7 @@ public class TransactionView extends javax.swing.JFrame {
                 jTextField2.requestFocus();
             }else{
                 int item = jComboBox3.getSelectedIndex()+1;
-                int customers = jComboBox2.getSelectedIndex()+1;
+                int customers = jComboBox5.getSelectedIndex()+1;
 
                 TransactionModel datainsert = new TransactionModel();
                 datainsert.setItem("" + item);
@@ -564,6 +570,10 @@ public class TransactionView extends javax.swing.JFrame {
         //menampilkan gui Menu
         new MenuView().start();
     }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ActionPerformed
 
     /**
      * @param args the command line arguments
