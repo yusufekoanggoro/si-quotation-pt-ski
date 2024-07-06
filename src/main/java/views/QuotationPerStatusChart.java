@@ -46,7 +46,7 @@ public class QuotationPerStatusChart extends javax.swing.JFrame {
 
         // Membuat grafik batang
         JFreeChart barChart = ChartFactory.createBarChart(
-            "Quotation Per Status",
+            "Grafik Quotation Per Status",
             "Status",
             "Jumlah",
             dataset,
