@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="dd9905cd-5931-4b1f-a6b6-18698de3df41">
 	<property name="ireport.zoom" value="1.6105100000000012"/>
 	<property name="ireport.x" value="0"/>
@@ -8,7 +8,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-        <parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT id, name, price_per_unit, created_at, updated_at FROM `items`;]]>
 	</queryString>
@@ -18,29 +18,7 @@
 	<field name="created_at" class="java.sql.Date"/>
 	<field name="updated_at" class="java.sql.Date"/>
 	<background>
-		<band height="575" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="-20" y="475" width="105" height="100" backcolor="#00CC00" uuid="0a2b0bd0-96e0-4e78-9bf1-090f1b412ad5"/>
-				<textField>
-					<reportElement style="Column header" x="0" y="0" width="104" height="73" forecolor="#000000" uuid="7e96780c-6e00-461d-8b57-5d514c1292da"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="58" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="0" y="77" width="104" height="20" forecolor="#000000" uuid="1f1a86c1-5b6e-470a-8a16-6f20a2153ac5"/>
-					<box leftPadding="4" rightPadding="4"/>
-					<textElement textAlignment="Center">
-						<font size="16" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement mode="Transparent" x="42" y="73" width="20" height="1" backcolor="#FFFFFF" uuid="e20918df-0e8c-490d-a475-ea995b8f59d5"/>
-				</line>
-			</frame>
-		</band>
+		<band height="575" splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="109" splitType="Stretch">
@@ -130,18 +108,66 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement positionType="Float" x="674" y="10" width="128" height="20" uuid="1c939514-67a2-4eaf-83ae-158510e53cb3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="30" width="165" height="20" uuid="0caa0070-557e-4b05-92d6-54cb0712b828"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="105" width="165" height="20" uuid="dcb26894-a2e8-493d-ba39-b3262d69e70d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Admin)]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="637" y="105" width="165" height="1" uuid="db6b6815-f1ab-4a12-a406-fd6dbf37d738"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="10" width="37" height="20" uuid="b0b8de71-8b74-4d2a-adbd-aaac5bba83ab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="10" width="165" height="20" uuid="c8752291-7c86-4493-8645-55662390978b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="30" width="165" height="20" uuid="ed15438b-9675-4950-b1e6-cdba59b195f8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Manager]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="105" width="165" height="1" uuid="bc83fa68-694e-4c96-a356-861e9e88e0da"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="105" width="165" height="20" uuid="6b28aa8c-b3cf-425e-95e0-c7f79a670324"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Sulisty)]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="39" splitType="Stretch">
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000" uuid="144499a3-ddee-4a4f-860b-442af013f380"/>
-				<textElement textAlignment="Right">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="39" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
