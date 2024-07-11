@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cherry_5" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter Quotation"/>
@@ -14,7 +14,7 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-        <parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT customers.*, segments.name AS `segment_name` FROM `customers` INNER JOIN segments ON customers.segment_id = segments.id;]]>
 	</queryString>
@@ -221,42 +221,67 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="140">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement positionType="Float" x="427" y="10" width="128" height="20" uuid="3cdbca19-6af1-42e2-a167-1ffdd6bb6797"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="390" y="30" width="165" height="20" uuid="2c90c38a-eee1-4fee-8ad7-02f38068e43d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="390" y="105" width="165" height="20" uuid="19969cd5-8194-4d9e-9d12-e76fb9c089d5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Admin)]]></text>
+			</staticText>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
+				<reportElement positionType="Float" x="390" y="105" width="165" height="1" uuid="77f00f39-cd11-457b-b7ee-b454cbb91e2a"/>
 			</line>
+			<staticText>
+				<reportElement positionType="Float" x="390" y="10" width="37" height="20" uuid="b9519ddc-c488-4963-8ba6-bc155b0ec288"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="10" width="165" height="20" uuid="32dc9d5e-fa7e-4e0c-a7f1-2f55cc615f7f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="30" width="165" height="20" uuid="fa170b18-d47b-46f1-b298-01714c7e0ddb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Manager]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="12" y="105" width="165" height="1" uuid="693055c7-e9cb-4a9b-bab9-20e4c490a40a"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="105" width="165" height="20" uuid="c392f0f4-0c99-4e02-a3db-d3de60bbb3e5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Sulisty)]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="729c3539-f946-4d0e-a0a7-bda2815ea1b0"/>
-				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="4834e99c-7f6c-485a-b098-50e5187f2ab4"/>
-					<textElement verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="9825b46e-76f1-469a-abb8-a1cc27aad685"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="137d38c7-1a83-4fc5-b156-9d5f1b1a0ddc"/>
-					<textElement verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-			</frame>
-		</band>
+		<band height="25" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>

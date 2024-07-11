@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -220,11 +222,14 @@ public class ReportView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void start(){
-        this.setTitle("Report Master");
+        this.setTitle("Cetak Laporan");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false); // fixed width
         this.setLocationRelativeTo(null); // Set JFrame to center of Screenn
         
+        UIManager.put("OptionPane.yesButtonText", "Ya");
+        UIManager.put("OptionPane.noButtonText", "Tidak");
+
         this.addWindowListener( new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

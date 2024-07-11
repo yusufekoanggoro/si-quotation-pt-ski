@@ -30,6 +30,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.UIManager;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.Date;
@@ -653,11 +654,14 @@ public class TransactionView extends javax.swing.JFrame {
         super.dispose();
     }
      public void start(){
-        this.setTitle("Transaction");
+        this.setTitle("Data Quotation");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false); // fixed width
         this.setLocationRelativeTo(null); // Set JFrame to center of Screenn
         
+        UIManager.put("OptionPane.yesButtonText", "Ya");
+        UIManager.put("OptionPane.noButtonText", "Tidak");
+
         this.addWindowListener( new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

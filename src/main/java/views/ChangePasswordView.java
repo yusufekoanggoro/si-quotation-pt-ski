@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -274,6 +275,9 @@ public class ChangePasswordView extends javax.swing.JFrame {
         this.setResizable(false); // fixed width
         this.setLocationRelativeTo(null); // Set JFrame to center of Screenn
         
+        UIManager.put("OptionPane.yesButtonText", "Ya");
+        UIManager.put("OptionPane.noButtonText", "Tidak");
+
         this.addWindowListener( new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
