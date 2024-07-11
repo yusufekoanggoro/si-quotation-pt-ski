@@ -8,8 +8,7 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-        <parameter name="logoPath" class="java.lang.String"/>
-
+	<parameter name="logoPath" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      employees.`id` AS employees_id,
@@ -42,31 +41,8 @@ WHERE
 	<field name="employees_religion" class="java.lang.String"/>
 	<field name="employees_status" class="java.lang.String"/>
 	<field name="roles_name" class="java.lang.String"/>
-
 	<background>
-		<band height="575" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="-20" y="475" width="105" height="100" backcolor="#00CC00" uuid="0a2b0bd0-96e0-4e78-9bf1-090f1b412ad5"/>
-				<textField>
-					<reportElement style="Column header" x="0" y="0" width="104" height="73" forecolor="#000000" uuid="7e96780c-6e00-461d-8b57-5d514c1292da"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="58" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="0" y="77" width="104" height="20" forecolor="#000000" uuid="1f1a86c1-5b6e-470a-8a16-6f20a2153ac5"/>
-					<box leftPadding="4" rightPadding="4"/>
-					<textElement textAlignment="Center">
-						<font size="16" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement mode="Transparent" x="42" y="73" width="20" height="1" backcolor="#FFFFFF" uuid="e20918df-0e8c-490d-a475-ea995b8f59d5"/>
-				</line>
-			</frame>
-		</band>
+		<band height="575" splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="109" splitType="Stretch">
@@ -194,18 +170,66 @@ WHERE
 		</band>
 	</detail>
 	<columnFooter>
-		<band splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement positionType="Float" x="674" y="10" width="128" height="20" uuid="171954e0-feb1-4133-9bdc-072b6ef90fe2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="30" width="165" height="20" uuid="30420fb5-175f-4fdb-818d-74868a012946"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="105" width="165" height="20" uuid="1157a8c4-5dd7-498c-a2ec-2dd138fbc266"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Admin)]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="637" y="105" width="165" height="1" uuid="b6d9efc8-1949-4591-b20a-057d900f90d3"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="637" y="10" width="37" height="20" uuid="66411e68-2e9a-443f-85be-abed8e35688e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="10" width="165" height="20" uuid="a8029587-deb3-4a63-a745-05eff1fd9142"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="30" width="165" height="20" uuid="a890e932-b18d-4a65-9b2d-8dbfbabe5879"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Manager]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="105" width="165" height="1" uuid="2bc28d16-ab70-4a93-a287-0b337a61bc4b"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="105" width="165" height="20" uuid="3d2df027-7134-4297-bab0-d819ce3db83c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Sulisty)]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="39" splitType="Stretch">
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="671" y="0" width="131" height="20" forecolor="#000000" uuid="144499a3-ddee-4a4f-860b-442af013f380"/>
-				<textElement textAlignment="Right">
-					<font size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="39" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
