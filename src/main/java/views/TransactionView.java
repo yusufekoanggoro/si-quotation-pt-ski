@@ -285,21 +285,21 @@ public class TransactionView extends javax.swing.JFrame {
 
         jLabel1.setText("Search :");
 
-        jButton1.setText("Add New Transaction");
+        jButton1.setText("Tambah");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update Transaction");
+        jButton2.setText("Ubah");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Delete Transaction");
+        jButton3.setText("Hapus");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -665,8 +665,8 @@ public class TransactionView extends javax.swing.JFrame {
 
                 int result = JOptionPane.showConfirmDialog(
                     frame,
-                    "Are you sure you want to exit the application?",
-                    "Exit Application",
+                    "Apakah Anda yakin ingin keluar dari aplikasi?",
+                    "Keluarkan Aplikasi",
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){

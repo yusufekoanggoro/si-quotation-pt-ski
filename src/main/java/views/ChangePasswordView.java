@@ -281,8 +281,8 @@ public class ChangePasswordView extends javax.swing.JFrame {
 
                 int result = JOptionPane.showConfirmDialog(
                     frame,
-                    "Are you sure you want to cancel Change Password?",
-                    "Exit Application",
+                    "Apakah Anda yakin ingin keluar dari aplikasi?",
+                    "Keluar dari Aplikasi",
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){

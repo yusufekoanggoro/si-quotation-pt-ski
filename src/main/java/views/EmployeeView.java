@@ -674,8 +674,8 @@ public class EmployeeView extends javax.swing.JFrame {
 
                 int result = JOptionPane.showConfirmDialog(
                     frame,
-                    "Are you sure you want to exit the application?",
-                    "Exit Application",
+                    "Apakah Anda yakin ingin keluar dari aplikasi?",
+                    "Keluar dari Aplikasi",
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
