@@ -71,13 +71,6 @@
 			</frame>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="100" width="550" height="32" forecolor="#000000" backcolor="#1EA3EB" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="401" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8"/>
-					<textElement textAlignment="Right">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
 			</frame>
 		</band>
 	</title>
