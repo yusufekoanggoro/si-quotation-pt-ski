@@ -21,7 +21,7 @@ public class RoleTableModel extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Name";
+                return "Nama";
             case 2:
                 return "Periode";
             default:

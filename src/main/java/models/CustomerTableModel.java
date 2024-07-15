@@ -21,7 +21,7 @@ public class CustomerTableModel extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Name";
+                return "Nama";
             case 2:
                 return "Nama Segment";
             case 3:

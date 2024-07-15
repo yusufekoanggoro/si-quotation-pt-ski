@@ -10,8 +10,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +49,6 @@ public class ReportView extends javax.swing.JFrame {
         for (int year = 2020; year <= currentYear; year++) {
             this.jComboBox5.addItem(Integer.toString(year));
         }
-        
     }
 
     /**
@@ -64,6 +66,10 @@ public class ReportView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,9 +77,24 @@ public class ReportView extends javax.swing.JFrame {
         jLabel1.setText("Pilih data yang ingin dicetak");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Karyawan", "Segmen", "Pelanggan", "Jabatan", "Item", "Quotation Per Status", "Quotation Per Tahun", "Grafik Quotation Per Tahun", "Grafik Segmentasi Market", "Grafik Quotation Per Status" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jComboBox1MouseExited(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+        jComboBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox1PropertyChange(evt);
             }
         });
 
@@ -100,26 +121,39 @@ public class ReportView extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tahun" }));
 
+        jLabel2.setText("Tanggal Mulai");
+
+        jLabel3.setText("Tanggal Akhir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(170, 170, 170))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 170, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.LEADING, 0, 366, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(170, 170, 170))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +162,23 @@ public class ReportView extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,7 +202,7 @@ public class ReportView extends javax.swing.JFrame {
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
         // TODO add your handling code here:
         String selectedReport = jComboBox1.getSelectedItem().toString();
-
+        
         switch (selectedReport) {
             case "Grafik Segmentasi Market":
                 new ChartView().start();
@@ -176,6 +218,18 @@ public class ReportView extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1PropertyChange
+
+    private void jComboBox1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1MouseExited
 
     /**
      * @param args the command line arguments
@@ -217,7 +271,11 @@ public class ReportView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
@@ -252,7 +310,36 @@ public class ReportView extends javax.swing.JFrame {
     }
     
     public void jasperViewer(){
-        try {    
+        try {
+            Date selectedStartDate = jDateChooser1.getDate();
+            Date selectedEndDate = jDateChooser2.getDate();
+
+            java.sql.Timestamp sqlStartDate = null;
+            java.sql.Timestamp sqlEndDate = null;
+            
+            String formattedStartDateQuery = null;
+            String formattedEndDateQuery = null;
+            
+            String formattedStartDate = null;
+            String formattedEndDate = null;
+            
+            if (selectedStartDate != null && selectedEndDate != null) {
+                sqlStartDate  = new java.sql.Timestamp(selectedStartDate.getTime());
+                sqlEndDate  = new java.sql.Timestamp(selectedEndDate.getTime());
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                formattedStartDateQuery = sdf.format(sqlStartDate);
+                formattedEndDateQuery = sdf.format(sqlEndDate);
+                
+                System.out.println(formattedStartDateQuery);
+                
+                SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMMM yyy", new Locale("id", "ID"));
+                formattedStartDate = sdf2.format(sqlStartDate);
+                formattedEndDate = sdf2.format(sqlEndDate);
+                
+                System.out.println(formattedStartDate);
+            }
+            
             String selectedReport = jComboBox1.getSelectedItem().toString();
             String templateName = "CustomerReport.jrxml";
             switch (selectedReport) {
@@ -280,41 +367,53 @@ public class ReportView extends javax.swing.JFrame {
                 default:
                     break;
             }
-            InputStream reportStream = JasperView.class.getResourceAsStream("/main/resources/templates/" + templateName);
             
-            JasperDesign jd = JRXmlLoader.load(reportStream);
-            
-            Connection connection = new Mysql().getConnection();
-            JasperReport jr = JasperCompileManager.compileReport(jd);
+            Boolean isPrint = false;
             
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("logoPath", "main/resources/images/logo_pt_ski_75px.png"); // sesuaikan dengan path yang sesuai
 
-//            BufferedImage image = ImageIO.read(getClass().getResource("/resources/templates/cherry.jpg"));
-//            params.put("logo", image );
-
-//            Map<String, Object> parameters = new HashMap<>();
-            
-            if(selectedReport.equals("Quotation Per Status")){                
+            if(
+                    selectedReport.equals("Karyawan") || 
+                    selectedReport.equals("Segmen") || 
+                    selectedReport.equals("Pelanggan") ||
+                    selectedReport.equals("Jabatan") ||
+                    selectedReport.equals("Item")
+                    ){
+                if(selectedStartDate == null | selectedStartDate == null){
+                   JOptionPane.showMessageDialog(null,"Kamu harus mengisi tanggal mulai dan tanggal akhir");
+                }else{
+                   parameters.put("START_DATE_QUERY", formattedStartDateQuery); // sesuaikan dengan path yang sesuai
+                   parameters.put("END_DATE_QUERY", formattedEndDateQuery); // sesuaikan dengan path yang sesuai
+                   parameters.put("START_DATE", formattedStartDate); // sesuaikan dengan path yang sesuai
+                   parameters.put("END_DATE", formattedEndDate); // sesuaikan dengan path yang sesuai
+                   isPrint = true;
+                }
+            } else if(selectedReport.equals("Quotation Per Status")){
                 String selectedStatus = jComboBox4.getSelectedItem().toString();
                 if(!selectedStatus.equals("Status Quotation")){
                     parameters.put("Status", selectedStatus);
-                    JasperPrint jp = JasperFillManager.fillReport(jr, parameters, connection);
-                    JasperViewer.viewReport(jp, false);
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih status quotation");
                 }
-            } else if(selectedReport.equals("Quotation Per Tahun")){                
+            } else if(selectedReport.equals("Quotation Per Tahun")){
                 String selectedYear = jComboBox5.getSelectedItem().toString();
                 System.out.print(selectedYear);
                 if(!selectedYear.equals("Tahun")){
                     parameters.put("Year", selectedYear);
-                    JasperPrint jp = JasperFillManager.fillReport(jr, parameters, connection);
-                    JasperViewer.viewReport(jp, false);
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih tahun quotation");
                 }
-            } else{
+            }
+            
+            if(isPrint){  
+                InputStream reportStream = JasperView.class.getResourceAsStream("/main/resources/templates/" + templateName);
+
+                JasperDesign jd = JRXmlLoader.load(reportStream);
+
+                Connection connection = new Mysql().getConnection();
+                JasperReport jr = JasperCompileManager.compileReport(jd);
+                
                 JasperPrint jp = JasperFillManager.fillReport(jr, parameters, connection);
                 JasperViewer.viewReport(jp, false);
             }

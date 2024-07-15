@@ -21,9 +21,9 @@ public class MasterItemTableModel extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Name";
+                return "Nama";
             case 2:
-                return "Price";
+                return "Harga Per Unit";
             default:
                 return null;
         }
