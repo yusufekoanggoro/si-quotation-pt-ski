@@ -374,8 +374,7 @@ public class ReportView extends javax.swing.JFrame {
             parameters.put("logoPath", "main/resources/images/logo_pt_ski_75px.png"); // sesuaikan dengan path yang sesuai
 
             if(
-                    selectedReport.equals("Karyawan") || 
-                    selectedReport.equals("Segmen") || 
+                    selectedReport.equals("Karyawan") ||
                     selectedReport.equals("Pelanggan") ||
                     selectedReport.equals("Jabatan") ||
                     selectedReport.equals("Item")
@@ -393,6 +392,7 @@ public class ReportView extends javax.swing.JFrame {
                 String selectedStatus = jComboBox4.getSelectedItem().toString();
                 if(!selectedStatus.equals("Status Quotation")){
                     parameters.put("Status", selectedStatus);
+                    isPrint = true;
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih status quotation");
                 }
@@ -401,9 +401,12 @@ public class ReportView extends javax.swing.JFrame {
                 System.out.print(selectedYear);
                 if(!selectedYear.equals("Tahun")){
                     parameters.put("Year", selectedYear);
+                    isPrint = true;
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih tahun quotation");
                 }
+            }else{
+                isPrint = true;
             }
             
             if(isPrint){  
