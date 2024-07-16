@@ -18,11 +18,11 @@ public class Mysql {
     public Mysql(){
         try {
             this.connection = null;
-            this.DRIVER = System.getProperty("MYSQL_DRIVER");
-            this.URL = System.getProperty("MYSQL_URL");
-            this.USERNAME = System.getProperty("MYSQL_USERNAME");
-            this.PASSWORD = System.getProperty("MYSQL_PASSWORD");
-            this.MAX_POOL = System.getProperty("MYSQL_MAX_POOL");
+            this.DRIVER = "com.mysql.cj.jdbc.Driver";
+            this.URL = "jdbc:mysql://localhost:3306/quotations_management";
+            this.USERNAME = "root";
+            this.PASSWORD = "";
+            this.MAX_POOL = "250";
 
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, getProperties());
