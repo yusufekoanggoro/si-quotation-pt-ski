@@ -31,7 +31,8 @@
 roles.id,
 roles.name,
 roles.periode
-FROM `roles`]]>
+FROM `roles`
+WHERE roles.`created_at` BETWEEN $P{START_DATE_QUERY} AND $P{END_DATE_QUERY};]]>
 	</queryString>
 	<field name="tanggal" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="tanggal"/>

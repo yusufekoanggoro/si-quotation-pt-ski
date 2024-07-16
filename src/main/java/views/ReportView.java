@@ -382,8 +382,8 @@ public class ReportView extends javax.swing.JFrame {
                 if(selectedStartDate == null | selectedStartDate == null){
                    JOptionPane.showMessageDialog(null,"Kamu harus mengisi tanggal mulai dan tanggal akhir");
                 }else{
-                   parameters.put("START_DATE_QUERY", formattedStartDateQuery); // sesuaikan dengan path yang sesuai
-                   parameters.put("END_DATE_QUERY", formattedEndDateQuery); // sesuaikan dengan path yang sesuai
+                   parameters.put("START_DATE_QUERY", (formattedStartDateQuery + " 00:00:00" ) ); // sesuaikan dengan path yang sesuai
+                   parameters.put("END_DATE_QUERY", (formattedEndDateQuery + " 23:59:59") ); // sesuaikan dengan path yang sesuai
                    parameters.put("START_DATE", formattedStartDate); // sesuaikan dengan path yang sesuai
                    parameters.put("END_DATE", formattedEndDate); // sesuaikan dengan path yang sesuai
                    isPrint = true;
