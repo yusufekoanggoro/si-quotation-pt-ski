@@ -170,15 +170,18 @@ import javax.swing.UIManager;
                 JOptionPane.showMessageDialog(null, "Username atau Password Anda Salah");   
             }else{
                 Session.setLevel(findOneEmployeeByUsername.getRoleId());
-                String userPasswordInput = Password.getSecurePassword(password);
                 String passwordDb = employee.getPassword();
-                usernameTextField.setText("");
-                passwordField.setText("");
-                JOptionPane.showMessageDialog(null, "Berhasil Masuk"); 
-                //menutup gui login
-                this.dispose();
-                //menampilkan gui Menu
-                new MenuView().start(); 
+                if(password.equals(passwordDb)){
+                    usernameTextField.setText("");
+                    passwordField.setText("");
+                    JOptionPane.showMessageDialog(null, "Berhasil Masuk"); 
+                    //menutup gui login
+                    this.dispose();
+                    //menampilkan gui Menu
+                    new MenuView().start();    
+                }else{
+                    JOptionPane.showMessageDialog(null, "Username atau Password Anda Salah");  
+                }
             }
         }
     }//GEN-LAST:event_buttonLoginMouseClicked
