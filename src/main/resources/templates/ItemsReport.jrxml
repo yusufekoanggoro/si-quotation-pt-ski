@@ -1,44 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="dd9905cd-5931-4b1f-a6b6-18698de3df41">
-	<property name="ireport.zoom" value="1.6105100000000012"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="100"/>
-	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="logoPath" class="java.lang.String"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanItem" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a5c9b49-9dc5-422a-ac69-e92cf61ef530">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Quotations Adapter"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+        <parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="START_DATE_QUERY" class="java.lang.String"/>
+	<parameter name="END_DATE_QUERY" class="java.lang.String"/>
+        <parameter name="START_DATE" class="java.lang.String"/>
+	<parameter name="END_DATE" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT id, name, price_per_unit, created_at, updated_at FROM `items`;]]>
+		<![CDATA[SELECT 
+	id,
+    CONCAT(
+        DATE_FORMAT(created_at, '%d'),
+        ' ',
+        CASE DATE_FORMAT(created_at, '%M') WHEN 'January' THEN 'Januari' WHEN 'February' THEN 'Februari' WHEN 'March' THEN 'Maret' WHEN 'April' THEN 'April' WHEN 'May' THEN 'Mei' WHEN 'June' THEN 'Juni' WHEN 'July' THEN 'Juli' WHEN 'August' THEN 'Agustus' WHEN 'September' THEN 'September' WHEN 'October' THEN 'Oktober' WHEN 'November' THEN 'November' WHEN 'December' THEN 'Desember'
+    END,
+    ' ',
+    DATE_FORMAT(created_at, '%Y')
+) AS tanggal,
+name, price_per_unit FROM `items`;]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer"/>
-	<field name="name" class="java.lang.String"/>
-	<field name="price_per_unit" class="java.lang.Integer"/>
-	<field name="created_at" class="java.sql.Date"/>
-	<field name="updated_at" class="java.sql.Date"/>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="items"/>
+	</field>
+	<field name="tanggal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tanggal"/>
+		<property name="com.jaspersoft.studio.field.label" value="tanggal"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="items"/>
+	</field>
+	<field name="price_per_unit" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="price_per_unit"/>
+		<property name="com.jaspersoft.studio.field.label" value="price_per_unit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="items"/>
+	</field>
 	<background>
-		<band height="575" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="109" splitType="Stretch">
+		<band height="150" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement style="SubTitle" x="245" y="67" width="341" height="37" forecolor="#000000" uuid="065f97f5-95c0-45d1-bbea-1eb3aa97df51"/>
-				<textElement textAlignment="Center">
-					<font size="26"/>
+				<reportElement x="175" y="0" width="439" height="30" uuid="3ffeb811-a481-4eb1-9171-e97503572333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
+				<text><![CDATA[Quotation Management]]></text>
 			</staticText>
-			<image>
-				<reportElement x="42" y="14" width="75" height="75" uuid="ee52ab0b-cbb5-4cc3-b5a3-ff3e0330a03d"/>
+			<image onErrorType="Icon">
+				<reportElement key="" x="34" y="3" width="110" height="107" uuid="3c6912f0-e430-45c6-bcef-a864871df129"/>
 				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="SubTitle" x="274" y="10" width="282" height="53" forecolor="#000000" uuid="8f887ac0-7c8a-45a7-b097-2ccf4ef18ab8"/>
-				<textElement textAlignment="Center">
-					<font size="40"/>
+				<reportElement x="222" y="30" width="344" height="30" uuid="f4d94426-31de-4a24-be9d-62e97e6223bb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Data Items]]></text>
+				<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="75" width="457" height="30" uuid="b397fc74-a89c-427b-8e53-66774dfd050e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SOHO Pancoran, Tower Splendor S-2511
+Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="140" width="802" height="1" uuid="78eb5848-9e85-492d-904e-3191ccec160a"/>
+			</line>
+			<textField>
+				<reportElement x="280" y="120" width="199" height="20" uuid="2578f029-b654-401f-ac4c-e6142714c799"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Periode : " + $P{START_DATE} + " s.d. " + $P{END_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="632" y="110" width="168" height="30" uuid="8a0f15b4-cb64-4d72-a692-50924327e762"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Laporan Item]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -46,120 +105,148 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="5" width="802" height="20" backcolor="#0099CC" uuid="b548b8c9-79be-4006-8025-54ff10107c91"/>
-				<staticText>
-					<reportElement style="Column header" x="0" y="0" width="70" height="15" uuid="40494c1c-bd22-4762-bda3-f714d5dda64b"/>
-					<text><![CDATA[NO]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="70" y="0" width="175" height="15" uuid="3c635e82-eee1-4878-a98b-7e9081c0da8d"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Nama]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="270" y="0" width="150" height="15" uuid="70ecae02-a3d1-4a2b-abef-594db078c191"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Harga Per Unit]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="460" y="0" width="139" height="15" uuid="2dcf5ffa-0fd5-4527-9b91-21b130cf3493"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Waktu dibuat]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="640" y="0" width="140" height="15" uuid="351566c3-cb73-4dfa-bdbd-1138230de46d"/>
-					<textElement textAlignment="Center"/>
-					<text><![CDATA[Waktu diupdate]]></text>
-				</staticText>
-			</frame>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="199" height="18" forecolor="#000000" uuid="43780c1d-2b2e-4cfc-a6d3-7eba01d453b9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb83cf2-64bb-4cfc-940e-7bfa9389874c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="199" y="0" width="199" height="18" forecolor="#000000" uuid="c173e482-155b-4d1d-b74d-20ffec7f8739">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b68a4b1f-b001-43c0-a835-b170651e69f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="398" y="0" width="199" height="18" forecolor="#000000" uuid="7900dfaa-4f51-4124-9329-e4767ab814c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c685b908-33d3-4528-8201-7088f04c6702"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="597" y="0" width="199" height="18" forecolor="#000000" uuid="7bd6e773-a938-4f17-9629-8831cb3bea1d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b5d0351-5d88-47ba-8544-f6e79460835f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga Per Unit]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="18" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="1" width="802" height="15" uuid="6516560e-0a16-4613-8e3e-519e60823e5d"/>
-				<textField>
-					<reportElement style="Detail" x="0" y="0" width="70" height="15" uuid="af1e7e35-4857-4184-b733-612208ba6928"/>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="34a2ae4b-4055-476b-8676-d499f6af510b"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="199" height="18" uuid="fc3a25a6-681d-4306-84bf-b7b006c1f78c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb83cf2-64bb-4cfc-940e-7bfa9389874c"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement style="Detail" x="70" y="0" width="175" height="15" uuid="af1e7e35-4857-4184-b733-612208ba6928"/>
-					<textElement textAlignment="Center"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" positionType="Float" x="199" y="0" width="199" height="18" uuid="20e57655-b7de-439a-9543-530d256d4dd0">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b68a4b1f-b001-43c0-a835-b170651e69f6"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" positionType="Float" x="398" y="0" width="199" height="18" uuid="d8db65f6-74a7-4503-8e9d-3a6df3072ac8">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c685b908-33d3-4528-8201-7088f04c6702"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement style="Detail" x="270" y="0" width="150" height="15" uuid="258f0e63-f747-4d43-9766-008036e21035"/>
-					<textElement textAlignment="Center"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" positionType="Float" x="597" y="0" width="199" height="18" uuid="e81eba3e-ce28-487c-b09d-8f583134fa2e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b5d0351-5d88-47ba-8544-f6e79460835f"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{price_per_unit}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Detail" x="460" y="0" width="139" height="15" uuid="4e71fffc-fa5a-49cf-a123-d40d3787bcb0"/>
-					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{created_at}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Detail" x="640" y="0" width="140" height="15" uuid="6c90f38b-8794-4d33-b746-f69efbeb80a5"/>
-					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{updated_at}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="125" splitType="Stretch">
+		<band height="250" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="4" width="802" height="1" uuid="501ac6c4-e9d4-43cb-ba6b-7f2f44394cf3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement positionType="Float" x="674" y="10" width="128" height="20" uuid="1c939514-67a2-4eaf-83ae-158510e53cb3"/>
-				<textElement>
+				<reportElement positionType="Float" x="674" y="100" width="128" height="20" uuid="2e8ae5d1-bdc7-4b28-94dc-7ef0011ef648"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="30" width="165" height="20" uuid="0caa0070-557e-4b05-92d6-54cb0712b828"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="120" width="165" height="20" uuid="ea98036e-3c76-43db-8bf8-a4f5056b6d19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Dibuat oleh,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="105" width="165" height="20" uuid="dcb26894-a2e8-493d-ba39-b3262d69e70d"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="195" width="165" height="20" uuid="28b2c6d5-9719-40a8-8f2d-8a7d905c89b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[(Admin)]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="637" y="105" width="165" height="1" uuid="db6b6815-f1ab-4a12-a406-fd6dbf37d738"/>
+				<reportElement positionType="Float" x="637" y="195" width="165" height="1" uuid="c2c1b08b-0e1e-44d7-a96e-a0001df91c42"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="10" width="37" height="20" uuid="b0b8de71-8b74-4d2a-adbd-aaac5bba83ab"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="100" width="37" height="20" uuid="f8d59943-d48e-4ac6-a9fe-9e18c8c3ea73"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Jakarta, ]]></text>
+				<text><![CDATA[Jakarta,  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="10" width="165" height="20" uuid="c8752291-7c86-4493-8645-55662390978b"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="100" width="165" height="20" uuid="d1afbd95-9265-4e74-94b4-33a3b5d2ad15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Mengetahui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="30" width="165" height="20" uuid="ed15438b-9675-4950-b1e6-cdba59b195f8"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="120" width="165" height="20" uuid="2327f824-b747-4d6c-8258-8210bc3cb760"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Manager]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="0" y="105" width="165" height="1" uuid="bc83fa68-694e-4c96-a356-861e9e88e0da"/>
+				<reportElement positionType="Float" x="0" y="192" width="165" height="1" uuid="137099a1-b320-4a2f-b07a-a86fb109d6df"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="105" width="165" height="20" uuid="6b28aa8c-b3cf-425e-95e0-c7f79a670324"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="193" width="165" height="20" uuid="b5b11f9e-b182-48ad-8f00-736cacb0a161"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[(Sulisty)]]></text>
@@ -167,7 +254,25 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="39" splitType="Stretch"/>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="ffb10ec8-0371-4545-8eaa-96d62ad3cec0"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="b5521ea6-5f36-4864-856f-58d0bcd011f2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="e625ea3c-1741-4cfe-81cf-fbbdd00162c8"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
