@@ -13,10 +13,10 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-        <parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="logoPath" class="java.lang.String"/>
 	<parameter name="START_DATE_QUERY" class="java.lang.String"/>
 	<parameter name="END_DATE_QUERY" class="java.lang.String"/>
-        <parameter name="START_DATE" class="java.lang.String"/>
+	<parameter name="START_DATE" class="java.lang.String"/>
 	<parameter name="END_DATE" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
@@ -112,7 +112,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb83cf2-64bb-4cfc-940e-7bfa9389874c"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
 			</staticText>
@@ -121,7 +121,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b68a4b1f-b001-43c0-a835-b170651e69f6"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
@@ -130,7 +130,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c685b908-33d3-4528-8201-7088f04c6702"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
@@ -139,7 +139,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b5d0351-5d88-47ba-8544-f6e79460835f"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Harga Per Unit]]></text>
 			</staticText>
@@ -154,7 +154,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb83cf2-64bb-4cfc-940e-7bfa9389874c"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 				</textField>
@@ -163,7 +163,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b68a4b1f-b001-43c0-a835-b170651e69f6"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 				</textField>
@@ -172,7 +172,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c685b908-33d3-4528-8201-7088f04c6702"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
@@ -181,7 +181,7 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b5d0351-5d88-47ba-8544-f6e79460835f"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14"/>
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{price_per_unit}]]></textFieldExpression>
 				</textField>
