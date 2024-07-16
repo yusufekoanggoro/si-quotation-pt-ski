@@ -391,7 +391,7 @@ public class ReportView extends javax.swing.JFrame {
             } else if(selectedReport.equals("Quotation Per Status")){
                 String selectedStatus = jComboBox4.getSelectedItem().toString();
                 if(!selectedStatus.equals("Status Quotation")){
-                    parameters.put("Status", selectedStatus);
+                    parameters.put("STATUS", selectedStatus);
                     isPrint = true;
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih status quotation");
@@ -400,7 +400,7 @@ public class ReportView extends javax.swing.JFrame {
                 String selectedYear = jComboBox5.getSelectedItem().toString();
                 System.out.print(selectedYear);
                 if(!selectedYear.equals("Tahun")){
-                    parameters.put("Year", selectedYear);
+                    parameters.put("YEAR", selectedYear);
                     isPrint = true;
                 }else {
                     JOptionPane.showMessageDialog(null,"Kamu harus memilih tahun quotation");

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QTN_STATUS" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a5c9b49-9dc5-422a-ac69-e92cf61ef530">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanQuotationPerStatus" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a5c9b49-9dc5-422a-ac69-e92cf61ef530">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mysql"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Quotations Adapter"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -13,16 +13,22 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="Year" class="java.lang.String"/>
+	<parameter name="YEAR" class="java.lang.String"/>
 	<parameter name="logoPath" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
   ROW_NUMBER() OVER (ORDER BY transactions.id) as seq_num,
-  transactions.id, 
   transactions.status, 
-  transactions.created_at, 
+  CONCAT(
+        DATE_FORMAT(transactions.created_at, '%d'),
+        ' ',
+        CASE DATE_FORMAT(transactions.created_at, '%M') WHEN 'January' THEN 'Januari' WHEN 'February' THEN 'Februari' WHEN 'March' THEN 'Maret' WHEN 'April' THEN 'April' WHEN 'May' THEN 'Mei' WHEN 'June' THEN 'Juni' WHEN 'July' THEN 'Juli' WHEN 'August' THEN 'Agustus' WHEN 'September' THEN 'September' WHEN 'October' THEN 'Oktober' WHEN 'November' THEN 'November' WHEN 'December' THEN 'Desember'
+    END,
+    ' ',
+    DATE_FORMAT(transactions.created_at, '%Y')
+) AS tanggal,
   customers.name, 
-  segments.name as "segment_Name", 
+  segments.name as "segment_name", 
   customers.person_in_charge as "pic", 
   customers.phone_number, 
   items.name as "item_name", 
@@ -31,39 +37,33 @@
   transactions.Total as "sub_total", 
   "11%" as "ppn", 
   transactions.Total + (transactions.Total * 0.11) as "total_amount" 
-FROM quotations_management.transactions 
-INNER JOIN quotations_management.customers ON transactions.customer_id = customers.id 
-INNER JOIN quotations_management.segments ON customers.segment_id = segments.id 
-INNER JOIN quotations_management.items ON transactions.item_id = items.id
-WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
+FROM transactions 
+INNER JOIN customers ON transactions.customer_id = customers.id 
+INNER JOIN segments ON customers.segment_id = segments.id 
+INNER JOIN items ON transactions.item_id = items.id
+WHERE YEAR(transactions.created_at) = $P{YEAR}]]>
 	</queryString>
 	<field name="seq_num" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="seq_num"/>
 		<property name="com.jaspersoft.studio.field.label" value="seq_num"/>
-	</field>
-	<field name="id" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.name" value="id"/>
-		<property name="com.jaspersoft.studio.field.label" value="id"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="transactions"/>
 	</field>
 	<field name="status" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="status"/>
 		<property name="com.jaspersoft.studio.field.label" value="status"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="transactions"/>
 	</field>
-	<field name="created_at" class="java.time.LocalDateTime">
-		<property name="com.jaspersoft.studio.field.name" value="created_at"/>
-		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="transactions"/>
+	<field name="tanggal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tanggal"/>
+		<property name="com.jaspersoft.studio.field.label" value="tanggal"/>
 	</field>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="customers"/>
 	</field>
-	<field name="segment_Name" class="java.lang.String">
+	<field name="segment_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
-		<property name="com.jaspersoft.studio.field.label" value="segment_Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="segment_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="segments"/>
 	</field>
 	<field name="pic" class="java.lang.String">
@@ -108,39 +108,51 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="102" splitType="Stretch">
-			<image>
-				<reportElement x="725" y="0" width="77" height="102" uuid="651ccc4b-e999-40fe-bcbf-1f25bcfc98af"/>
+		<band height="150" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="175" y="0" width="439" height="30" uuid="642c9d41-4ecd-4ecf-9904-6450181e812f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Quotation Management]]></text>
+			</staticText>
+			<image onErrorType="Icon">
+				<reportElement key="" x="34" y="3" width="110" height="107" uuid="243e80df-d035-435f-8888-2031a70afef4"/>
 				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
 			</image>
-			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="721" height="66" backcolor="#1BC221" uuid="d8d9e644-3a32-491d-97cb-a277aff17133"/>
-				<staticText>
-					<reportElement style="Title" x="0" y="0" width="370" height="66" forecolor="#080505" backcolor="#030202" uuid="27d8f6ee-f0a9-44f6-a160-1763c3b00f30"/>
-					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
-					<textElement verticalAlignment="Bottom" markup="html">
-						<font isBold="false"/>
-					</textElement>
-					<text><![CDATA[Quotation]]></text>
-				</staticText>
-				<textField>
-					<reportElement style="SubTitle" x="370" y="37" width="316" height="29" forecolor="#050404" uuid="cfa21334-0634-4605-9ea7-aca4981f67e4"/>
-					<textElement textAlignment="Right">
-						<font size="22" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Tahun " + $P{Year}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement mode="Opaque" x="0" y="70" width="721" height="32" forecolor="#000000" backcolor="#0099CC" uuid="b0c895f6-6dbd-477d-9858-9ad66af087e1"/>
-				<staticText>
-					<reportElement x="0" y="2" width="199" height="30" uuid="73e1cddf-d361-417b-9bf8-4b1387f4435a"/>
-					<textElement>
-						<font size="13"/>
-					</textElement>
-					<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
-				</staticText>
-			</frame>
+			<staticText>
+				<reportElement x="222" y="30" width="344" height="30" uuid="775334b1-24cb-4b9d-bc80-9a92e4a1c3ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="75" width="457" height="30" uuid="27b988cc-a73e-4d92-9b8a-5dde9a7af8e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SOHO Pancoran, Tower Splendor S-2511
+Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="140" width="802" height="1" uuid="84210f1a-facd-45b1-bf15-2933b01d333a"/>
+			</line>
+			<staticText>
+				<reportElement x="580" y="110" width="220" height="30" uuid="2217efb0-eae0-438d-8e73-000ce96395b0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Laporan Quotation Per Tahun]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="120" width="199" height="20" uuid="b100f23a-98d9-4a05-b0e1-9e66f9547b27"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tahun: " + $P{YEAR}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -149,130 +161,121 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="0" width="56" height="18" forecolor="#000000" uuid="b832acbf-429f-44a8-8dd2-1d2a75390b9c">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a10138bb-9bae-4206-be99-c04fb4df8c22"/>
+				<reportElement style="Column header" x="0" y="0" width="61" height="18" forecolor="#000000" uuid="6f7564dc-375c-4d7e-af46-375c9c47302d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bc853e0f-acc7-484e-a84c-eafde6775e2f"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="56" y="0" width="56" height="18" forecolor="#000000" uuid="c4d1869a-fba1-416c-a723-38e9b5c7fa24">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f84115b7-a579-459b-ad93-c4742e3d5ef0"/>
+				<reportElement style="Column header" x="61" y="0" width="61" height="18" forecolor="#000000" uuid="900e6caf-f373-424f-8d84-726a5c19e1c2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="212069e7-71d4-45e8-89cb-aa4a7d55850e"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[No QTN]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="112" y="0" width="56" height="18" forecolor="#000000" uuid="4b9ba1a7-069b-41ab-9c54-704eaf1a1454">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f866b3f-ea07-4ece-bc76-3ece30bcee23"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="168" y="0" width="56" height="18" forecolor="#000000" uuid="e9377a52-4217-4ee5-9cfa-c86fabcea7a7">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4a0b2e9-14f5-42e8-a980-9fc2baa97442"/>
+				<reportElement style="Column header" x="122" y="0" width="61" height="18" forecolor="#000000" uuid="48e34ed2-9bb7-4406-9e63-438151b0398b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a706ee9c-9537-4cd1-96af-bf6101e4ced0"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Date]]></text>
+				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="224" y="0" width="56" height="18" forecolor="#000000" uuid="cdbf132b-c50e-417e-bda3-769179bc6fb0">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16d290dd-fa52-48d6-9b52-f5142afc2a3d"/>
+				<reportElement style="Column header" x="183" y="0" width="61" height="18" forecolor="#000000" uuid="359fc2db-108d-4588-8b60-bf143be34eac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23d1dd19-c4ad-4f29-816d-c9a202434775"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Cust Name]]></text>
+				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="280" y="0" width="56" height="18" forecolor="#000000" uuid="685938bf-3e91-4864-a19c-2adf49d5cee5">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="751b7fb9-1dc0-42d8-9d1c-545ac692b09f"/>
+				<reportElement style="Column header" x="244" y="0" width="61" height="18" forecolor="#000000" uuid="bb8348df-ac85-4990-867a-e20e8d5a8605">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f1764cd-296e-4db1-8bd4-b294f8513ecc"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Segment]]></text>
+				<text><![CDATA[Nama Segment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="336" y="0" width="56" height="18" forecolor="#000000" uuid="3b4e8eaa-e84c-43a4-ab8b-6554253295f2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="80c33917-932c-4adf-aa28-69424dbbc278"/>
+				<reportElement style="Column header" x="305" y="0" width="61" height="18" forecolor="#000000" uuid="44316688-c04c-4cb5-a29e-523770de5239">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db88bfe3-94f1-4fbb-901f-0d5fb7fea62e"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[PIC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="392" y="0" width="56" height="18" forecolor="#000000" uuid="11fcfaab-cd4e-4e6c-9ef5-391f8e3d900f">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f531c96-8bd4-4eb8-aa5f-802f9a4fb2b1"/>
+				<reportElement style="Column header" x="366" y="0" width="61" height="18" forecolor="#000000" uuid="8fdad3d0-8e4d-442c-ad1e-0fd791033341">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c767fad-1a84-4276-9f05-208f42c82937"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[No Tel]]></text>
+				<text><![CDATA[No. Telp]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="448" y="0" width="56" height="18" forecolor="#000000" uuid="e54ded92-7210-49a7-a9e4-5d4350cc5edd">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21e701a0-6d26-4565-ab49-2cc4c66217a1"/>
+				<reportElement style="Column header" x="427" y="0" width="61" height="18" forecolor="#000000" uuid="329f6ddb-22e1-4d3e-88a3-8a2ac92a08a1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a33f50f-5e28-4189-a833-74c63df73d22"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Nama Item]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="504" y="0" width="56" height="18" forecolor="#000000" uuid="b0550927-3dec-46c9-80cd-009ee6ef63c2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44c85eb5-e92d-42cb-9e2e-9b97b500ffe8"/>
+				<reportElement style="Column header" x="488" y="0" width="61" height="18" forecolor="#000000" uuid="f159c59e-f310-4bd2-9c64-a04164452030">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57e43410-c935-4477-a785-d6b0ce9664eb"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[QTY]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="560" y="0" width="56" height="18" forecolor="#000000" uuid="9dcd65c1-7088-4bf7-ba9e-f8d45e82dea2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e8487fd-ed8b-4deb-92d3-29a687b97d13"/>
+				<reportElement style="Column header" x="549" y="0" width="61" height="18" forecolor="#000000" uuid="53626edb-5a43-4b28-b3a9-e6250752848c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a2f5160-ed1f-4e81-a47e-7ca2e69daf02"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Price]]></text>
+				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="616" y="0" width="56" height="18" forecolor="#000000" uuid="3b2a6d68-58bb-464d-8813-440cf5e04f47">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de319ae3-ae67-4a57-b716-c2a8fe8305ae"/>
+				<reportElement style="Column header" x="610" y="0" width="61" height="18" forecolor="#000000" uuid="004b0b74-e124-420a-8025-60ee68bc328d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0a5541e-2cb9-43fb-9e6b-3fd5bc9ebfb8"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Sub Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="672" y="0" width="56" height="18" forecolor="#000000" uuid="4d092707-39d5-47ce-9fd4-c714ba1997ab">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d6e3cc0-054d-4062-95a5-7bf03b36f479"/>
+				<reportElement style="Column header" x="671" y="0" width="61" height="18" forecolor="#000000" uuid="b4a305f1-df88-4b9c-b0a2-7ea11fe4fd77">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f364b734-f4bc-4e8e-930d-72e277b9e943"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[PPN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="728" y="0" width="56" height="18" forecolor="#000000" uuid="68f4efe8-dbdb-4a3c-82d9-9ac4414e6283">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e38ee812-4f2f-4740-8bdf-24483f422fe4"/>
+				<reportElement style="Column header" x="732" y="0" width="61" height="18" forecolor="#000000" uuid="8a2cae6f-101a-4160-bb43-9611b58e77a6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8fe992-44a0-487f-a737-955bf11cab91"/>
 				</reportElement>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Total Amount]]></text>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -281,128 +284,119 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="34a2ae4b-4055-476b-8676-d499f6af510b"/>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="56" height="18" uuid="2e6f47d2-6e82-4734-b5e2-8f5f09e70880">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a10138bb-9bae-4206-be99-c04fb4df8c22"/>
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="61" height="18" uuid="bec0275c-932c-482d-94d1-9c7ea7d8dd7a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bc853e0f-acc7-484e-a84c-eafde6775e2f"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{seq_num}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="56" y="0" width="56" height="18" uuid="8a0e326d-3973-4611-b6d6-dcba71a05c06">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f84115b7-a579-459b-ad93-c4742e3d5ef0"/>
+					<reportElement style="Detail" positionType="Float" x="61" y="0" width="61" height="18" uuid="fd9d3bc6-6e49-4cfa-ae29-0195b276ec85">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="212069e7-71d4-45e8-89cb-aa4a7d55850e"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-				</textField>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="112" y="0" width="56" height="18" uuid="55adb1fe-be9a-4983-b9c9-b57a686399b0">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f866b3f-ea07-4ece-bc76-3ece30bcee23"/>
-					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="168" y="0" width="56" height="18" uuid="1b8df62a-b3f1-41d3-a7c3-66cea69f9dd3">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4a0b2e9-14f5-42e8-a980-9fc2baa97442"/>
+					<reportElement style="Detail" positionType="Float" x="122" y="0" width="61" height="18" uuid="4740e01e-eff4-493f-a7bc-516b9aa44762">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a706ee9c-9537-4cd1-96af-bf6101e4ced0"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{created_at}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="224" y="0" width="56" height="18" uuid="13b4558f-431a-4120-8b53-5b248af4c992">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16d290dd-fa52-48d6-9b52-f5142afc2a3d"/>
+					<reportElement style="Detail" positionType="Float" x="183" y="0" width="61" height="18" uuid="b07e7d5e-3ad2-467f-a792-7d783046f3fc">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23d1dd19-c4ad-4f29-816d-c9a202434775"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="280" y="0" width="56" height="18" uuid="7da1d878-4afc-4ea7-96e4-8b8c6a8b3293">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="751b7fb9-1dc0-42d8-9d1c-545ac692b09f"/>
+					<reportElement style="Detail" positionType="Float" x="244" y="0" width="61" height="18" uuid="c956afd2-463d-49a8-a013-440060e2e18e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f1764cd-296e-4db1-8bd4-b294f8513ecc"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{segment_Name}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{segment_name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="336" y="0" width="56" height="18" uuid="ae58fc95-8ed6-4001-80a5-9ff2517164db">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="80c33917-932c-4adf-aa28-69424dbbc278"/>
+					<reportElement style="Detail" positionType="Float" x="305" y="0" width="61" height="18" uuid="38752969-0532-4663-86bb-28fa25cdc8a2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db88bfe3-94f1-4fbb-901f-0d5fb7fea62e"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{pic}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="392" y="0" width="56" height="18" uuid="d82b6207-c78e-4afb-acee-40977d64f04c">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f531c96-8bd4-4eb8-aa5f-802f9a4fb2b1"/>
+					<reportElement style="Detail" positionType="Float" x="366" y="0" width="61" height="18" uuid="e549f2a7-da54-489e-868a-35bf7008cb1a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c767fad-1a84-4276-9f05-208f42c82937"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{phone_number}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="448" y="0" width="56" height="18" uuid="1caeaa7f-f8a8-4cfe-93c8-c1d3950a5a19">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21e701a0-6d26-4565-ab49-2cc4c66217a1"/>
+					<reportElement style="Detail" positionType="Float" x="427" y="0" width="61" height="18" uuid="1d442367-97a0-46d2-848d-bda37a280888">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a33f50f-5e28-4189-a833-74c63df73d22"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{item_name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="504" y="0" width="56" height="18" uuid="2219943b-6918-4904-b9b8-6172948e9563">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44c85eb5-e92d-42cb-9e2e-9b97b500ffe8"/>
+					<reportElement style="Detail" positionType="Float" x="488" y="0" width="61" height="18" uuid="0143def0-d28c-4dd2-a2ac-1b47d65bac53">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57e43410-c935-4477-a785-d6b0ce9664eb"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="560" y="0" width="56" height="18" uuid="3af0d904-11c9-4b68-9c32-9ce548041fe8">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6e8487fd-ed8b-4deb-92d3-29a687b97d13"/>
+					<reportElement style="Detail" positionType="Float" x="549" y="0" width="61" height="18" uuid="a5f6f113-146f-4693-a88b-e40959d71226">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a2f5160-ed1f-4e81-a47e-7ca2e69daf02"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="616" y="0" width="56" height="18" uuid="f0e82b88-af24-4cc4-af88-c4555e9087ba">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de319ae3-ae67-4a57-b716-c2a8fe8305ae"/>
+					<reportElement style="Detail" positionType="Float" x="610" y="0" width="61" height="18" uuid="2b89760e-7da0-4882-b733-4a6a85d642c5">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0a5541e-2cb9-43fb-9e6b-3fd5bc9ebfb8"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="672" y="0" width="56" height="18" uuid="516b5483-2dae-48f4-b854-233d2e7d9c93">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d6e3cc0-054d-4062-95a5-7bf03b36f479"/>
+					<reportElement style="Detail" positionType="Float" x="671" y="0" width="61" height="18" uuid="7ee21f35-e8b0-453b-a74c-afd6e2ab5b2a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f364b734-f4bc-4e8e-930d-72e277b9e943"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ppn}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="728" y="0" width="56" height="18" uuid="0ee3b200-fa9f-44e2-bd60-0597db3ab1ff">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e38ee812-4f2f-4740-8bdf-24483f422fe4"/>
+					<reportElement style="Detail" positionType="Float" x="732" y="0" width="61" height="18" uuid="ccfdb5ba-0d63-498f-ad54-1468fb47bebc">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8fe992-44a0-487f-a737-955bf11cab91"/>
 					</reportElement>
-					<textElement textAlignment="Center">
-						<font size="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{total_amount}]]></textFieldExpression>
 				</textField>
@@ -410,58 +404,65 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="125" splitType="Stretch">
+		<band height="250" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="4" width="802" height="1" uuid="501ac6c4-e9d4-43cb-ba6b-7f2f44394cf3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement positionType="Float" x="674" y="10" width="128" height="20" uuid="a8ea457a-9501-47e1-ab4c-24ca6563c0e4"/>
-				<textElement>
+				<reportElement positionType="Float" x="674" y="100" width="128" height="20" uuid="036290a1-d76e-43a7-872f-b4ede7669ff4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="30" width="165" height="20" uuid="60b9e356-3141-48de-b65a-028f013a407b"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="120" width="165" height="20" uuid="099d89ad-c512-4e26-9e1d-78ae07e711b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Dibuat oleh,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="105" width="165" height="20" uuid="6955e6bf-2858-42e7-85fc-85181f401624"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="195" width="165" height="20" uuid="d5091cd1-578a-4959-9f82-e21c31b62a03"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[(Admin)]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="637" y="105" width="165" height="1" uuid="6343b158-634c-4e2c-9345-7ce2456aa17d"/>
+				<reportElement positionType="Float" x="637" y="195" width="165" height="1" uuid="87d5ff1d-61e7-4f36-99d9-53dee1e2c95d"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="10" width="37" height="20" uuid="61389f59-0711-4b16-b137-b684f999e6cf"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="637" y="100" width="37" height="20" uuid="5f3f3cf3-4d60-4c5e-93d5-1f60fa1f2896"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Jakarta, ]]></text>
+				<text><![CDATA[Jakarta,  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="10" width="165" height="20" uuid="be0228cd-ee09-4855-9dab-7db7fd457b81"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="100" width="165" height="20" uuid="045003b9-187b-4c2c-a2d1-a1c5c6c69928"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Mengetahui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="30" width="165" height="20" uuid="47c3bdc6-6880-4e23-bbc4-71e21a61547d"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="120" width="165" height="20" uuid="0d46b0f8-6d8e-4e80-80a4-cae6ab23d838"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Manager]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="2" y="105" width="165" height="1" uuid="75c20d07-0f57-437c-97be-7e4d5ca7782f"/>
+				<reportElement positionType="Float" x="0" y="192" width="165" height="1" uuid="808c432a-1f85-4da8-8948-eaa72f04e4f8"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="105" width="165" height="20" uuid="1dd88dfc-780e-4c84-bf84-7dd7928716e8"/>
-				<textElement textAlignment="Center">
+				<reportElement positionType="Float" x="0" y="193" width="165" height="20" uuid="9f625425-eb75-460c-a8d0-2662db6f682e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[(Sulisty)]]></text>
@@ -469,7 +470,25 @@ WHERE YEAR(quotations_management.transactions.created_at) = $P{Year}]]>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch"/>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="ffb10ec8-0371-4545-8eaa-96d62ad3cec0"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="b5521ea6-5f36-4864-856f-58d0bcd011f2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="e625ea3c-1741-4cfe-81cf-fbbdd00162c8"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
 	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
