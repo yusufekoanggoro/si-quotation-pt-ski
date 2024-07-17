@@ -10,8 +10,8 @@ public class Main {
             Config.build();
 //            new GenerateUser().start();
 //            new EmployeeView().start();            
-            new LoginView().start();
-//            new MenuView().start();
+//            new LoginView().start();
+            new MenuView().start();
 //            loginView.start();
 //            new CustomerView().start();
 //            new ReportView().start();

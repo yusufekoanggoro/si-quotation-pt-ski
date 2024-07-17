@@ -18,6 +18,7 @@
 	<queryString language="SQL">
 		<![CDATA[SELECT 
   ROW_NUMBER() OVER (ORDER BY transactions.id) as seq_num,
+  transactions.quote_number,
   transactions.status, 
   CONCAT(
         DATE_FORMAT(transactions.created_at, '%d'),
@@ -46,6 +47,11 @@ WHERE transactions.status = $P{STATUS}]]>
 	<field name="seq_num" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="seq_num"/>
 		<property name="com.jaspersoft.studio.field.label" value="seq_num"/>
+	</field>
+	<field name="quote_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="quote_number"/>
+		<property name="com.jaspersoft.studio.field.label" value="quote_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transactions"/>
 	</field>
 	<field name="status" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="status"/>
@@ -111,25 +117,25 @@ WHERE transactions.status = $P{STATUS}]]>
 		<band height="150" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="175" y="0" width="439" height="30" uuid="642c9d41-4ecd-4ecf-9904-6450181e812f"/>
+				<reportElement x="175" y="0" width="439" height="30" uuid="265bfda5-a457-4922-bb32-b0816b27cbe9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[Quotation Management]]></text>
 			</staticText>
 			<image onErrorType="Icon">
-				<reportElement key="" x="34" y="3" width="110" height="107" uuid="243e80df-d035-435f-8888-2031a70afef4"/>
+				<reportElement key="" x="34" y="3" width="110" height="107" uuid="40c3c51e-82f6-4438-b237-0ea060a2d87e"/>
 				<imageExpression><![CDATA[$P{logoPath}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="222" y="30" width="344" height="30" uuid="775334b1-24cb-4b9d-bc80-9a92e4a1c3ae"/>
+				<reportElement x="222" y="30" width="344" height="30" uuid="5c6564d9-d981-421f-9766-13d5d9fec44c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Times New Roman" size="20" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[PT Sinergi Karsa Indobenua]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="175" y="75" width="457" height="30" uuid="27b988cc-a73e-4d92-9b8a-5dde9a7af8e1"/>
+				<reportElement x="175" y="75" width="457" height="30" uuid="2f15dae0-3449-4066-baef-36b218e50c49"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Times New Roman" size="12" isItalic="false"/>
 				</textElement>
@@ -137,22 +143,22 @@ WHERE transactions.status = $P{STATUS}]]>
 Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="0" y="140" width="802" height="1" uuid="84210f1a-facd-45b1-bf15-2933b01d333a"/>
+				<reportElement positionType="Float" x="0" y="140" width="802" height="1" uuid="51c2ea4f-a28b-4767-a9b1-0f0a472797f3"/>
 			</line>
-			<staticText>
-				<reportElement x="580" y="110" width="220" height="30" uuid="2217efb0-eae0-438d-8e73-000ce96395b0"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="15"/>
-				</textElement>
-				<text><![CDATA[Laporan Quotation Per Status]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="280" y="120" width="199" height="20" uuid="b100f23a-98d9-4a05-b0e1-9e66f9547b27"/>
+				<reportElement x="348" y="120" width="100" height="20" uuid="166e01c1-87e6-4c7c-b3d3-e5b1e0744239"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Status: " + $P{STATUS}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="580" y="110" width="220" height="30" uuid="8fd2b674-bfa9-4440-a4d4-031af0d06d7d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Laporan Quotation Per Status]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -161,8 +167,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="0" width="61" height="18" forecolor="#000000" uuid="6f7564dc-375c-4d7e-af46-375c9c47302d">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bc853e0f-acc7-484e-a84c-eafde6775e2f"/>
+				<reportElement style="Column header" x="0" y="0" width="56" height="18" forecolor="#000000" uuid="933b9481-cf6a-4195-b3fb-1c561f5c79de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="660d4b85-30e7-4399-b3f1-f80105f7ee97"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -170,8 +176,17 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="61" y="0" width="61" height="18" forecolor="#000000" uuid="900e6caf-f373-424f-8d84-726a5c19e1c2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="212069e7-71d4-45e8-89cb-aa4a7d55850e"/>
+				<reportElement style="Column header" x="56" y="0" width="56" height="18" forecolor="#000000" uuid="3ec89bb8-dd43-483e-9545-05d0202dd06e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57518ec9-ad16-4b6f-878b-dcb6baf87faf"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No QTN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="112" y="0" width="56" height="18" forecolor="#000000" uuid="4d10f7bf-b9bf-4d7f-a907-70a6ff80f5c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b9119a6-79b8-4cf9-9359-b72f9267b6e2"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -179,8 +194,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="122" y="0" width="61" height="18" forecolor="#000000" uuid="48e34ed2-9bb7-4406-9e63-438151b0398b">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a706ee9c-9537-4cd1-96af-bf6101e4ced0"/>
+				<reportElement style="Column header" x="168" y="0" width="56" height="18" forecolor="#000000" uuid="70c4f6eb-b980-4182-a729-b4e5f18544ee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb1736d7-bba0-40ee-9bc4-7d8537b5dd4a"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -188,26 +203,26 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="183" y="0" width="61" height="18" forecolor="#000000" uuid="359fc2db-108d-4588-8b60-bf143be34eac">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23d1dd19-c4ad-4f29-816d-c9a202434775"/>
+				<reportElement style="Column header" x="224" y="0" width="56" height="18" forecolor="#000000" uuid="1a4f662f-7506-4023-acce-654c341c896c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7fc3bb2a-a243-4fa3-8bff-0e9284bc8ea3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama]]></text>
+				<text><![CDATA[Pelanggan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="244" y="0" width="61" height="18" forecolor="#000000" uuid="bb8348df-ac85-4990-867a-e20e8d5a8605">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f1764cd-296e-4db1-8bd4-b294f8513ecc"/>
+				<reportElement style="Column header" x="280" y="0" width="56" height="18" forecolor="#000000" uuid="5f574f01-d51c-44f2-83ed-b6f8b83dcfd0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86ebacb6-3ab5-4920-a399-b2a4bcaf179b"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama Segment]]></text>
+				<text><![CDATA[Segment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="305" y="0" width="61" height="18" forecolor="#000000" uuid="44316688-c04c-4cb5-a29e-523770de5239">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db88bfe3-94f1-4fbb-901f-0d5fb7fea62e"/>
+				<reportElement style="Column header" x="336" y="0" width="56" height="18" forecolor="#000000" uuid="403ffd8d-aa1f-4f3d-befa-24f14d72b2e6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b646f4a8-a070-4882-a856-b289dd33e6de"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -215,26 +230,26 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[PIC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="366" y="0" width="61" height="18" forecolor="#000000" uuid="8fdad3d0-8e4d-442c-ad1e-0fd791033341">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c767fad-1a84-4276-9f05-208f42c82937"/>
+				<reportElement style="Column header" x="392" y="0" width="56" height="18" forecolor="#000000" uuid="c72e4fb1-4452-4991-b60d-4031203d83bf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98ef8e26-55ca-4df8-b05d-ffdeb81ab16d"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[No. Telp]]></text>
+				<text><![CDATA[No Telp]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="427" y="0" width="61" height="18" forecolor="#000000" uuid="329f6ddb-22e1-4d3e-88a3-8a2ac92a08a1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a33f50f-5e28-4189-a833-74c63df73d22"/>
+				<reportElement style="Column header" x="448" y="0" width="56" height="18" forecolor="#000000" uuid="b577f0d0-4753-451d-84fc-76412af13ed0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e1b980c-0e0a-4c34-ae5c-03fc5e2b3286"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama Item]]></text>
+				<text><![CDATA[Item]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="488" y="0" width="61" height="18" forecolor="#000000" uuid="f159c59e-f310-4bd2-9c64-a04164452030">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57e43410-c935-4477-a785-d6b0ce9664eb"/>
+				<reportElement style="Column header" x="504" y="0" width="56" height="18" forecolor="#000000" uuid="d06f1667-e792-407c-9eae-244a26fa3c16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="34207df7-a736-4e6a-a719-70f0231c2dcc"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -242,8 +257,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[QTY]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="549" y="0" width="61" height="18" forecolor="#000000" uuid="53626edb-5a43-4b28-b3a9-e6250752848c">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a2f5160-ed1f-4e81-a47e-7ca2e69daf02"/>
+				<reportElement style="Column header" x="560" y="0" width="56" height="18" forecolor="#000000" uuid="8d7ef11d-049a-4501-a36c-8303292890f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33f57dc0-6775-4768-98e9-2136c1b0b416"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -251,8 +266,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="610" y="0" width="61" height="18" forecolor="#000000" uuid="004b0b74-e124-420a-8025-60ee68bc328d">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0a5541e-2cb9-43fb-9e6b-3fd5bc9ebfb8"/>
+				<reportElement style="Column header" x="616" y="0" width="56" height="18" forecolor="#000000" uuid="2298fe03-2212-42a5-b197-c110bc6ac1f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="18a5efe3-28ee-4a9e-ac89-187ab0cd6dbd"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -260,8 +275,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[Sub Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="671" y="0" width="61" height="18" forecolor="#000000" uuid="b4a305f1-df88-4b9c-b0a2-7ea11fe4fd77">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f364b734-f4bc-4e8e-930d-72e277b9e943"/>
+				<reportElement style="Column header" x="672" y="0" width="56" height="18" forecolor="#000000" uuid="9fcad778-9d4f-4bed-8541-dc336cb322b8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb85ccb-ac37-418d-8793-2c7cee9793c6"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -269,8 +284,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				<text><![CDATA[PPN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="732" y="0" width="61" height="18" forecolor="#000000" uuid="8a2cae6f-101a-4160-bb43-9611b58e77a6">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8fe992-44a0-487f-a737-955bf11cab91"/>
+				<reportElement style="Column header" x="728" y="0" width="56" height="18" forecolor="#000000" uuid="8f2e79f7-9b24-4091-81ca-f299048a0f5f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67f2b4b1-28e6-4a83-bc41-ed455d339656"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false"/>
@@ -284,8 +299,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="34a2ae4b-4055-476b-8676-d499f6af510b"/>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="61" height="18" uuid="bec0275c-932c-482d-94d1-9c7ea7d8dd7a">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bc853e0f-acc7-484e-a84c-eafde6775e2f"/>
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="56" height="18" uuid="fa9929e5-50d2-45ff-97f6-27a7cb45d5c4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="660d4b85-30e7-4399-b3f1-f80105f7ee97"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -293,8 +308,17 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{seq_num}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="61" y="0" width="61" height="18" uuid="fd9d3bc6-6e49-4cfa-ae29-0195b276ec85">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="212069e7-71d4-45e8-89cb-aa4a7d55850e"/>
+					<reportElement style="Detail" positionType="Float" x="56" y="0" width="56" height="18" uuid="25be7510-5d0b-4c67-b150-eea2a448ab9c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57518ec9-ad16-4b6f-878b-dcb6baf87faf"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quote_number}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement style="Detail" positionType="Float" x="112" y="0" width="56" height="18" uuid="1d3c41d1-a78b-4de4-9f57-bd957c067a91">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1b9119a6-79b8-4cf9-9359-b72f9267b6e2"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -302,8 +326,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="122" y="0" width="61" height="18" uuid="4740e01e-eff4-493f-a7bc-516b9aa44762">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a706ee9c-9537-4cd1-96af-bf6101e4ced0"/>
+					<reportElement style="Detail" positionType="Float" x="168" y="0" width="56" height="18" uuid="8719c9ee-5259-4e25-9669-67d2f8cba57e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eb1736d7-bba0-40ee-9bc4-7d8537b5dd4a"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -311,8 +335,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="183" y="0" width="61" height="18" uuid="b07e7d5e-3ad2-467f-a792-7d783046f3fc">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23d1dd19-c4ad-4f29-816d-c9a202434775"/>
+					<reportElement style="Detail" positionType="Float" x="224" y="0" width="56" height="18" uuid="c42f6789-2076-4f34-8448-eea2aa236736">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7fc3bb2a-a243-4fa3-8bff-0e9284bc8ea3"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -320,8 +344,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="244" y="0" width="61" height="18" uuid="c956afd2-463d-49a8-a013-440060e2e18e">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f1764cd-296e-4db1-8bd4-b294f8513ecc"/>
+					<reportElement style="Detail" positionType="Float" x="280" y="0" width="56" height="18" uuid="c13d299b-dfff-44ef-a58c-023ed611dea9">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86ebacb6-3ab5-4920-a399-b2a4bcaf179b"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -329,8 +353,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{segment_name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="305" y="0" width="61" height="18" uuid="38752969-0532-4663-86bb-28fa25cdc8a2">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="db88bfe3-94f1-4fbb-901f-0d5fb7fea62e"/>
+					<reportElement style="Detail" positionType="Float" x="336" y="0" width="56" height="18" uuid="84c91c7e-b214-44d2-ad29-d126ed285113">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b646f4a8-a070-4882-a856-b289dd33e6de"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -338,8 +362,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{pic}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="366" y="0" width="61" height="18" uuid="e549f2a7-da54-489e-868a-35bf7008cb1a">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c767fad-1a84-4276-9f05-208f42c82937"/>
+					<reportElement style="Detail" positionType="Float" x="392" y="0" width="56" height="18" uuid="1eac2b5c-8af9-459d-80a3-af3e54ec0e1a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98ef8e26-55ca-4df8-b05d-ffdeb81ab16d"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -347,8 +371,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{phone_number}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="427" y="0" width="61" height="18" uuid="1d442367-97a0-46d2-848d-bda37a280888">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a33f50f-5e28-4189-a833-74c63df73d22"/>
+					<reportElement style="Detail" positionType="Float" x="448" y="0" width="56" height="18" uuid="deb47656-1c67-4831-9c30-c468afbd8468">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e1b980c-0e0a-4c34-ae5c-03fc5e2b3286"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -356,8 +380,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{item_name}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="488" y="0" width="61" height="18" uuid="0143def0-d28c-4dd2-a2ac-1b47d65bac53">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57e43410-c935-4477-a785-d6b0ce9664eb"/>
+					<reportElement style="Detail" positionType="Float" x="504" y="0" width="56" height="18" uuid="c8aaaf7c-b3f5-4bdd-b8e8-9453adcc8127">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="34207df7-a736-4e6a-a719-70f0231c2dcc"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -365,8 +389,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="549" y="0" width="61" height="18" uuid="a5f6f113-146f-4693-a88b-e40959d71226">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a2f5160-ed1f-4e81-a47e-7ca2e69daf02"/>
+					<reportElement style="Detail" positionType="Float" x="560" y="0" width="56" height="18" uuid="7a4b0d77-45f4-4b24-a9ee-9da4727499b5">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33f57dc0-6775-4768-98e9-2136c1b0b416"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -374,8 +398,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="610" y="0" width="61" height="18" uuid="2b89760e-7da0-4882-b733-4a6a85d642c5">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0a5541e-2cb9-43fb-9e6b-3fd5bc9ebfb8"/>
+					<reportElement style="Detail" positionType="Float" x="616" y="0" width="56" height="18" uuid="b6ac8865-9b78-460f-867b-43a51aaf6128">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="18a5efe3-28ee-4a9e-ac89-187ab0cd6dbd"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -383,8 +407,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="671" y="0" width="61" height="18" uuid="7ee21f35-e8b0-453b-a74c-afd6e2ab5b2a">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f364b734-f4bc-4e8e-930d-72e277b9e943"/>
+					<reportElement style="Detail" positionType="Float" x="672" y="0" width="56" height="18" uuid="793633d9-c20e-4847-b2ed-a69873368f8b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9cb85ccb-ac37-418d-8793-2c7cee9793c6"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -392,8 +416,8 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 					<textFieldExpression><![CDATA[$F{ppn}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" positionType="Float" x="732" y="0" width="61" height="18" uuid="ccfdb5ba-0d63-498f-ad54-1468fb47bebc">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8fe992-44a0-487f-a737-955bf11cab91"/>
+					<reportElement style="Detail" positionType="Float" x="728" y="0" width="56" height="18" uuid="7ab564c0-4dea-4f84-bf87-6b5909f190d7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67f2b4b1-28e6-4a83-bc41-ed455d339656"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="11"/>
@@ -413,55 +437,55 @@ Jl. Letjen MT. Haryono Kav. 2-3, Tebet, Jakarta Selatan 12810 - Indonesia]]></te
 				</graphicElement>
 			</line>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement positionType="Float" x="674" y="100" width="128" height="20" uuid="036290a1-d76e-43a7-872f-b4ede7669ff4"/>
+				<reportElement positionType="Float" x="674" y="100" width="128" height="20" uuid="7764347f-2d21-4c1e-bbf5-e98337c81ee7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="120" width="165" height="20" uuid="099d89ad-c512-4e26-9e1d-78ae07e711b6"/>
+				<reportElement positionType="Float" x="637" y="120" width="165" height="20" uuid="47aa51d5-a5e7-4fce-8608-6221f6b39825"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Dibuat oleh,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="195" width="165" height="20" uuid="d5091cd1-578a-4959-9f82-e21c31b62a03"/>
+				<reportElement positionType="Float" x="637" y="195" width="165" height="20" uuid="5871ef49-4099-4118-a2b8-b98a505190a4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[(Admin)]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="637" y="195" width="165" height="1" uuid="87d5ff1d-61e7-4f36-99d9-53dee1e2c95d"/>
+				<reportElement positionType="Float" x="637" y="195" width="165" height="1" uuid="6c6d543d-0cf7-444e-833b-1da1ea4c4d92"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="637" y="100" width="37" height="20" uuid="5f3f3cf3-4d60-4c5e-93d5-1f60fa1f2896"/>
+				<reportElement positionType="Float" x="637" y="100" width="37" height="20" uuid="76daae6e-4d4c-4fa3-aadd-18dfa3be0cd7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Jakarta,  ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="100" width="165" height="20" uuid="045003b9-187b-4c2c-a2d1-a1c5c6c69928"/>
+				<reportElement positionType="Float" x="0" y="100" width="165" height="20" uuid="c2a02134-08b3-473c-a654-71837a875956"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Mengetahui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="120" width="165" height="20" uuid="0d46b0f8-6d8e-4e80-80a4-cae6ab23d838"/>
+				<reportElement positionType="Float" x="0" y="120" width="165" height="20" uuid="7d092239-4e94-4936-a534-32370268450c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Manager]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="0" y="192" width="165" height="1" uuid="808c432a-1f85-4da8-8948-eaa72f04e4f8"/>
+				<reportElement positionType="Float" x="0" y="192" width="165" height="1" uuid="f45376ba-b2a5-4ef3-8f50-4fed7d4f6c02"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="0" y="193" width="165" height="20" uuid="9f625425-eb75-460c-a8d0-2662db6f682e"/>
+				<reportElement positionType="Float" x="0" y="193" width="165" height="20" uuid="30941e6c-678c-4870-8189-6058a3adbc14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
