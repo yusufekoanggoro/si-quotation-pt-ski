@@ -113,7 +113,7 @@ public class StatusQmChartView extends javax.swing.JFrame {
          for (TransactionChartModel transactionModel : transactionsModel) {
             Month month = Month.of(transactionModel.getMonth());
             String monthName = month.name();
-            dataset.addValue(transactionModel.getTotal(), transactionModel.getYear(), monthName);
+            dataset.addValue((int)transactionModel.getTotal(), transactionModel.getYear(), monthName);
         }
         
         // Data dummy untuk status kutipan per tahun dalam Rupiah

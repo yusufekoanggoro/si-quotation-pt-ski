@@ -244,7 +244,7 @@ public class TransactionDao implements ITransactionDao {
                 TransactionChartModel transactionChart = new TransactionChartModel();
                 transactionChart.setYear(resultSet.getString("year"));
                 transactionChart.setMonth(resultSet.getInt("month"));
-                transactionChart.setTotal(resultSet.getInt("total"));
+                transactionChart.setTotal(resultSet.getLong("total"));
 
                 transactionsChart.add(transactionChart);
             }
