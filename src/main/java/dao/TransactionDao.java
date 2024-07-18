@@ -230,10 +230,10 @@ public class TransactionDao implements ITransactionDao {
     public List<TransactionChartModel> getTransactionChart() {
         try {
             query = "SELECT "
-                    + "YEAR(created_at) AS year, MONTH(created_at) AS month, SUM(Total) AS total "
+                    + "YEAR(custom_date) AS year, MONTH(custom_date) AS month, SUM(Total) AS total "
                     + "FROM transactions "
-                    + "GROUP BY YEAR(created_at), MONTH(created_at) "
-                    + "ORDER BY YEAR(created_at), MONTH(created_at)";
+                    + "GROUP BY YEAR(custom_date), MONTH(custom_date) "
+                    + "ORDER BY YEAR(custom_date), MONTH(custom_date)";
             
             pstmt = connection.prepareStatement(query);
             resultSet = pstmt.executeQuery();
@@ -244,8 +244,8 @@ public class TransactionDao implements ITransactionDao {
                 TransactionChartModel transactionChart = new TransactionChartModel();
                 transactionChart.setYear(resultSet.getString("year"));
                 transactionChart.setMonth(resultSet.getInt("month"));
-                transactionChart.setTotal(resultSet.getLong("total"));
-    
+                transactionChart.setTotal(resultSet.getInt("total"));
+
                 transactionsChart.add(transactionChart);
             }
             return transactionsChart;

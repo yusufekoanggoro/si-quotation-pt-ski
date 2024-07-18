@@ -34,17 +34,17 @@ public class TransactionChartModel {
         this.month = month;
     }
 
-    public long getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
     private String year;
     private int month;
-    private long total;
+    private int total;
     private String status;
     private int count;
     
